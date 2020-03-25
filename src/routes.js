@@ -80,7 +80,10 @@ router.post(
     let transporter = nodemailer.createTransport({
       host: "apps.smtp.gov.bc.ca",
       port: 25,
-      secure: false, // true for 465, false for other ports
+      secure: false,
+      tls: {
+        rejectUnauthorized:false
+      } // true for 465, false for other ports
     });
   
     // send mail with defined transport object
