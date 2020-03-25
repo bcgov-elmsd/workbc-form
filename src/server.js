@@ -12,6 +12,9 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+
 const middlewares = [
   layout(),
   express.static(path.join(__dirname, "public")),
@@ -39,6 +42,6 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
-app.listen(3000, () => {
-  console.log(`App running at http://localhost:3000`);
+app.listen(port,ip, () => {
+  console.log('App running at http://' + ip + ':' + port);
 });
