@@ -15,6 +15,10 @@ router.get('/done', (req,res) => {
   res.render('confirmation')
 });
 
+router.get('/about',(req,res) =>{
+  res.render('about')
+});
+
 /*
 router.post('/', (req, res) => {
   res.render('index', {
