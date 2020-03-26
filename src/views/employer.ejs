@@ -40,7 +40,7 @@
         <% } %>
     </div>
     <div class="form-row">
-          <div class="form-group col-md-6 <%= errors.jobtitle ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-6 <%= errors.jobtitle ? 'form-field-invalid' : '' %>">
             <label class="col-form-label control-label" for="jobtitle">Job Title</label>
             <input type="text" class="form-control" id="jobtitle" name="jobtitle"><%= data.jobtitle %></input>
             <% if (errors.jobtitle) { %>
@@ -54,7 +54,30 @@
             <div class="error"><%= errors.positions.msg %></div>
           <% } %>
         </div>
-      </div>
+    </div>
+    <div class="form-group <%= errors.hrcontactname ? 'form-field-invalid' : '' %>">
+        <label class="col-form-label control-label" for="hrcontactname">HR Contact Name(s)</label>
+        <input type="text" class="form-control" id="hrcontactname" name="hrcontactname"><%= data.hrcontactname %></input>
+        <% if (errors.hrcontactname) { %>
+          <div class="error"><%= errors.hrcontactname.msg %></div>
+        <% } %>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6 <%= errors.contactemail ? 'form-field-invalid' : '' %>">
+            <label class="col-form-label control-label" for="contactemail">Contact Email</label>
+            <input type="text" class="form-control" id="contactemail" name="contactemail"><%= data.contactemail %></input>
+            <% if (errors.contactemail) { %>
+              <div class="error"><%= errors.contactemail.msg %></div>
+            <% } %>
+        </div>
+        <div class="form-group col-md-6 <%= errors.contactphone ? 'form-field-invalid' : '' %>">
+          <label class="col-form-label control-label" for="contactphone">Contact Phone</label>
+          <input type="text" class="form-control" id="contactphone" name="contactphone"><%= data.contactphone %></input>
+          <% if (errors.contactphone) { %>
+            <div class="error"><%= errors.contactphone.msg %></div>
+          <% } %>
+        </div>       
+    </div>
       </div>
       <!--
         <div class="form-field <%= errors.email ? 'form-field-invalid' : '' %>">
