@@ -1,100 +1,26 @@
 <div class="row">
-  <div class="col-lg-12">
-    <% if (Object.keys(errors).length === 0) { %>
-      <h1 id="forms">Form</h1>
-    <% } else { %>
-      <h2 class="errors-heading">Oops, please correct the following:</h2>
-      <ul class="errors-list">
-        <% Object.values(errors).forEach(error => { %>
-          <li><%= error.msg %></li>
-        <% }) %>
-      </ul>
-    <% } %>
+  <div class="col-md-12">
+    <h1>Welcome</h1>
+    <p>Are you an?</p>
   </div>
 </div>
-  
 <div class="row">
-  <form method="post" action="/" novalidate>
-    <!--
-    <div class="form-group <%= errors.message ? 'form-field-invalid' : '' %>">
-      <label for="message">Message</label>
-      <textarea class="form-control" id="message" name="message" rows="4"><%= data.message %></textarea>
-      <% if (errors.message) { %>
-        <div class="error"><%= errors.message.msg %></div>
-      <% } %>
-    </div>
-    -->
-    <div class="form-row">
-        <div class="form-group col-md-4 <%= errors.firstname ? 'form-field-invalid' : '' %>">
-            <label class="col-form-label control-label" for="firstname">First Name</label>
-            <input type="text" class="form-control" id="firstname" name="firstname"><%= data.firstname %></input>
-            <% if (errors.firstname) { %>
-              <div class="error"><%= errors.firstname.msg %></div>
-            <% } %>
-        </div>
-        <div class="form-group col-md-4 <%= errors.middlename ? 'form-field-invalid' : '' %>">
-          <label class="col-form-label control-label" for="middlename">Middle Name</label>
-          <input type="text" class="form-control" id="middlename" name="middlename"><%= data.middlename %></input>
-          <% if (errors.middlename) { %>
-            <div class="error"><%= errors.middlename.msg %></div>
-          <% } %>
-      </div>
-      <div class="form-group col-md-4 <%= errors.lastname ? 'form-field-invalid' : '' %>">
-        <label class="col-form-label control-label" for="lastname">Last Name</label>
-        <input type="text" class="form-control" id="lastname" name="lastname"><%= data.lastname %></input>
-        <% if (errors.lastname) { %>
-          <div class="error"><%= errors.lastname.msg %></div>
-        <% } %>
-      </div>
-    </div>
-    <div class="form-group <%= errors.phone ? 'form-field-invalid' : '' %>">
-      <label class="col-form-label control-label" for="phone">Phone</label>
-      <input type="text" class="form-control" id="phone" name="phone"><%= data.phone %></input>
-      <% if (errors.phone) { %>
-        <div class="error"><%= errors.phone.msg %></div>
-      <% } %>
-    </div>
-    <div class="form-group <%= errors.address ? 'form-field-invalid' : '' %>">
-      <label class="col-form-label control-label" for="address">Address</label>
-      <input type="text" class="form-control" id="address" name="address"><%= data.address %></input>
-      <% if (errors.address) { %>
-        <div class="error"><%= errors.address.msg %></div>
-      <% } %>
-    </div>
-    <div class="form-group <%= errors.address2 ? 'form-field-invalid' : '' %>">
-      <label class="col-form-label control-label" for="address2">Address 2</label>
-      <input type="text" class="form-control" id="address2" name="address2"><%= data.address2 %></input>
-      <% if (errors.address2) { %>
-        <div class="error"><%= errors.address2.msg %></div>
-      <% } %>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-8 <%= errors.city ? 'form-field-invalid' : '' %>">
-        <label class="col-form-label control-label" for="city">City</label>
-        <input type="text" class="form-control" id="city" name="city"><%= data.city %></input>
-        <% if (errors.city) { %>
-          <div class="error"><%= errors.city.msg %></div>
-        <% } %>
-      </div>
-      <div class="form-group col-md-4 <%= errors.postal ? 'form-field-invalid' : '' %>">
-        <label class="col-form-label control-label" for="postal">Postal Code</label>
-        <input type="text" class="form-control" id="postal" name="postal"><%= data.postal %></input>
-        <% if (errors.postal) { %>
-          <div class="error"><%= errors.postal.msg %></div>
-        <% } %>
-      </div>
-    </div>
-    <!--
-      <div class="form-field <%= errors.email ? 'form-field-invalid' : '' %>">
-      <label for="email">Email</label>
-      <input class="input" id="email" name="email" type="email" value="<%= data.email %>" />
-      <% if (errors.email) { %>
-        <div class="error"><%= errors.email.msg %></div>
-      <% } %>
-    </div>-->
-    <div class="form-actions">
-      <!--<button class="btn btn-primary" type="submit">Send</button>-->
-    </div>
-  </form>
+  <div class="col-md-6">
+    <p><a href="/employer" class="btn btn-primary">Employer</a></br/></p>
+  </div>
+  <div class="col-md-6">
+    <p><a href="/jobseeker" class="btn btn-primary">Job Seeker</a><br/></p>
+  </div>
 </div>
-  
+<div class="row" style="margin-top:2em">
+  <div class="col-md-12">
+    <h3>Data collection notice</h3>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum blandit vehicula est vel pulvinar. Cras fringilla, lorem euismod blandit pellentesque, nisl nunc fermentum elit, eget feugiat nisl ipsum vitae neque. Nullam venenatis venenatis tristique. Sed vel feugiat massa. Praesent velit ante, tristique in gravida sit amet, ullamcorper eget risus. Duis faucibus auctor neque, ac suscipit lorem feugiat tincidunt. Suspendisse convallis velit id consectetur tempor. Phasellus et est nisi. Sed at quam dui. Ut non rutrum orci. Sed venenatis, neque a elementum condimentum, lacus est mollis massa, in molestie mauris lorem ut arcu. Phasellus blandit lectus est, cursus tempus dolor luctus eu. Vivamus rutrum lobortis sapien, vitae suscipit neque.
+    </p>
+    <p>
+      Maecenas consequat tortor ex, ac maximus orci suscipit sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse elementum arcu convallis velit ullamcorper, nec commodo mi tincidunt. Donec at erat massa. Vivamus vel urna tristique, pulvinar nisi rhoncus, pretium turpis. Etiam varius tempus nisl posuere lobortis. Mauris vehicula dui a facilisis consequat. Ut vitae libero elit. Aliquam ut sagittis augue, sed pulvinar enim. Curabitur auctor turpis nec lacus tempus semper. Etiam tincidunt orci non felis varius consequat. Duis eu malesuada lacus. Cras semper vehicula ultrices. Proin rhoncus a erat id suscipit. Curabitur pretium, mauris ac sodales sollicitudin, sapien est vestibulum urna, ac suscipit ante augue commodo tortor. Curabitur enim magna, condimentum et imperdiet varius, sagittis a mi.
+    </p>
+  </div>
+</div>
+</div>

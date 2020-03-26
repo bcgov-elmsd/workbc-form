@@ -5,11 +5,23 @@ const { check, validationResult, matchedData } = require('express-validator');
 const nodemailer = require("nodemailer");
 
 router.get('/', (req, res) => {
-  res.render('index',{
+  res.render('index')
+});
+
+router.get('/jobseeker',(req,res) =>{
+  res.render('jobseeker',{
     data: {},
     errors: {}
-  });
-});
+  }); 
+})
+
+router.get('/employer',(req,res) =>{
+  res.render('employer',{
+    data: {},
+    errors: {}
+  }); 
+})
+
 
 router.get('/done', (req,res) => {
   res.render('confirmation')
@@ -35,22 +47,9 @@ router.post('/', (req, res) => {
 });
 */
 
-async function main() {
-  // Generate test SMTP service account from ethereal.email
-  // Only needed if you don't have a real mail account for testing
-
-  // create reusable transporter object using the default SMTP transport
-
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-  // Preview only available when sending through an Ethereal account
-
-}
-
-main().catch(console.error);
 
 router.post(
-  "/",
+  "/jobseeker",
   [
     
     check("message")
@@ -101,7 +100,7 @@ router.post(
   
     console.log("Message sent: %s", info.messageId);
 
-    req.flash("success", "Thanks for the message! I‘ll be in touch :)");
+    req.flash("success", "Request has been submitted");
     res.redirect("/done");
   }
 );

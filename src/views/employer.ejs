@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-lg-12">
+      <% if (Object.keys(errors).length === 0) { %>
+        <h1 id="forms">Employer Form</h1>
+      <% } else { %>
+        <h2 class="errors-heading">Oops, please correct the following:</h2>
+        <ul class="errors-list">
+          <% Object.values(errors).forEach(error => { %>
+            <li><%= error.msg %></li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </div>
+  </div>
+    
+  <div class="row">
+      <div class="col-md-12">
+    <form method="post" action="/" novalidate>
+      <!--
+      <div class="form-group <%= errors.message ? 'form-field-invalid' : '' %>">
+        <label for="message">Message</label>
+        <textarea class="form-control" id="message" name="message" rows="4"><%= data.message %></textarea>
+        <% if (errors.message) { %>
+          <div class="error"><%= errors.message.msg %></div>
+        <% } %>
+      </div>
+      -->
+      <div class="form-group <%= errors.employer ? 'form-field-invalid' : '' %>">
+        <label class="col-form-label control-label" for="employer">Employer Name</label>
+        <input type="text" class="form-control" id="employer" name="employer"><%= data.employer %></input>
+        <% if (errors.employer) { %>
+          <div class="error"><%= errors.employer.msg %></div>
+        <% } %>
+    </div>
+    <div class="form-group <%= errors.location ? 'form-field-invalid' : '' %>">
+        <label class="col-form-label control-label" for="location">Locations(s)</label>
+        <input type="text" class="form-control" id="location" name="location"><%= data.location %></input>
+        <% if (errors.location) { %>
+          <div class="error"><%= errors.location.msg %></div>
+        <% } %>
+    </div>
+    <div class="form-row">
+          <div class="form-group col-md-6 <%= errors.jobtitle ? 'form-field-invalid' : '' %>">
+            <label class="col-form-label control-label" for="jobtitle">Job Title</label>
+            <input type="text" class="form-control" id="jobtitle" name="jobtitle"><%= data.jobtitle %></input>
+            <% if (errors.jobtitle) { %>
+              <div class="error"><%= errors.jobtitle.msg %></div>
+            <% } %>
+        </div>
+        <div class="form-group col-md-6 <%= errors.positions ? 'form-field-invalid' : '' %>">
+          <label class="col-form-label control-label" for="positions"># of Positions</label>
+          <input type="text" class="form-control" id="positions" name="positions"><%= data.positions %></input>
+          <% if (errors.positions) { %>
+            <div class="error"><%= errors.positions.msg %></div>
+          <% } %>
+        </div>
+      </div>
+      </div>
+      <!--
+        <div class="form-field <%= errors.email ? 'form-field-invalid' : '' %>">
+        <label for="email">Email</label>
+        <input class="input" id="email" name="email" type="email" value="<%= data.email %>" />
+        <% if (errors.email) { %>
+          <div class="error"><%= errors.email.msg %></div>
+        <% } %>
+      </div>-->
+      <div class="form-actions">
+        <!--<button class="btn btn-primary" type="submit">Send</button>-->
+      </div>
+    </form>
+</div>
+  </div>
+    
