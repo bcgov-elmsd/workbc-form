@@ -88,9 +88,9 @@ router.post(
   
     // send mail with defined transport object
     let info = transporter.sendMail({
-      from: '"A ghost 👻" <workbctest@gov.bc.ca>', // sender address
+      from: '"A ghost" <workbctest@gov.bc.ca>', // sender address
       to: "Webmaster <rafael.solorzano@gov.bc.ca>", // list of receivers
-      subject: "Hello ✔", // Subject line
+      subject: "Hello", // Subject line
       text: "Hello world?", // plain text body
       html: "<b>Hello world?</b>" // html body
     });
