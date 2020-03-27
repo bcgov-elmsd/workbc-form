@@ -25,14 +25,14 @@
         <% } %>
       </div>
       -->
-      <div class="form-group <%= errors.employer ? 'form-field-invalid' : '' %>">
+      <div class="form-group <%= errors.employer ? 'is-invalid' : '' %>">
         <label class="col-form-label control-label" for="employer">Employer Name</label>
         <input type="text" class="form-control" id="employer" name="employer"><%= data.employer %></input>
         <% if (errors.employer) { %>
         <div class="error"><%= errors.employer.msg %></div>
         <% } %>
       </div>
-      <div class="form-group <%= errors.location ? 'form-field-invalid' : '' %>">
+      <div class="form-group <%= errors.location ? 'is-invalid' : '' %>">
         <label class="col-form-label control-label" for="location">Locations(s)</label>
         <input type="text" class="form-control" id="location" name="location"><%= data.location %></input>
         <% if (errors.location) { %>
@@ -40,14 +40,14 @@
         <% } %>
       </div>
       <div class="form-row">
-        <div class="form-group col-md-6 <%= errors.jobtitle ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-6 <%= errors.jobtitle ? 'is-invalid' : '' %>">
           <label class="col-form-label control-label" for="jobtitle">Job Title</label>
           <input type="text" class="form-control" id="jobtitle" name="jobtitle"><%= data.jobtitle %></input>
           <% if (errors.jobtitle) { %>
           <div class="error"><%= errors.jobtitle.msg %></div>
           <% } %>
         </div>
-        <div class="form-group col-md-6 <%= errors.positions ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-6 <%= errors.positions ? 'is-invalid' : '' %>">
           <label class="col-form-label control-label" for="positions"># of Positions</label>
           <input type="text" class="form-control" id="positions" name="positions"><%= data.positions %></input>
           <% if (errors.positions) { %>
@@ -55,7 +55,7 @@
           <% } %>
         </div>
       </div>
-      <div class="form-group <%= errors.hrcontactname ? 'form-field-invalid' : '' %>">
+      <div class="form-group <%= errors.hrcontactname ? 'is-invalid' : '' %>">
         <label class="col-form-label control-label" for="hrcontactname">HR Contact Name(s)</label>
         <input type="text" class="form-control" id="hrcontactname"
           name="hrcontactname"><%= data.hrcontactname %></input>
@@ -64,14 +64,14 @@
         <% } %>
       </div>
       <div class="form-row">
-        <div class="form-group col-md-6 <%= errors.contactemail ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-6 <%= errors.contactemail ? 'is-invalid' : '' %>">
           <label class="col-form-label control-label" for="contactemail">Contact Email</label>
           <input type="text" class="form-control" id="contactemail" name="contactemail"><%= data.contactemail %></input>
           <% if (errors.contactemail) { %>
           <div class="error"><%= errors.contactemail.msg %></div>
           <% } %>
         </div>
-        <div class="form-group col-md-6 <%= errors.contactphone ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-6 <%= errors.contactphone ? 'is-invalid' : '' %>">
           <label class="col-form-label control-label" for="contactphone">Contact Phone</label>
           <input type="text" class="form-control" id="contactphone" name="contactphone"><%= data.contactphone %></input>
           <% if (errors.contactphone) { %>
@@ -80,7 +80,7 @@
         </div>
       </div>
       <h2>Job Description</h2>
-      <div class="form-group <%= errors.rolesandresponsibilities ? 'form-field-invalid' : '' %>">
+      <div class="form-group <%= errors.rolesandresponsibilities ? 'is-invalid' : '' %>">
         <label class="col-form-label control-label" for="rolesandresponsibilities">Role and Responsibilities</label>
         <textarea class="form-control" id="rolesandresponsibilities" name="rolesandresponsibilities"
           rows="6"><%= data.rolesandresponsibilities %></textarea>
@@ -88,7 +88,7 @@
         <div class="error"><%= errors.rolesandresponsibilities.msg %></div>
         <% } %>
       </div>
-      <div class="form-group <%= errors.qualifications ? 'form-field-invalid' : '' %>">
+      <div class="form-group <%= errors.qualifications ? 'is-invalid' : '' %>">
         <label class="col-form-label control-label" for="qualifications">Qualifications and Education
           Requirements</label>
         <textarea class="form-control" id="qualifications" name="qualifications"
@@ -99,21 +99,21 @@
       </div>
       <h3>Job Details</h3>
       <div class="form-row">
-        <div class="form-group col-md-4 <%= errors.hoursofwork ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-4 <%= errors.hoursofwork ? 'is-invalid' : '' %>">
           <label class="col-form-label control-label" for="hoursofwork">Hours of Work</label>
           <input type="text" class="form-control" id="hoursofwork" name="hoursofwork"><%= data.hoursofwork %></input>
           <% if (errors.hoursofwork) { %>
           <div class="error"><%= errors.hoursofwork.msg %></div>
           <% } %>
         </div>
-        <div class="form-group col-md-4 <%= errors.hourlypay ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-4 <%= errors.hourlypay ? 'is-invalid' : '' %>">
           <label class="col-form-label control-label" for="hourlypay">Hourly rate of pay</label>
           <input type="text" class="form-control" id="hourlypay" name="hourlypay"><%= data.hourlypay %></input>
           <% if (errors.hourlypay) { %>
           <div class="error"><%= errors.hourlypay.msg %></div>
           <% } %>
         </div>
-        <div class="form-group col-md-4 <%= errors.positiontype ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-4 <%= errors.positiontype ? 'is-invalid' : '' %>">
           <label class="col-form-label control-label" for="positiontype">Position type</label>
           <input type="text" class="form-control" id="positiontype" name="positiontype"><%= data.positiontype %></input>
           <% if (errors.positiontype) { %>
@@ -121,21 +121,21 @@
           <% } %>
         </div>
       </div>
-      <div class="form-group <%= errors.physicalrequirements ? 'form-field-invalid' : '' %>">
+      <div class="form-group <%= errors.physicalrequirements ? 'is-invalid' : '' %>">
         <label class="col-form-label control-label" for="physicalrequirements">Physical requirements</label>
         <input class="form-control" id="physicalrequirements" name="physicalrequirements"><%= data.physicalrequirements %></input>
         <% if (errors.physicalrequirements) { %>
           <div class="error"><%= errors.physicalrequirements.msg %></div>
         <% } %>
       </div>
-      <div class="form-group <%= errors.covid19health ? 'form-field-invalid' : '' %>">
+      <div class="form-group <%= errors.covid19health ? 'is-invalid' : '' %>">
         <label class="col-form-label control-label" for="covid19health">COVID-19 health and safety provisions</label>
         <input class="form-control" id="covid19health" name="covid19health"><%= data.covid19health %></input>
         <% if (errors.covid19health) { %>
           <div class="error"><%= errors.covid19health.msg %></div>
         <% } %>
       </div>
-      <div class="form-group <%= errors.otherjobdetails ? 'form-field-invalid' : '' %>">
+      <div class="form-group <%= errors.otherjobdetails ? 'is-invalid' : '' %>">
         <label class="col-form-label control-label" for="otherjobdetails">Other</label>
         <textarea class="form-control" id="otherjobdetails" name="otherjobdetails"
           rows="3"><%= data.otherjobdetails %></textarea>
@@ -145,14 +145,14 @@
       </div>
       <h2>Template prepared by</h2>
       <div class="form-row">
-        <div class="form-group col-md-6 <%= errors.preparedbyname ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-6 <%= errors.preparedbyname ? 'is-invalid' : '' %>">
           <label class="col-form-label control-label" for="preparedbyname">Name</label>
           <input type="text" class="form-control" id="preparedbyname" name="preparedbyname"><%= data.preparedbyname %></input>
           <% if (errors.preparedbyname) { %>
           <div class="error"><%= errors.preparedbyname.msg %></div>
           <% } %>
         </div>
-        <div class="form-group col-md-6 <%= errors.preparedbyemail ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-6 <%= errors.preparedbyemail ? 'is-invalid' : '' %>">
           <label class="col-form-label control-label" for="preparedbyemail">Email</label>
           <input type="text" class="form-control" id="preparedbyemail" name="preparedbyemail"><%= data.preparedbyemail %></input>
           <% if (errors.preparedbyemail) { %>
@@ -162,14 +162,14 @@
       </div>      
       <h2>WorkBC Referrals</h2>
       <div class="form-row">
-        <div class="form-group col-md-6 <%= errors.referral1name ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-6 <%= errors.referral1name ? 'is-invalid' : '' %>">
           <label class="col-form-label control-label" for="referral1name">Name</label>
           <input type="text" class="form-control" id="referral1name" name="referral1name"><%= data.referral1name %></input>
           <% if (errors.referral1name) { %>
           <div class="error"><%= errors.referral1name.msg %></div>
           <% } %>
         </div>
-        <div class="form-group col-md-6 <%= errors.referral1email ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-6 <%= errors.referral1email ? 'is-invalid' : '' %>">
           <label class="col-form-label control-label" for="referral1email">Email</label>
           <input type="text" class="form-control" id="referral1email" name="referral1email"><%= data.referral1email %></input>
           <% if (errors.referral1email) { %>
@@ -178,14 +178,14 @@
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group col-md-6 <%= errors.referral2name ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-6 <%= errors.referral2name ? 'is-invalid' : '' %>">
           <label class="col-form-label control-label" for="referral2name">Name</label>
           <input type="text" class="form-control" id="referral2name" name="referral2name"><%= data.referral2name %></input>
           <% if (errors.referral2name) { %>
           <div class="error"><%= errors.referral2name.msg %></div>
           <% } %>
         </div>
-        <div class="form-group col-md-6 <%= errors.referral2email ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-6 <%= errors.referral2email ? 'is-invalid' : '' %>">
           <label class="col-form-label control-label" for="referral2email">Email</label>
           <input type="text" class="form-control" id="referral2email" name="referral2email"><%= data.referral2email %></input>
           <% if (errors.referral2email) { %>
@@ -194,14 +194,14 @@
         </div>
       </div> 
       <div class="form-row">
-        <div class="form-group col-md-6 <%= errors.referral3name ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-6 <%= errors.referral3name ? 'is-invalid' : '' %>">
           <label class="col-form-label control-label" for="referral3name">Name</label>
           <input type="text" class="form-control" id="referral3name" name="referral3name"><%= data.referral3name %></input>
           <% if (errors.referral3name) { %>
           <div class="error"><%= errors.referral3name.msg %></div>
           <% } %>
         </div>
-        <div class="form-group col-md-6 <%= errors.referral3email ? 'form-field-invalid' : '' %>">
+        <div class="form-group col-md-6 <%= errors.referral3email ? 'is-invalid' : '' %>">
           <label class="col-form-label control-label" for="referral3email">Email</label>
           <input type="text" class="form-control" id="referral3email" name="referral3email"><%= data.referral3email %></input>
           <% if (errors.referral3email) { %>
