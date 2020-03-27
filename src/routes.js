@@ -231,7 +231,7 @@ function createJobSeekerHtml(data){
   var html = "";
   html += "<h2>A Job Seeker Form has been submitted</h2>"
   html += "<p>First Name: " + data.firstname + "</p>"
-  html += "<p>Middle Name: " + data.middlename ? data.middlename : "" + "</p>"
+  html += "<p>Middle Name: " + Strings.orEmpty(data.middlename) + "</p>"
   html += "<p>Last Name: "+ data.lastname + "</p>"
   html += "<p>Phone: "+ data.phone + "</p>"
   html += "<p>Email: "+ data.email + "</p>"
