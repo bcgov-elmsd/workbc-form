@@ -32,11 +32,112 @@
         <div class="error"><%= errors.employer.msg %></div>
         <% } %>
       </div>
-      <div class="form-group <%= errors.location ? 'is-invalid' : '' %>">
-        <label class="col-form-label control-label" for="location">Locations(s)</label>
-        <input type="text" class="form-control" id="location" name="location"><%= data.location %></input>
-        <% if (errors.location) { %>
-        <div class="error"><%= errors.location.msg %></div>
+      <div class="form-group">
+        <label class="col-form-label control-label" for="catchment">Location(s) (select all that apply)</label>
+        <select multiple aria-describedby="catchment" aria-required="true" class="form-control" id="catchment" name="catchmentSelector" size="25">
+          <option value="129">100 MILE HOUSE</option>
+          <option value="127">ABBOTSFORD</option>
+          <option value="128">AGASSIZ</option>
+          <option value="123">ALDERGROVE</option>
+          <option value="130">ASHCROFT</option>
+          <option value="131">BARRIERE</option>
+          <option value="129">BELLA COOLA</option>
+          <option value="124">BURNABY</option>
+          <option value="142">BURNS LAKE</option>
+          <option value="101">CAMPBELL RIVER</option>
+          <option value="135">CASTLEGAR</option>
+          <option value="131">CHASE</option>
+          <option value="145">CHETWYND</option>
+          <option value="128">CHILLIWACK</option>
+          <option value="131">CLEARWATER</option>
+          <option value="117">COQUITLAM</option>
+          <option value="102">COURTENAY</option>
+          <option value="137">CRANBROOK</option>
+          <option value="136">CRESTON</option>
+          <option value="145">DAWSON CREEK</option>
+          <option value="118">DELTA</option>
+          <option value="105">DUNCAN</option>
+          <option value="138">ENDERBY</option>
+          <option value="137">FERNIE</option>
+          <option value="144">FORT NELSON</option>
+          <option value="142">FORT ST. JAMES</option>
+          <option value="144">FORT ST. JOHN</option>
+          <option value="108">GANGES</option>
+          <option value="134">GOLDEN</option>
+          <option value="135">GRAND FORKS</option>
+          <option value="139">HAIDA GWAII</option>
+          <option value="141">HAZELTON</option>
+          <option value="128">HOPE</option>
+          <option value="137">INVERMERE</option>
+          <option value="131">KAMLOOPS</option>
+          <option value="133">KELOWNA</option>
+          <option value="140">KITIMAT</option>
+          <option value="105">LADYSMITH</option>
+          <option value="106">LANGFORD</option>
+          <option value="123">LANGLEY</option>
+          <option value="130">LILLOOET</option>
+          <option value="143">MACKENZIE</option>
+          <option value="116">MAPLE RIDGE</option>
+          <option value="139">MASSET</option>
+          <option value="130">MERRITT</option>
+          <option value="126">MISSION</option>
+          <option value="136">NAKUSP</option>
+          <option value="104">NANAIMO</option>
+          <option value="136">NELSON</option>
+          <option value="125">NEW WESTMINSTER</option>
+          <option value="110">NORTH VANCOUVER</option>
+          <option value="132">OLIVER</option>
+          <option value="103">PARKSVILLE</option>
+          <option value="132">PENTICTON</option>
+          <option value="103">PORT ALBERNI</option>
+          <option value="117">PORT COQUITLAM</option>
+          <option value="101">PORT HARDY</option>
+          <option value="117">PORT MOODY</option>
+          <option value="102">POWELL RIVER</option>
+          <option value="143">PRINCE GEORGE</option>
+          <option value="139">PRINCE RUPERT</option>
+          <option value="132">PRINCETON</option>
+          <option value="139">QUEEN CHARLOTTE</option>
+          <option value="129">QUESNEL</option>
+          <option value="134">REVELSTOKE</option>
+          <option value="115">RICHMOND</option>
+          <option value="133">RUTLAND</option>
+          <option value="107">SAANICH</option>
+          <option value="134">SALMON ARM</option>
+          <option value="108">SALT SPRING ISLAND</option>
+          <option value="109">SECHELT</option>
+          <option value="134">SICAMOUS</option>
+          <option value="108">SIDNEY</option>
+          <option value="141">SMITHERS</option>
+          <option value="106">SOOKE</option>
+          <option value="122">SOUTH SURREY</option>
+          <option value="109">SQUAMISH</option>
+          <option value="132">SUMMERLAND</option>
+          <option value="120">SURREY CLOVERDALE</option>
+          <option value="119">SURREY FLEETWOOD/GUILDFORD</option>
+          <option value="121">SURREY NEWTON</option>
+          <option value="119">SURREY WHALLEY</option>
+          <option value="140">TERRACE</option>
+          <option value="103">TOFINO</option>
+          <option value="135">TRAIL</option>
+          <option value="103">UCLUELET</option>
+          <option value="143">VALEMOUNT</option>
+          <option value="111">VANCOUVER CITY CENTRE</option>
+          <option value="111">VANCOUVER DOWNTOWN EASTSIDE</option>
+          <option value="112">VANCOUVER MIDTOWN</option>
+          <option value="113">VANCOUVER NORTHEAST</option>
+          <option value="114">VANCOUVER SOUTH</option>
+          <option value="112">VANCOUVER WESTSIDE</option>
+          <option value="142">VANDERHOOF</option>
+          <option value="138">VERNON</option>
+          <option value="107">VICTORIA</option>
+          <option value="133">WESTBANK</option>
+          <option value="109">WHISTLER</option>
+          <option value="122">WHITE ROCK</option>
+          <option value="129">WILLIAMS LAKE</option>
+        </select>
+        <% if (errors.catchment) { %>
+          <div class="invalid-feedback"><%= errors.catchment.msg %></div>
         <% } %>
       </div>
       <div class="form-row">
@@ -208,6 +309,15 @@
           <div class="error"><%= errors.referral3email.msg %></div>
           <% } %>
         </div>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <input type="checkbox"  class="form-check-input <%= errors.consent ? 'is-invalid' : '' %>" id="consent" name="consent" value="<%= data.consent %>" required/>
+          <label class="form-check-label control-label" for="consent">I acknowledge and understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that by doing so, I am providing the same consent as I would by manually signing a physical copy of this form.</label>
+          <% if (errors.consent) { %>
+            <div class="invalid-feedback"><%= errors.consent.msg %></div>
+          <% } %>
+        </div>
       </div>   
   </div>
   <!--
@@ -219,7 +329,7 @@
         <% } %>
       </div>-->
   <div class="form-actions">
-    <!--<button class="btn btn-primary" type="submit">Send</button>-->
+    <button class="btn btn-primary" type="submit">Submit</button>
   </div>
   </form>
 </div>

@@ -51,20 +51,25 @@ router.post('/', (req, res) => {
 router.post(
   "/jobseeker",
   [
-    
-    
-      check("email")
-      .isEmail()
-      .withMessage("That email doesn‘t look right")
-      .bail()
-      .trim()
-      .normalizeEmail(),
       check("firstname")
       .notEmpty()
       .withMessage("Please enter your first name."),
       check("lastname")
       .notEmpty()
       .withMessage("Please enter your last name."),
+      check("email")
+      .isEmail()
+      .withMessage("Please enter a valid email address.")
+      .bail()
+      .trim()
+      .normalizeEmail(),
+      check("postal")
+      .isPostalCode("CA")
+      .trim()
+      .withMessage("Please enter a valid Postal Code."),
+      check("phone")
+      .isMobilePhone(['en-CA','en-US'])
+      .withMessage("Please enter a valid phone number.")
   ],
   (req, res) => {
     console.log(req.body);
@@ -91,6 +96,7 @@ router.post(
     });
   
     // send mail with defined transport object
+    /*
     let info = transporter.sendMail({
       from: '"A ghost" <workbctest@gov.bc.ca>', // sender address
       to: "Webmaster <rafael.solorzano@gov.bc.ca>", // list of receivers
@@ -98,10 +104,11 @@ router.post(
       text: "Hello world?", // plain text body
       html: "<b>Hello world?</b>" // html body
     });
+    */
   
-    console.log("Message sent: %s", info.messageId);
+    //console.log("Message sent: %s", info.messageId);
 
-    req.flash("success", "Request has been submitted");
+    req.flash("success", "Form has been submitted");
     res.redirect("/done");
   }
 );
