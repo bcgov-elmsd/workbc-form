@@ -15,26 +15,130 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form method="post" action="/" novalidate>
+    <form method="post" action="/employer" novalidate>
       <!--
       <div class="form-group <%= errors.message ? 'form-field-invalid' : '' %>">
         <label for="message">Message</label>
         <textarea class="form-control" id="message" name="message" rows="4"><%= data.message %></textarea>
         <% if (errors.message) { %>
-          <div class="error"><%= errors.message.msg %></div>
+          <div class="invalid-feedback"><%= errors.message.msg %></div>
         <% } %>
       </div>
       -->
-      <div class="form-group <%= errors.employer ? 'is-invalid' : '' %>">
+      <div class="form-group">
         <label class="col-form-label control-label" for="employer">Employer Name</label>
-        <input type="text" class="form-control" id="employer" name="employer"><%= data.employer %></input>
+        <input type="text" class="form-control <%= errors.employer ? 'is-invalid' : '' %>" id="employer" name="employer" value="<%= data.employer %>"/>
         <% if (errors.employer) { %>
-        <div class="error"><%= errors.employer.msg %></div>
+        <div class="invalid-feedback"><%= errors.employer.msg %></div>
+        <% } %>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="col-form-label control-label" for="jobtitle">Job Title</label>
+          <input type="text" class="form-control <%= errors.jobtitle ? 'is-invalid' : '' %>" id="jobtitle" name="jobtitle" value="<%= data.jobtitle %>"/>
+          <% if (errors.jobtitle) { %>
+          <div class="invalid-feedback"><%= errors.jobtitle.msg %></div>
+          <% } %>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="col-form-label control-label" for="positions"># of Positions</label>
+          <input type="text" class="form-control <%= errors.positions ? 'is-invalid' : '' %>" id="positions" name="positions" placeholder="1+" maxlength="4" value="<%= data.positions %>"/>
+          <% if (errors.positions) { %>
+          <div class="invalid-feedback"><%= errors.positions.msg %></div>
+          <% } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label control-label" for="hrcontactname">HR Contact Name(s)</label>
+        <input type="text" class="form-control <%= errors.hrcontactname ? 'is-invalid' : '' %>" id="hrcontactname"
+          name="hrcontactname" value="<%= data.hrcontactname %>"/>
+        <% if (errors.hrcontactname) { %>
+        <div class="invalid-feedback"><%= errors.hrcontactname.msg %></div>
+        <% } %>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="col-form-label control-label" for="contactemail">Contact Email</label>
+          <input type="text" class="form-control <%= errors.contactemail ? 'is-invalid' : '' %>" id="contactemail" name="contactemail" value="<%= data.contactemail %>"/>
+          <% if (errors.contactemail) { %>
+          <div class="invalid-feedback"><%= errors.contactemail.msg %></div>
+          <% } %>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="col-form-label control-label" for="contactphone">Contact Phone</label>
+          <input type="text" class="form-control <%= errors.contactphone ? 'is-invalid' : '' %>" id="contactphone" name="contactphone" value="<%= data.contactphone %>"/>
+          <% if (errors.contactphone) { %>
+          <div class="invalid-feedback"><%= errors.contactphone.msg %></div>
+          <% } %>
+        </div>
+      </div>
+      <h2>Job Description</h2>
+      <div class="form-group">
+        <label class="col-form-label control-label" for="rolesandresponsibilities">Role and Responsibilities</label>
+        <textarea class="form-control <%= errors.rolesandresponsibilities ? 'is-invalid' : '' %>" id="rolesandresponsibilities" name="rolesandresponsibilities"
+          rows="6"><%= data.rolesandresponsibilities %></textarea>
+        <% if (errors.rolesandresponsibilities) { %>
+        <div class="invalid-feedback"><%= errors.rolesandresponsibilities.msg %></div>
+        <% } %>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label control-label" for="qualifications">Qualifications and Education
+          Requirements</label>
+        <textarea class="form-control <%= errors.qualifications ? 'is-invalid' : '' %>" id="qualifications" name="qualifications"
+          rows="6"><%= data.qualifications %></textarea>
+        <% if (errors.qualifications) { %>
+        <div class="invalid-feedback"><%= errors.qualifications.msg %></div>
+        <% } %>
+      </div>
+      <h3>Job Details</h3>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label class="col-form-label control-label" for="hoursofwork">Hours of Work</label>
+          <input type="text" class="form-control <%= errors.hoursofwork ? 'is-invalid' : '' %>" id="hoursofwork" name="hoursofwork" value="<%= data.hoursofwork %>"/>
+          <% if (errors.hoursofwork) { %>
+          <div class="invalid-feedback"><%= errors.hoursofwork.msg %></div>
+          <% } %>
+        </div>
+        <div class="form-group col-md-4">
+          <label class="col-form-label control-label" for="hourlypay">Hourly rate of pay</label>
+          <input type="text" class="form-control <%= errors.hourlypay ? 'is-invalid' : '' %>" id="hourlypay" name="hourlypay" value="<%= data.hourlypay %>"/>
+          <% if (errors.hourlypay) { %>
+          <div class="invalid-feedback"><%= errors.hourlypay.msg %></div>
+          <% } %>
+        </div>
+        <div class="form-group col-md-4">
+          <label class="col-form-label control-label" for="positiontype">Position type</label>
+          <input type="text" class="form-control <%= errors.positiontype ? 'is-invalid' : '' %>" id="positiontype" name="positiontype" value="<%= data.positiontype %>"/>
+          <% if (errors.positiontype) { %>
+          <div class="invalid-feedback"><%= errors.positiontype.msg %></div>
+          <% } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label control-label" for="physicalrequirements">Physical requirements</label>
+        <input class="form-control <%= errors.physicalrequirements ? 'is-invalid' : '' %>" id="physicalrequirements" name="physicalrequirements" value="<%= data.physicalrequirements %>"/>
+        <% if (errors.physicalrequirements) { %>
+          <div class="invalid-feedback"><%= errors.physicalrequirements.msg %></div>
+        <% } %>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label control-label" for="covid19health">COVID-19 health and safety provisions</label>
+        <input class="form-control <%= errors.covid19health ? 'is-invalid' : '' %>" id="covid19health" name="covid19health" value="<%= data.covid19health %>"/>
+        <% if (errors.covid19health) { %>
+          <div class="invalid-feedback"><%= errors.covid19health.msg %></div>
+        <% } %>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label control-label" for="otherjobdetails">Other</label>
+        <textarea class="form-control <%= errors.otherjobdetails ? 'is-invalid' : '' %>" id="otherjobdetails" name="otherjobdetails"
+          rows="3"><%= data.otherjobdetails %></textarea>
+        <% if (errors.otherjobdetails) { %>
+        <div class="invalid-feedback"><%= errors.otherjobdetails.msg %></div>
         <% } %>
       </div>
       <div class="form-group">
         <label class="col-form-label control-label" for="catchment">Location(s) (select all that apply)</label>
-        <select multiple aria-describedby="catchment" aria-required="true" class="form-control" id="catchment" name="catchmentSelector" size="25">
+        <select multiple aria-describedby="catchment" aria-required="true" class="form-control <%= errors.catchment ? 'is-invalid' : '' %>" id="catchment" name="catchment" size="25">
           <option value="100MILEHOUSE">100 MILE HOUSE</option>
           <option value="ABBOTSFORD">ABBOTSFORD</option>
           <option value="AGASSIZ">AGASSIZ</option>
@@ -140,180 +244,76 @@
           <div class="invalid-feedback"><%= errors.catchment.msg %></div>
         <% } %>
       </div>
-      <div class="form-row">
-        <div class="form-group col-md-6 <%= errors.jobtitle ? 'is-invalid' : '' %>">
-          <label class="col-form-label control-label" for="jobtitle">Job Title</label>
-          <input type="text" class="form-control" id="jobtitle" name="jobtitle"><%= data.jobtitle %></input>
-          <% if (errors.jobtitle) { %>
-          <div class="error"><%= errors.jobtitle.msg %></div>
-          <% } %>
-        </div>
-        <div class="form-group col-md-6 <%= errors.positions ? 'is-invalid' : '' %>">
-          <label class="col-form-label control-label" for="positions"># of Positions</label>
-          <input type="text" class="form-control" id="positions" name="positions"><%= data.positions %></input>
-          <% if (errors.positions) { %>
-          <div class="error"><%= errors.positions.msg %></div>
-          <% } %>
-        </div>
-      </div>
-      <div class="form-group <%= errors.hrcontactname ? 'is-invalid' : '' %>">
-        <label class="col-form-label control-label" for="hrcontactname">HR Contact Name(s)</label>
-        <input type="text" class="form-control" id="hrcontactname"
-          name="hrcontactname"><%= data.hrcontactname %></input>
-        <% if (errors.hrcontactname) { %>
-        <div class="error"><%= errors.hrcontactname.msg %></div>
-        <% } %>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6 <%= errors.contactemail ? 'is-invalid' : '' %>">
-          <label class="col-form-label control-label" for="contactemail">Contact Email</label>
-          <input type="text" class="form-control" id="contactemail" name="contactemail"><%= data.contactemail %></input>
-          <% if (errors.contactemail) { %>
-          <div class="error"><%= errors.contactemail.msg %></div>
-          <% } %>
-        </div>
-        <div class="form-group col-md-6 <%= errors.contactphone ? 'is-invalid' : '' %>">
-          <label class="col-form-label control-label" for="contactphone">Contact Phone</label>
-          <input type="text" class="form-control" id="contactphone" name="contactphone"><%= data.contactphone %></input>
-          <% if (errors.contactphone) { %>
-          <div class="error"><%= errors.contactphone.msg %></div>
-          <% } %>
-        </div>
-      </div>
-      <h2>Job Description</h2>
-      <div class="form-group <%= errors.rolesandresponsibilities ? 'is-invalid' : '' %>">
-        <label class="col-form-label control-label" for="rolesandresponsibilities">Role and Responsibilities</label>
-        <textarea class="form-control" id="rolesandresponsibilities" name="rolesandresponsibilities"
-          rows="6"><%= data.rolesandresponsibilities %></textarea>
-        <% if (errors.rolesandresponsibilities) { %>
-        <div class="error"><%= errors.rolesandresponsibilities.msg %></div>
-        <% } %>
-      </div>
-      <div class="form-group <%= errors.qualifications ? 'is-invalid' : '' %>">
-        <label class="col-form-label control-label" for="qualifications">Qualifications and Education
-          Requirements</label>
-        <textarea class="form-control" id="qualifications" name="qualifications"
-          rows="6"><%= data.qualifications %></textarea>
-        <% if (errors.qualifications) { %>
-        <div class="error"><%= errors.qualifications.msg %></div>
-        <% } %>
-      </div>
-      <h3>Job Details</h3>
-      <div class="form-row">
-        <div class="form-group col-md-4 <%= errors.hoursofwork ? 'is-invalid' : '' %>">
-          <label class="col-form-label control-label" for="hoursofwork">Hours of Work</label>
-          <input type="text" class="form-control" id="hoursofwork" name="hoursofwork"><%= data.hoursofwork %></input>
-          <% if (errors.hoursofwork) { %>
-          <div class="error"><%= errors.hoursofwork.msg %></div>
-          <% } %>
-        </div>
-        <div class="form-group col-md-4 <%= errors.hourlypay ? 'is-invalid' : '' %>">
-          <label class="col-form-label control-label" for="hourlypay">Hourly rate of pay</label>
-          <input type="text" class="form-control" id="hourlypay" name="hourlypay"><%= data.hourlypay %></input>
-          <% if (errors.hourlypay) { %>
-          <div class="error"><%= errors.hourlypay.msg %></div>
-          <% } %>
-        </div>
-        <div class="form-group col-md-4 <%= errors.positiontype ? 'is-invalid' : '' %>">
-          <label class="col-form-label control-label" for="positiontype">Position type</label>
-          <input type="text" class="form-control" id="positiontype" name="positiontype"><%= data.positiontype %></input>
-          <% if (errors.positiontype) { %>
-          <div class="error"><%= errors.positiontype.msg %></div>
-          <% } %>
-        </div>
-      </div>
-      <div class="form-group <%= errors.physicalrequirements ? 'is-invalid' : '' %>">
-        <label class="col-form-label control-label" for="physicalrequirements">Physical requirements</label>
-        <input class="form-control" id="physicalrequirements" name="physicalrequirements"><%= data.physicalrequirements %></input>
-        <% if (errors.physicalrequirements) { %>
-          <div class="error"><%= errors.physicalrequirements.msg %></div>
-        <% } %>
-      </div>
-      <div class="form-group <%= errors.covid19health ? 'is-invalid' : '' %>">
-        <label class="col-form-label control-label" for="covid19health">COVID-19 health and safety provisions</label>
-        <input class="form-control" id="covid19health" name="covid19health"><%= data.covid19health %></input>
-        <% if (errors.covid19health) { %>
-          <div class="error"><%= errors.covid19health.msg %></div>
-        <% } %>
-      </div>
-      <div class="form-group <%= errors.otherjobdetails ? 'is-invalid' : '' %>">
-        <label class="col-form-label control-label" for="otherjobdetails">Other</label>
-        <textarea class="form-control" id="otherjobdetails" name="otherjobdetails"
-          rows="3"><%= data.otherjobdetails %></textarea>
-        <% if (errors.otherjobdetails) { %>
-        <div class="error"><%= errors.otherjobdetails.msg %></div>
-        <% } %>
-      </div>
       <h2>Template prepared by</h2>
       <div class="form-row">
-        <div class="form-group col-md-6 <%= errors.preparedbyname ? 'is-invalid' : '' %>">
+        <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="preparedbyname">Name</label>
-          <input type="text" class="form-control" id="preparedbyname" name="preparedbyname"><%= data.preparedbyname %></input>
+          <input type="text" class="form-control <%= errors.preparedbyname ? 'is-invalid' : '' %>" id="preparedbyname" name="preparedbyname" value="<%= data.preparedbyname %>"/>
           <% if (errors.preparedbyname) { %>
-          <div class="error"><%= errors.preparedbyname.msg %></div>
+          <div class="invalid-feedback"><%= errors.preparedbyname.msg %></div>
           <% } %>
         </div>
-        <div class="form-group col-md-6 <%= errors.preparedbyemail ? 'is-invalid' : '' %>">
+        <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="preparedbyemail">Email</label>
-          <input type="text" class="form-control" id="preparedbyemail" name="preparedbyemail"><%= data.preparedbyemail %></input>
+          <input type="text" class="form-control <%= errors.preparedbyemail ? 'is-invalid' : '' %>" id="preparedbyemail" name="preparedbyemail" value="<%= data.preparedbyemail %>"/>
           <% if (errors.preparedbyemail) { %>
-          <div class="error"><%= errors.preparedbyemail.msg %></div>
+          <div class="invalid-feedback"><%= errors.preparedbyemail.msg %></div>
           <% } %>
         </div>
       </div>      
       <h2>WorkBC Referrals</h2>
       <div class="form-row">
-        <div class="form-group col-md-6 <%= errors.referral1name ? 'is-invalid' : '' %>">
+        <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="referral1name">Name</label>
-          <input type="text" class="form-control" id="referral1name" name="referral1name"><%= data.referral1name %></input>
+          <input type="text" class="form-control <%= errors.referral1name ? 'is-invalid' : '' %>" id="referral1name" name="referral1name" value="<%= data.referral1name %>"/>
           <% if (errors.referral1name) { %>
-          <div class="error"><%= errors.referral1name.msg %></div>
+          <div class="invalid-feedback"><%= errors.referral1name.msg %></div>
           <% } %>
         </div>
-        <div class="form-group col-md-6 <%= errors.referral1email ? 'is-invalid' : '' %>">
+        <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="referral1email">Email</label>
-          <input type="text" class="form-control" id="referral1email" name="referral1email"><%= data.referral1email %></input>
+          <input type="text" class="form-control <%= errors.referral1email ? 'is-invalid' : '' %>" id="referral1email" name="referral1email" value="<%= data.referral1email %>"/>
           <% if (errors.referral1email) { %>
-          <div class="error"><%= errors.referral1email.msg %></div>
+          <div class="invalid-feedback"><%= errors.referral1email.msg %></div>
           <% } %>
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group col-md-6 <%= errors.referral2name ? 'is-invalid' : '' %>">
+        <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="referral2name">Name</label>
-          <input type="text" class="form-control" id="referral2name" name="referral2name"><%= data.referral2name %></input>
+          <input type="text" class="form-control <%= errors.referral2name ? 'is-invalid' : '' %>" id="referral2name" name="referral2name" value="<%= data.referral2name %>"/>
           <% if (errors.referral2name) { %>
-          <div class="error"><%= errors.referral2name.msg %></div>
+          <div class="invalid-feedback"><%= errors.referral2name.msg %></div>
           <% } %>
         </div>
-        <div class="form-group col-md-6 <%= errors.referral2email ? 'is-invalid' : '' %>">
+        <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="referral2email">Email</label>
-          <input type="text" class="form-control" id="referral2email" name="referral2email"><%= data.referral2email %></input>
+          <input type="text" class="form-control <%= errors.referral2email ? 'is-invalid' : '' %>" id="referral2email" name="referral2email" value="<%= data.referral2email %>"/>
           <% if (errors.referral2email) { %>
-          <div class="error"><%= errors.referral2email.msg %></div>
+          <div class="invalid-feedback"><%= errors.referral2email.msg %></div>
           <% } %>
         </div>
       </div> 
       <div class="form-row">
-        <div class="form-group col-md-6 <%= errors.referral3name ? 'is-invalid' : '' %>">
+        <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="referral3name">Name</label>
-          <input type="text" class="form-control" id="referral3name" name="referral3name"><%= data.referral3name %></input>
+          <input type="text" class="form-control <%= errors.referral3name ? 'is-invalid' : '' %>" id="referral3name" name="referral3name" value="<%= data.referral3name %>"/>
           <% if (errors.referral3name) { %>
-          <div class="error"><%= errors.referral3name.msg %></div>
+          <div class="invalid-feedback"><%= errors.referral3name.msg %></div>
           <% } %>
         </div>
-        <div class="form-group col-md-6 <%= errors.referral3email ? 'is-invalid' : '' %>">
+        <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="referral3email">Email</label>
-          <input type="text" class="form-control" id="referral3email" name="referral3email"><%= data.referral3email %></input>
+          <input type="text" class="form-control <%= errors.referral3email ? 'is-invalid' : '' %>" id="referral3email" name="referral3email" value="<%= data.referral3email %>"/>
           <% if (errors.referral3email) { %>
-          <div class="error"><%= errors.referral3email.msg %></div>
+          <div class="invalid-feedback"><%= errors.referral3email.msg %></div>
           <% } %>
         </div>
       </div>
       <div class="form-group">
         <div class="form-check">
-          <input type="checkbox"  class="form-check-input <%= errors.consent ? 'is-invalid' : '' %>" id="consent" name="consent" value="<%= data.consent %>" required/>
-          <label class="form-check-label control-label" for="consent">I acknowledge and understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that by doing so, I am providing the same consent as I would by manually signing a physical copy of this form.</label>
+          <input type="checkbox"  class="form-check-input <%= errors.consent ? 'is-invalid' : '' %>" id="consent" name="consent" value="consent" required/>
+          <label class="form-check-label control-label" for="consent">I acknowledge and understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that by doing so, I am providing the same consent as I would by manually signing a physical copy of this form</label>
           <% if (errors.consent) { %>
             <div class="invalid-feedback"><%= errors.consent.msg %></div>
           <% } %>
@@ -325,7 +325,7 @@
         <label for="email">Email</label>
         <input class="input" id="email" name="email" type="email" value="<%= data.email %>" />
         <% if (errors.email) { %>
-          <div class="error"><%= errors.email.msg %></div>
+          <div class="invalid-feedback"><%= errors.email.msg %></div>
         <% } %>
       </div>-->
   <div class="form-actions">
