@@ -15,7 +15,7 @@
     
   <div class="row">
       <div class="col-md-12">
-    <form method="post" action="/" novalidate>
+    <form method="post" action="/jobseeker">
       <!--
       <div class="form-group <%= errors.message ? 'form-field-invalid' : '' %>">
         <label for="message">Message</label>
@@ -26,11 +26,11 @@
       </div>
       -->
       <div class="form-row">
-          <div class="form-group col-md-4 <%= errors.firstname ? 'form-field-invalid' : '' %>">
+          <div class="form-group col-md-4">
               <label class="col-form-label control-label" for="firstname">First Name</label>
-              <input type="text" class="form-control" id="firstname" name="firstname"><%= data.firstname %></input>
+              <input type="text" class="form-control <%= errors.firstname ? 'is-invalid' : '' %>" id="firstname" name="firstname"><%= data.firstname %></input>
               <% if (errors.firstname) { %>
-                <div class="error"><%= errors.firstname.msg %></div>
+                <div class="invalid-feedback">Please enter your name.</div>
               <% } %>
           </div>
           <div class="form-group col-md-4 <%= errors.middlename ? 'form-field-invalid' : '' %>">
@@ -55,11 +55,11 @@
           <div class="error"><%= errors.phone.msg %></div>
         <% } %>
       </div>
-      <div class="form-group <%= errors.email ? 'form-field-invalid' : '' %>">
+      <div class="form-group">
         <label class="col-form-label control-label" for="email">Email</label>
-        <input type="text" class="form-control" id="email" name="email"><%= data.email %></input>
+        <input type="text" class="form-control <%= errors.email ? 'is-invalid' : '' %>" id="email" name="email"><%= data.email %></input>
         <% if (errors.email) { %>
-          <div class="error"><%= errors.email.msg %></div>
+          <div class="invalid-feedback"><%= errors.email.msg %></div>
         <% } %>
       </div>
       <div class="form-group <%= errors.address ? 'form-field-invalid' : '' %>">
@@ -101,7 +101,7 @@
         <% } %>
       </div>-->
       <div class="form-actions">
-        <!--<button class="btn btn-primary" type="submit">Send</button>-->
+        <button class="btn btn-primary" type="submit">Send</button>
       </div>
     </div>
     </form>

@@ -52,26 +52,27 @@ router.post(
   "/jobseeker",
   [
     
-    check("message")
-      .isLength({ min: 1 })
-      .withMessage("Message is required")
-      .trim(),
-    /*
+    
       check("email")
-      .isEmail(),
+      .isEmail()
       .withMessage("That email doesn‘t look right")
       .bail()
       .trim()
-      .normalizeEmail()
-    */
-      check("Name").isLength({min:3}),
+      .normalizeEmail(),
+      check("firstname")
+      .notEmpty()
+      .withMessage("Please enter your first name."),
+      check("lastname")
+      .notEmpty()
+      .withMessage("Please enter your last name."),
   ],
   (req, res) => {
     console.log(req.body);
     const errors = validationResult(req);
+    console.log(errors);
     //const errors = [];
     if (!errors.isEmpty()) {
-      return res.render("index", {
+      return res.render("jobseeker", {
         data: req.body,
         errors: errors.mapped()
       });
