@@ -113,7 +113,7 @@ router.post(
     htmlMessage += "<p>" + data.firstname + "</p>";
     
     let info = transporter.sendMail({
-      from: 'Job Seeker" <donotreply@gov.bc.ca>', // sender address
+      from: 'Job Seeker <donotreply@gov.bc.ca>', // sender address
       to: "WorkBC Jobs <WorkBCJobs@gov.bc.ca>", // list of receivers
       subject: "Job Seeker Form", // Subject line
       text: "Plain text", // plain text body
