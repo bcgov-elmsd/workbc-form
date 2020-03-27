@@ -72,5 +72,14 @@
       $('[data-toggle="popover"]').popover()
     })
   </script>
+  <script>
+    $(document).ready(function(){
+            var browser = window.navigator.userAgent;
+            if (browser.indexOf('Trident')>-1){
+                //IE
+                $('body').css("height","100vh");
+            }
+        });
+  </script>
 </body>
 </html>
