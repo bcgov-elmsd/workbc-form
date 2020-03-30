@@ -1,9 +1,11 @@
 <div class="row">
     <div class="col-lg-12">
+      <h1 id="forms">Job Seeker Form</h1>
+      <p><span style="color:red">*</span> Denotes a required field.</p>
       <% if (Object.keys(errors).length === 0) { %>
-        <h1 id="forms">Job Seeker Form</h1>
+        
       <% } else { %>
-        <h2 class="errors-heading">Oops, please correct the following:</h2>
+        <h3 class="errors-heading">Oops, please correct the following:</h3>
         <ul class="errors-list">
           <% Object.values(errors).forEach(error => { %>
             <li><%= error.msg %></li>
@@ -110,7 +112,7 @@
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label class="col-form-label control-label" for="legalworkingage">Are you of legal working age? <span style="color:red">*</span></label>
           <select aria-describedby="legalworkingage" aria-required="true" class="form-control <%= errors.legalworkingage ? 'is-invalid' : '' %>" id="legalworkingage" name="legalworkingage">
             <option value="0"></option>
@@ -121,7 +123,7 @@
             <div class="invalid-feedback">Please answer.</div>
           <% } %>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label class="col-form-label control-label" for="eligibletowork">Are you eligible to work in Canada? <span style="color:red">*</span></label>
           <select aria-describedby="eligibletowork" aria-required="true" class="form-control <%= errors.eligibletowork ? 'is-invalid' : '' %>" id="eligibletowork" name="eligibletowork">
             <option value="0"></option>
@@ -129,6 +131,17 @@
             <option value="No">No</option>
           </select>
           <% if (errors.eligibletowork) { %>
+            <div class="invalid-feedback">Please answer.</div>
+          <% } %>
+        </div>
+        <div class="form-group col-md-4">
+          <label class="col-form-label control-label" for="neighbouringcommunities">Are you willing to work in neighbouring communities?<span style="color:red">*</span></label>
+          <select aria-describedby="neighbouringcommunities" aria-required="true" class="form-control <%= errors.neighbouringcommunities ? 'is-invalid' : '' %>" id="neighbouringcommunities" name="neighbouringcommunities">
+            <option value="0"></option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+          <% if (errors.neighbouringcommunities) { %>
             <div class="invalid-feedback">Please answer.</div>
           <% } %>
         </div>
@@ -573,7 +586,7 @@
       <div class="form-group">
         <div class="form-check">
           <input type="checkbox"  class="form-check-input <%= errors.consent ? 'is-invalid' : '' %>" id="consent" name="consent" value="consent"/>
-          <label class="form-check-label control-label" for="consent">I acknowledge and understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that by doing so, I am providing the same consent as I would by manually signing a physical copy of this form.</label>
+          <label class="form-check-label control-label" for="consent"><span style="color:red">*</span> I acknowledge and understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that by doing so, I am providing the same consent as I would by manually signing a physical copy of this form.</label>
           <% if (errors.consent) { %>
             <div class="invalid-feedback"><%= errors.consent.msg %></div>
           <% } %>
