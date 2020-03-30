@@ -112,7 +112,7 @@
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
           <label class="col-form-label control-label" for="legalworkingage">Are you of legal working age? <span style="color:red">*</span></label>
           <select aria-describedby="legalworkingage" aria-required="true" class="form-control <%= errors.legalworkingage ? 'is-invalid' : '' %>" id="legalworkingage" name="legalworkingage">
             <option value="0"></option>
@@ -134,8 +134,8 @@
             <div class="invalid-feedback">Please answer.</div>
           <% } %>
         </div>
-        <div class="form-group col-md-4">
-          <label class="col-form-label control-label" for="neighbouringcommunities">Are you willing to work in neighbouring communities?<span style="color:red">*</span></label>
+        <div class="form-group col-md-5">
+          <label class="col-form-label control-label" for="neighbouringcommunities">Are you willing to work in nearby communities?<span style="color:red">*</span></label>
           <select aria-describedby="neighbouringcommunities" aria-required="true" class="form-control <%= errors.neighbouringcommunities ? 'is-invalid' : '' %>" id="neighbouringcommunities" name="neighbouringcommunities">
             <option value="0"></option>
             <option value="Yes">Yes</option>
@@ -475,6 +475,7 @@
           <div class="invalid-feedback">Please answer.</div>
         <% } %>
       </div>
+      <!--
       <div class="form-group">
         <label class="col-form-label control-label" for="catchment">Region(s) available to work (select all that apply)</label>
         <select multiple aria-describedby="catchment" aria-required="true" class="form-control <%= errors.catchment ? 'is-invalid' : '' %>" id="catchment" name="catchment" size="25">
@@ -583,6 +584,7 @@
           <div class="invalid-feedback"><%= errors.catchment.msg %></div>
         <% } %>
       </div>
+      -->
       <div class="form-group">
         <div class="form-check">
           <input type="checkbox"  class="form-check-input <%= errors.consent ? 'is-invalid' : '' %>" id="consent" name="consent" value="consent"/>
