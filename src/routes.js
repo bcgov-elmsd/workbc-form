@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult, matchedData } = require('express-validator');
 const nodemailer = require("nodemailer");
+const csrf = require('csurf');
+const csrfProtection = csrf({ cookie: true });
 
 const Strings = {};
 Strings.orEmpty = function( entity ) {
@@ -13,17 +15,19 @@ router.get('/', (req, res) => {
   res.render('index')
 });
 
-router.get('/jobseeker',(req,res) =>{
+router.get('/jobseeker',csrfProtection, (req,res) =>{
   res.render('jobseeker',{
     data: {},
-    errors: {}
+    errors: {},
+    csrfToken: req.csrfToken()
   }); 
 })
 
-router.get('/employer',(req,res) =>{
+router.get('/employer',csrfProtection, (req,res) =>{
   res.render('employer',{
     data: {},
-    errors: {}
+    errors: {},
+    csrfToken: req.csrfToken()
   }); 
 })
 
@@ -36,25 +40,9 @@ router.get('/about',(req,res) =>{
   res.render('about')
 });
 
-/*
-router.post('/', (req, res) => {
-  res.render('index', {
-    data: req.body, // { message, email }
-    errors: {
-      message: {
-        msg: 'A message is required'
-      },
-      email: {
-        msg: 'That email doesn‘t look right'
-      }
-    }
-  });
-});
-*/
-
 
 router.post(
-  "/jobseeker",
+  "/jobseeker", csrfProtection,
   [
       check("firstname")
       .notEmpty()
@@ -85,12 +73,13 @@ router.post(
   (req, res) => {
     console.log(req.body);
     const errors = validationResult(req);
-    console.log(errors);
+    //console.log(errors);
     //const errors = [];
     if (!errors.isEmpty()) {
       return res.render("jobseeker", {
         data: req.body,
-        errors: errors.mapped()
+        errors: errors.mapped(),
+        csrfToken: req.csrfToken()
       });
     }
 
@@ -98,15 +87,13 @@ router.post(
     console.log("Sanitized: ", data);
     console.log(data.firstname);
 
-    
-
     let transporter = nodemailer.createTransport({
       host: "apps.smtp.gov.bc.ca",
       port: 25,
       secure: false,
       tls: {
         rejectUnauthorized:false
-      } // true for 465, false for other ports
+      }
     });
   
     var htmlMessage = "";
@@ -120,8 +107,6 @@ router.post(
       html: createJobSeekerHtml(data) // html body
     });
     
-    
-  
     console.log("Message sent: %s", info.messageId);
 
     req.flash("success", "Form has been submitted");
@@ -130,7 +115,7 @@ router.post(
 );
 
 router.post(
-  "/employer",
+  "/employer", csrfProtection, 
   [
       check("employer")
       .notEmpty()
@@ -191,7 +176,8 @@ router.post(
     if (!errors.isEmpty()) {
       return res.render("employer", {
         data: req.body,
-        errors: errors.mapped()
+        errors: errors.mapped(),
+        csrfToken: req.csrfToken()
       });
     }
 

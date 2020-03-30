@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("express-flash");
+const helmet = require('helmet');
+
 
 const routes = require("./routes");
 const app = express();
@@ -20,6 +22,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 
 
 const middlewares = [
+  helmet(),
   layout(),
   express.static(path.join(__dirname, "public")),
   bodyParser.urlencoded({ extended: true }),
