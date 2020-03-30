@@ -261,6 +261,7 @@ function createEmployerHtml(data){
   html += "<h3>Template Prepared By</h3>"
   html += "<p>Name: "+ data.preparedbyname + "</p>"
   html += "<p>Email: "+ data.preparedbyemail + "</p>"
+  /*
   html += "<h3>WorkBC Referrals</h3>"
   html += "<p>Name: "+ Strings.orEmpty(data.referral1name) + "</p>"
   html += "<p>Email: "+ Strings.orEmpty(data.referral1email) + "</p>"
@@ -268,7 +269,7 @@ function createEmployerHtml(data){
   html += "<p>Email: "+ Strings.orEmpty(data.referral2email) + "</p>"
   html += "<p>Name: "+ Strings.orEmpty(data.referral3name) + "</p>"
   html += "<p>Email: "+ Strings.orEmpty(data.referral3email) + "</p>"
-
+  */
 
 
   return html;

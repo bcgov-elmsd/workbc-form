@@ -27,7 +27,7 @@
       -->
       <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <div class="form-group">
-        <label class="col-form-label control-label" for="employer">Employer Name</label>
+        <label class="col-form-label control-label" for="employer">Employer Name <span style="color:red">*</span></label>
         <input type="text" class="form-control <%= errors.employer ? 'is-invalid' : '' %>" id="employer" name="employer" value="<%= data.employer %>"/>
         <% if (errors.employer) { %>
         <div class="invalid-feedback"><%= errors.employer.msg %></div>
@@ -35,14 +35,14 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label class="col-form-label control-label" for="jobtitle">Job Title</label>
+          <label class="col-form-label control-label" for="jobtitle">Job Title <span style="color:red">*</span></label>
           <input type="text" class="form-control <%= errors.jobtitle ? 'is-invalid' : '' %>" id="jobtitle" name="jobtitle" value="<%= data.jobtitle %>"/>
           <% if (errors.jobtitle) { %>
           <div class="invalid-feedback"><%= errors.jobtitle.msg %></div>
           <% } %>
         </div>
         <div class="form-group col-md-6">
-          <label class="col-form-label control-label" for="positions"># of Positions</label>
+          <label class="col-form-label control-label" for="positions"># of Positions <span style="color:red">*</span></label>
           <input type="text" class="form-control <%= errors.positions ? 'is-invalid' : '' %>" id="positions" name="positions" placeholder="1+" maxlength="4" value="<%= data.positions %>"/>
           <% if (errors.positions) { %>
           <div class="invalid-feedback"><%= errors.positions.msg %></div>
@@ -50,7 +50,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label class="col-form-label control-label" for="hrcontactname">HR Contact Name(s)</label>
+        <label class="col-form-label control-label" for="hrcontactname">HR Contact Name(s) <span style="color:red">*</span></label>
         <input type="text" class="form-control <%= errors.hrcontactname ? 'is-invalid' : '' %>" id="hrcontactname"
           name="hrcontactname" value="<%= data.hrcontactname %>"/>
         <% if (errors.hrcontactname) { %>
@@ -59,15 +59,15 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label class="col-form-label control-label" for="contactemail">Contact Email</label>
+          <label class="col-form-label control-label" for="contactemail">Contact Email <span style="color:red">*</span></label>
           <input type="text" class="form-control <%= errors.contactemail ? 'is-invalid' : '' %>" id="contactemail" name="contactemail" value="<%= data.contactemail %>"/>
           <% if (errors.contactemail) { %>
           <div class="invalid-feedback"><%= errors.contactemail.msg %></div>
           <% } %>
         </div>
         <div class="form-group col-md-6">
-          <label class="col-form-label control-label" for="contactphone">Contact Phone</label>
-          <input type="text" class="form-control <%= errors.contactphone ? 'is-invalid' : '' %>" id="contactphone" name="contactphone" value="<%= data.contactphone %>"/>
+          <label class="col-form-label control-label" for="contactphone">Contact Phone <span style="color:red">*</span></label>
+          <input type="text" class="form-control <%= errors.contactphone ? 'is-invalid' : '' %>" id="contactphone" name="contactphone" placeholder="555-555-555 or 5551235555" value="<%= data.contactphone %>"/>
           <% if (errors.contactphone) { %>
           <div class="invalid-feedback"><%= errors.contactphone.msg %></div>
           <% } %>
@@ -75,7 +75,7 @@
       </div>
       <h2>Job Description</h2>
       <div class="form-group">
-        <label class="col-form-label control-label" for="rolesandresponsibilities">Role and Responsibilities</label>
+        <label class="col-form-label control-label" for="rolesandresponsibilities">Role and Responsibilities <span style="color:red">*</span></label>
         <textarea class="form-control <%= errors.rolesandresponsibilities ? 'is-invalid' : '' %>" id="rolesandresponsibilities" name="rolesandresponsibilities"
           rows="6"><%= data.rolesandresponsibilities %></textarea>
         <% if (errors.rolesandresponsibilities) { %>
@@ -83,8 +83,7 @@
         <% } %>
       </div>
       <div class="form-group">
-        <label class="col-form-label control-label" for="qualifications">Qualifications and Education
-          Requirements</label>
+        <label class="col-form-label control-label" for="qualifications">Qualifications and Education Requirements <span style="color:red">*</span></label>
         <textarea class="form-control <%= errors.qualifications ? 'is-invalid' : '' %>" id="qualifications" name="qualifications"
           rows="6"><%= data.qualifications %></textarea>
         <% if (errors.qualifications) { %>
@@ -94,21 +93,21 @@
       <h3>Job Details</h3>
       <div class="form-row">
         <div class="form-group col-md-4">
-          <label class="col-form-label control-label" for="hoursofwork">Hours of Work</label>
+          <label class="col-form-label control-label" for="hoursofwork">Hours of Work <span style="color:red">*</span></label>
           <input type="text" class="form-control <%= errors.hoursofwork ? 'is-invalid' : '' %>" id="hoursofwork" name="hoursofwork" value="<%= data.hoursofwork %>"/>
           <% if (errors.hoursofwork) { %>
           <div class="invalid-feedback"><%= errors.hoursofwork.msg %></div>
           <% } %>
         </div>
         <div class="form-group col-md-4">
-          <label class="col-form-label control-label" for="hourlypay">Hourly rate of pay</label>
+          <label class="col-form-label control-label" for="hourlypay">Hourly rate of pay <span style="color:red">*</span></label>
           <input type="text" class="form-control <%= errors.hourlypay ? 'is-invalid' : '' %>" id="hourlypay" name="hourlypay" value="<%= data.hourlypay %>"/>
           <% if (errors.hourlypay) { %>
           <div class="invalid-feedback"><%= errors.hourlypay.msg %></div>
           <% } %>
         </div>
         <div class="form-group col-md-4">
-          <label class="col-form-label control-label" for="positiontype">Position type</label>
+          <label class="col-form-label control-label" for="positiontype">Position type <span style="color:red">*</span></label>
           <input type="text" class="form-control <%= errors.positiontype ? 'is-invalid' : '' %>" id="positiontype" name="positiontype" value="<%= data.positiontype %>"/>
           <% if (errors.positiontype) { %>
           <div class="invalid-feedback"><%= errors.positiontype.msg %></div>
@@ -138,7 +137,8 @@
         <% } %>
       </div>
       <div class="form-group">
-        <label class="col-form-label control-label" for="catchment">Location(s) (select all that apply)</label>
+        <label class="col-form-label control-label" for="catchment">Location(s) (select all that apply) <span style="color:red">*</span></label>
+        <small class="text-muted">Please hold CTRL when selecting multiple options.</small>
         <select multiple aria-describedby="catchment" aria-required="true" class="form-control <%= errors.catchment ? 'is-invalid' : '' %>" id="catchment" name="catchment" size="25">
           <option value="100MILEHOUSE">100 MILE HOUSE</option>
           <option value="ABBOTSFORD">ABBOTSFORD</option>
@@ -261,7 +261,8 @@
           <div class="invalid-feedback"><%= errors.preparedbyemail.msg %></div>
           <% } %>
         </div>
-      </div>      
+      </div>
+      <!--      
       <h2>WorkBC Referrals</h2>
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -319,7 +320,8 @@
             <div class="invalid-feedback"><%= errors.consent.msg %></div>
           <% } %>
         </div>
-      </div>   
+      </div>
+      -->   
   </div>
   <!--
         <div class="form-field <%= errors.email ? 'form-field-invalid' : '' %>">
