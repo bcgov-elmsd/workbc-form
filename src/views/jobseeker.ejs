@@ -29,12 +29,12 @@
       <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <div class="form-row">
           <div class="form-group col-md-3">
-              <label class="col-form-label control-label" for="salutation">Salutation</label>
+              <label class="col-form-label control-label" for="salutation">Salutation <span style="color:red">*</span></label>
               <select aria-describedby="salutation" aria-required="true" class="form-control <%= errors.salutation ? 'is-invalid' : '' %>" id="salutation" name="salutation">
                 <option value="0">Select</option>
                 <option value="Mr">Mr.</option>
                 <option value="Mrs">Mrs.</option>
-                <option value="MS">Ms.</option>
+                <option value="Ms">Ms.</option>
                 <option value="Dr">Dr.</option>
                 <option value="Prof">Prof</option>
               </select>
@@ -43,7 +43,7 @@
               <% } %>
           </div>
           <div class="form-group col-md-3">
-              <label class="col-form-label control-label" for="firstname">First Name</label>
+              <label class="col-form-label control-label" for="firstname">First Name <span style="color:red">*</span></label>
               <input type="text" class="form-control <%= errors.firstname ? 'is-invalid' : '' %>" id="firstname" name="firstname" value="<%= data.firstname %>" />
               <% if (errors.firstname) { %>
                 <div class="invalid-feedback">Please enter your name.</div>
@@ -57,7 +57,7 @@
             <% } %>
         </div>
         <div class="form-group col-md-3">
-          <label class="col-form-label control-label" for="lastname">Last Name</label>
+          <label class="col-form-label control-label" for="lastname">Last Name <span style="color:red">*</span></label>
           <input type="text" class="form-control <%= errors.lastname ? 'is-invalid' : '' %>" id="lastname" name="lastname" value="<%= data.lastname %>"/>
           <% if (errors.lastname) { %>
             <div class="invalid-feedback"><%= errors.lastname.msg %></div>
@@ -65,7 +65,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label class="col-form-label control-label" for="phone">Phone</label>
+        <label class="col-form-label control-label" for="phone">Phone <span style="color:red">*</span></label>
         <input type="text" class="form-control <%= errors.phone ? 'is-invalid' : '' %>" id="phone" name="phone" maxlength="12" placeholder="555-555-555 or 5551235555" value="<%= data.phone _%>"/>
         </input>
         <% if (errors.phone) { %>
@@ -73,7 +73,7 @@
         <% } %>
       </div>
       <div class="form-group">
-        <label class="col-form-label control-label" for="email">Email</label>
+        <label class="col-form-label control-label" for="email">Email <span style="color:red">*</span></label>
         <input type="text" class="form-control <%= errors.email ? 'is-invalid' : '' %>" id="email" name="email" value="<%= data.email %>"/>
         <% if (errors.email) { %>
           <div class="invalid-feedback"><%= errors.email.msg %></div>
@@ -95,22 +95,47 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-8">
-          <label class="col-form-label control-label" for="city">City</label>
+          <label class="col-form-label control-label" for="city">City <span style="color:red">*</span></label>
           <input type="text" class="form-control <%= errors.city ? 'is-invalid' : '' %>" id="city" name="city" value="<%= data.city %>"/>
           <% if (errors.city) { %>
             <div class="invalid-feedback"><%= errors.city.msg %></div>
           <% } %>
         </div>
         <div class="form-group col-md-4">
-          <label class="col-form-label control-label" for="postal">Postal Code</label>
+          <label class="col-form-label control-label" for="postal">Postal Code <span style="color:red">*</span></label>
           <input type="text" class="form-control <%= errors.postal ? 'is-invalid' : '' %>" id="postal" name="postal" maxlength="7" value="<%= data.postal %>"/>
           <% if (errors.postal) { %>
             <div class="invalid-feedback"><%= errors.postal.msg %></div>
           <% } %>
         </div>
       </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="col-form-label control-label" for="legalworkingage">Are you of legal working age? <span style="color:red">*</span></label>
+          <select aria-describedby="legalworkingage" aria-required="true" class="form-control <%= errors.legalworkingage ? 'is-invalid' : '' %>" id="legalworkingage" name="legalworkingage">
+            <option value="0"></option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+          <% if (errors.legalworkingage) { %>
+            <div class="invalid-feedback">Please answer.</div>
+          <% } %>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="col-form-label control-label" for="eligibletowork">Are you eligible to work in Canada? <span style="color:red">*</span></label>
+          <select aria-describedby="eligibletowork" aria-required="true" class="form-control <%= errors.eligibletowork ? 'is-invalid' : '' %>" id="eligibletowork" name="eligibletowork">
+            <option value="0"></option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+          <% if (errors.eligibletowork) { %>
+            <div class="invalid-feedback">Please answer.</div>
+          <% } %>
+        </div>
+      </div>
       <div class="form-group">
-        <label class="col-form-label control-label" for="certificates">Certificates (valid)</label>
+        <label class="col-form-label control-label" for="certificates">Skills / Certifications</label>
+        <small class="text-muted">Please hold CTRL when selecting multiple options.</small>
         <select multiple aria-describedby="certificates" aria-required="true" class="form-control <%= errors.certificates ? 'is-invalid' : '' %>" id="certificates" name="certificates">
           <option value="WHMIS">Workplace Hazardous Materials Information System (WHMIS)</option>
           <option value="Emergency First Aid">Emergency First Aid</option>
@@ -128,6 +153,7 @@
           <div class="invalid-feedback">Please select at least one certificate.</div>
         <% } %>
       </div>
+      <!--
       <div class="form-group">
         <label class="col-form-label control-label" for="highschool">Have you completed high school (Dogwood or Evergreen certificate)?</label>
         <select aria-describedby="highschool" aria-required="true" class="form-control <%= errors.highschool ? 'is-invalid' : '' %>" id="highschool" name="highschool">
@@ -200,6 +226,7 @@
           <div class="invalid-feedback">Please answer.</div>
         <% } %>
       </div>
+      -->
       <div class="form-group">
         <label class="col-form-label control-label" for="manuallifting">Are you able to do manual labour (lifting more than 40lbs)?</label>
         <select aria-describedby="manuallifting" aria-required="true" class="form-control <%= errors.manuallifting ? 'is-invalid' : '' %>" id="manuallifting" name="manuallifting">
@@ -211,7 +238,8 @@
           <div class="invalid-feedback">Please answer.</div>
         <% } %>
       </div>
-      <div class="form-group">
+      <div class="form-row">
+      <div class="form-group col-md-6">
         <label class="col-form-label control-label" for="driverslicense">Do you have a driver’s license?</label>
         <select aria-describedby="driverslicense" aria-required="true" class="form-control <%= errors.driverslicense ? 'is-invalid' : '' %>" id="driverslicense" name="driverslicense">
           <option value="0"></option>
@@ -222,7 +250,8 @@
           <div class="invalid-feedback">Please answer.</div>
         <% } %>
       </div>
-      <div class="form-group">
+      
+      <div class="form-group col-md-6">
         <label class="col-form-label control-label" for="driverslicensekind">What kind of driver's license?</label>
         <select aria-describedby="driverslicensekind" aria-required="true" class="form-control <%= errors.driverslicensekind ? 'is-invalid' : '' %>" id="driverslicensekind" name="driverslicensekind">
           <option value="0"></option>
@@ -236,6 +265,7 @@
           <div class="invalid-feedback">Please answer.</div>
         <% } %>
       </div>
+    </div>
       <div class="form-group">
         <label class="col-form-label control-label" for="owncar">Do you have your own car or have to access to a vehicle that could be used for performing job duties?</label>
         <select aria-describedby="owncar" aria-required="true" class="form-control <%= errors.owncar ? 'is-invalid' : '' %>" id="owncar" name="owncar">
@@ -247,6 +277,7 @@
           <div class="invalid-feedback">Please answer.</div>
         <% } %>
       </div>
+      <!--
       <div class="form-group">
         <label class="col-form-label control-label" for="transportationaccess">Do you have access to transportation to the worksite (car, public transportation, bicycle, taxi, etc.)</label>
         <select aria-describedby="transportationaccess" aria-required="true" class="form-control <%= errors.transportationaccess ? 'is-invalid' : '' %>" id="transportationaccess" name="transportationaccess">
@@ -269,6 +300,7 @@
           <div class="invalid-feedback">Please answer.</div>
         <% } %>
       </div>
+      -->
       <div class="form-group">
         <label class="col-form-label control-label" for="worknights">Are you willing to work nights?</label>
         <select aria-describedby="worknights" aria-required="true" class="form-control <%= errors.worknights ? 'is-invalid' : '' %>" id="worknights" name="worknights">
@@ -280,6 +312,7 @@
           <div class="invalid-feedback">Please answer.</div>
         <% } %>
       </div>
+      <!--
       <div class="form-group">
         <label class="col-form-label control-label" for="splitshifts">Are you willing to work split shifts?</label>
         <select aria-describedby="splitshifts" aria-required="true" class="form-control <%= errors.splitshifts ? 'is-invalid' : '' %>" id="splitshifts" name="splitshifts">
@@ -291,14 +324,20 @@
           <div class="invalid-feedback">Please answer.</div>
         <% } %>
       </div>
+      -->
       <div class="form-group">
-        <label class="col-form-label control-label" for="startdate">Available start date?</label>
-        <input type="date" class="form-control <%= errors.startdate ? 'is-invalid' : '' %>" id="startdate" name="startdate" maxlength="12" value="<%= data.startdate _%>"/>
+        <label class="col-form-label control-label" for="startimmediatly">Available to start work immediatly?</label>
+        <select aria-describedby="startimmediatly" aria-required="true" class="form-control <%= errors.startimmediatly ? 'is-invalid' : '' %>" id="startimmediatly" name="startimmediatly">
+          <option value="0"></option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
         </input>
-        <% if (errors.startdate) { %>
-          <div class="invalid-feedback"><%= errors.startdate.msg %></div>
+        <% if (errors.startimmediatly) { %>
+          <div class="invalid-feedback"><%= errors.startimmediatly.msg %></div>
         <% } %>
       </div>
+      <!--
       <h4>What days of the week can you work?</h4>
       <div class="form-check form-check-inline">       
         <input class="form-check-input <%= errors.workmonday ? 'is-invalid' : '' %>" type="checkbox" id="workmonday" value="workmonday">
@@ -404,35 +443,16 @@
           <div class="invalid-feedback">Please answer.</div>
         <% } %>
       </div>
+      -->
       <div class="form-group">
-        <label class="col-form-label control-label" for="experienceindustries">What industries do you have experience working in (select all that apply)?</label>
-        <select multiple aria-describedby="experienceindustries" aria-required="true" class="form-control <%= errors.experienceindustries ? 'is-invalid' : '' %>" id="experienceindustries" name="experienceindustries">
-          <option value="Accommodation and Food Services">Accommodation and Food Services</option>
-          <option value="Agriculture and Fishing">Agriculture and Fishing</option>
-          <option value="Business Building and Other Support Services">Business, Building and Other Support Services</option>
-          <option value="Construction">Construction</option>
-          <option value="Educational Services">Educational Services</option>
-          <option value="Film and Television">Film and Television</option>
-          <option value="Finance Insurance and Real Estate">Finance, Insurance and Real Estate</option>
-          <option value="Forestry and Logging with Support Activities">Forestry and Logging with Support Activities</option>
-          <option value="Health Care and Social Assistance">Health Care and Social Assistance</option>
-          <option value="Information Culture and Recreation">Information, Culture and Recreation</option>
-          <option value="Manufacturing">Manufacturing</option>
-          <option value="Mining and Oil and Gas Extraction">Mining and Oil and Gas Extraction</option>
-          <option value="Professional Scientific and Technical Services ">Professional, Scientific and Technical Services </option>
-          <option value="Public Administration">Public Administration</option>
-          <option value="Repair Personal and non-profit services">Repair, Personal and non-profit services</option>
-          <option value="Retail Trade">Retail Trade</option>
-          <option value="Transportation and Warehousing">Transportation and Warehousing</option>
-          <option value="Utilities">Utilities</option>
-          <option value="Wholesale Trade">Wholesale Trade</option>
-        </select>
+        <label class="col-form-label control-label" for="experienceindustries">What industries do you have experience working in?</label>
+        <input type="text" class="form-control <%= errors.experienceindustries ? 'is-invalid' : '' %>" id="experienceindustries" name="experienceindustries" maxlength="12" value="<%= data.experienceindustries _%>"/>
         <% if (errors.experienceindustries) { %>
           <div class="invalid-feedback">Please select at least one certificate.</div>
         <% } %>
       </div>      
       <div class="form-group">
-        <label class="col-form-label control-label" for="workinunrelatedindustry">If given the necessary on-the-job training, are you ready, willing, and able to work in an industry in which you don’t have experience?</label>
+        <label class="col-form-label control-label" for="workinunrelatedindustry">Are you ready, willing, and able to work in an industry in which you don’t have experience?</label>
         <select aria-describedby="workinunrelatedindustry" aria-required="true" class="form-control <%= errors.workinunrelatedindustry ? 'is-invalid' : '' %>" id="workinunrelatedindustry" name="workinunrelatedindustry">
           <option value="0"></option>
           <option value="Yes">Yes</option>
