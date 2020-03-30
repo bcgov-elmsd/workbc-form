@@ -73,24 +73,7 @@
           <% } %>
         </div>
       </div>
-      <h2>Job Description</h2>
-      <div class="form-group">
-        <label class="col-form-label control-label" for="rolesandresponsibilities">Role and Responsibilities <span style="color:red">*</span></label>
-        <textarea class="form-control <%= errors.rolesandresponsibilities ? 'is-invalid' : '' %>" id="rolesandresponsibilities" name="rolesandresponsibilities"
-          rows="6"><%= data.rolesandresponsibilities %></textarea>
-        <% if (errors.rolesandresponsibilities) { %>
-        <div class="invalid-feedback"><%= errors.rolesandresponsibilities.msg %></div>
-        <% } %>
-      </div>
-      <div class="form-group">
-        <label class="col-form-label control-label" for="qualifications">Qualifications and Education Requirements <span style="color:red">*</span></label>
-        <textarea class="form-control <%= errors.qualifications ? 'is-invalid' : '' %>" id="qualifications" name="qualifications"
-          rows="6"><%= data.qualifications %></textarea>
-        <% if (errors.qualifications) { %>
-        <div class="invalid-feedback"><%= errors.qualifications.msg %></div>
-        <% } %>
-      </div>
-      <h3>Job Details</h3>
+      <h2>Job Details</h2>
       <div class="form-row">
         <div class="form-group col-md-4">
           <label class="col-form-label control-label" for="hoursofwork">Hours of Work <span style="color:red">*</span></label>
@@ -134,6 +117,23 @@
           rows="3"><%= data.otherjobdetails %></textarea>
         <% if (errors.otherjobdetails) { %>
         <div class="invalid-feedback"><%= errors.otherjobdetails.msg %></div>
+        <% } %>
+      </div>
+      <h2>Job Description</h2>
+      <div class="form-group">
+        <label class="col-form-label control-label" for="rolesandresponsibilities">Role and Responsibilities <span style="color:red">*</span></label>
+        <textarea class="form-control <%= errors.rolesandresponsibilities ? 'is-invalid' : '' %>" id="rolesandresponsibilities" name="rolesandresponsibilities"
+          rows="6"><%= data.rolesandresponsibilities %></textarea>
+        <% if (errors.rolesandresponsibilities) { %>
+        <div class="invalid-feedback"><%= errors.rolesandresponsibilities.msg %></div>
+        <% } %>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label control-label" for="qualifications">Qualifications and Education Requirements <span style="color:red">*</span></label>
+        <textarea class="form-control <%= errors.qualifications ? 'is-invalid' : '' %>" id="qualifications" name="qualifications"
+          rows="6"><%= data.qualifications %></textarea>
+        <% if (errors.qualifications) { %>
+        <div class="invalid-feedback"><%= errors.qualifications.msg %></div>
         <% } %>
       </div>
       <div class="form-group">
