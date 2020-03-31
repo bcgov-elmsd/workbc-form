@@ -3,8 +3,8 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult, matchedData } = require('express-validator');
 const nodemailer = require("nodemailer");
-const csrf = require('csurf');
-const csrfProtection = csrf({ cookie: true });
+//const csrf = require('csurf');
+//const csrfProtection = csrf({ cookie: true });
 
 const Strings = {};
 Strings.orEmpty = function (entity) {
@@ -15,19 +15,17 @@ router.get('/', (req, res) => {
   res.render('index')
 });
 
-router.get('/jobseeker', csrfProtection, (req, res) => {
+router.get('/jobseeker', (req, res) => {
   res.render('jobseeker', {
     data: {},
     errors: {},
-    csrfToken: req.csrfToken()
   });
 })
 
-router.get('/employer', csrfProtection, (req, res) => {
+router.get('/employer', (req, res) => {
   res.render('employer', {
     data: {},
     errors: {},
-    csrfToken: req.csrfToken()
   });
 })
 
@@ -43,7 +41,7 @@ router.get('/about', (req, res) => {
 
 
 router.post(
-  "/jobseeker", csrfProtection,
+  "/jobseeker", 
   [
     check("firstname")
       .notEmpty()
@@ -99,7 +97,6 @@ router.post(
       return res.render("jobseeker", {
         data: req.body,
         errors: errors.mapped(),
-        csrfToken: req.csrfToken()
       });
     }
 
@@ -152,7 +149,6 @@ router.post(
       return res.render("jobseeker", {
         data: req.body,
         errors: errors.mapped(),
-        csrfToken: req.csrfToken()
       });
     }
     //sendMail(data);
@@ -162,7 +158,7 @@ router.post(
 );
 
 router.post(
-  "/employer", csrfProtection,
+  "/employer", 
   [
     check("employer")
       .notEmpty()
@@ -226,7 +222,6 @@ router.post(
       return res.render("employer", {
         data: req.body,
         errors: errors.mapped(),
-        csrfToken: req.csrfToken()
       });
     }
 

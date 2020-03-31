@@ -26,7 +26,6 @@
         <% } %>
       </div>
       -->
-      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <div class="form-group">
         <label class="col-form-label control-label" for="employer">Employer Name <span style="color:red">*</span></label>
         <input type="text" class="form-control <%= errors.employer ? 'is-invalid' : '' %>" id="employer" name="employer" value="<%= data.employer %>"/>
