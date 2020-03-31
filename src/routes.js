@@ -319,7 +319,7 @@ function createEmployerHtml(data) {
   html += "<p>Hourly rate of pay: " + data.hourlypay + "</p>"
   html += "<p>Position Type: " + data.positiontype + "</p>"
   html += "<p>Physical Requirement: " + Strings.orEmpty(data.physicalrequirements) + "</p>"
-  html += "<p>COVID-19 health and safety provisions: " + Strings.orEmpty(data.covid19health) + "</p>"
+  //html += "<p>COVID-19 health and safety provisions: " + Strings.orEmpty(data.covid19health) + "</p>"
   html += "<p>Other: </p>"
   html += "<div>" + Strings.orEmpty(data.otherjobdetails) + "</div>"
   /*
