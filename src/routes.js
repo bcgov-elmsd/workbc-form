@@ -7,68 +7,89 @@ const csrf = require('csurf');
 const csrfProtection = csrf({ cookie: true });
 
 const Strings = {};
-Strings.orEmpty = function( entity ) {
-    return entity || "";
+Strings.orEmpty = function (entity) {
+  return entity || "";
 };
 
 router.get('/', (req, res) => {
   res.render('index')
 });
 
-router.get('/jobseeker',csrfProtection, (req,res) =>{
-  res.render('jobseeker',{
+router.get('/jobseeker', csrfProtection, (req, res) => {
+  res.render('jobseeker', {
     data: {},
     errors: {},
     csrfToken: req.csrfToken()
-  }); 
+  });
 })
 
-router.get('/employer',csrfProtection, (req,res) =>{
-  res.render('employer',{
+router.get('/employer', csrfProtection, (req, res) => {
+  res.render('employer', {
     data: {},
     errors: {},
     csrfToken: req.csrfToken()
-  }); 
+  });
 })
 
 
-router.get('/done', (req,res) => {
+router.get('/done', (req, res) => {
   res.render('confirmation')
 });
 
-router.get('/about',(req,res) =>{
+router.get('/about', (req, res) => {
   res.render('about')
 });
+
 
 
 router.post(
   "/jobseeker", csrfProtection,
   [
-      check("firstname")
+    check("salutation")
+    .isIn(["Mr","Mrs","Ms","Dr","Prof"])
+    .withMessage("Please select a salutation."),
+    check("firstname")
       .notEmpty()
       .withMessage("Please enter your first name."),
-      check("lastname")
+    check("lastname")
       .notEmpty()
       .withMessage("Please enter your last name."),
-      check("email")
+    check("email")
       .isEmail()
       .withMessage("Please enter a valid email address.")
       .bail()
       .trim()
       .normalizeEmail(),
-      check("postal")
+    check("city")
+      .notEmpty()
+      .withMessage("Please enter a city."),
+    check("postal")
       .isPostalCode("CA")
       .trim()
       .withMessage("Please enter a valid Postal Code."),
-      check("phone")
-      .isMobilePhone(['en-CA','en-US'])
+    check("legalworkingage")
+      .isIn(["Yes","No"])
+      .withMessage("Please answer."),
+    check("eligibletowork")
+      .isIn(["Yes","No"])
+      .withMessage("Please answer."),
+    check("neighbouringcommunities")
+      .isIn(["Yes","No"])
+      .withMessage("Please answer."),
+      check("volunteer")
+      .isIn(["Yes","No"])
+      .withMessage("Please answer."),
+    check("phone")
+      .isMobilePhone(['en-CA', 'en-US'])
       .withMessage("Please enter a valid phone number."),
-      check("consent")
+    check("consent")
       .notEmpty()
       .withMessage("You must agree before submitting."),
-      check("catchment")
-      .notEmpty()
-      .withMessage("Please select at least one region.")
+    /*
+    check("catchment")
+    .notEmpty()
+    .withMessage("Please select at least one region.")
+    */
   ],
   (req, res) => {
     console.log(req.body);
@@ -85,8 +106,8 @@ router.post(
 
     const data = matchedData(req);
     console.log("Sanitized: ", data);
-    console.log(data.firstname);
 
+    /*
     let transporter = nodemailer.createTransport({
       host: "apps.smtp.gov.bc.ca",
       port: 25,
@@ -95,9 +116,6 @@ router.post(
         rejectUnauthorized:false
       }
     });
-  
-    var htmlMessage = "";
-    htmlMessage += "<p>" + data.firstname + "</p>";
     
     let info = transporter.sendMail({
       from: 'Job Seeker <donotreply@gov.bc.ca>', // sender address
@@ -108,62 +126,92 @@ router.post(
     });
     
     console.log("Message sent: %s", info.messageId);
-
+    */
+    try {
+      let transporter = nodemailer.createTransport({
+        host: "apps.smtp.gov.bc.ca",
+        port: 25,
+        secure: false,
+        tls: {
+          rejectUnauthorized: false
+        }
+      });
+      let message = {
+        from: 'Job Seeker <donotreply@gov.bc.ca>', // sender address
+        to: "WorkBC Jobs <WorkBCJobs@gov.bc.ca>", // list of receivers
+        subject: "Job Seeker Form", // Subject line
+        text: "Plain text", // plain text body
+        html: createJobSeekerHtml(data) // html body
+      }
+      let info = transporter.sendMail(message, (error, info) => {
+        if (error) {
+          //console.log(error);
+        }
+        console.log("Message sent: %s", info.messageId);
+      })
+    } catch (error) {
+      return res.render("jobseeker", {
+        data: req.body,
+        errors: errors.mapped(),
+        csrfToken: req.csrfToken()
+      });
+    }
+    //sendMail(data);
     req.flash("success", "Form has been submitted");
     res.redirect("/done");
   }
 );
 
 router.post(
-  "/employer", csrfProtection, 
+  "/employer", csrfProtection,
   [
-      check("employer")
+    check("employer")
       .notEmpty()
       .withMessage("Please enter employer."),
-      check("jobtitle")
+    check("jobtitle")
       .notEmpty()
       .withMessage("Please enter a job title."),
-      check("positions")
-      .isInt({min: 1, max: 9999})
+    check("positions")
+      .isInt({ min: 1, max: 9999 })
       .withMessage("Please enter number of positions as a digit."),
-      check("hrcontactname")
+    check("hrcontactname")
       .notEmpty()
       .withMessage("Please enter at least one HR Contact Name."),
-      check("contactemail")
+    check("contactemail")
       .isEmail()
       .withMessage("Please enter a valid email address.")
       .trim()
       .normalizeEmail(),
-      check("contactphone")
-      .isMobilePhone(['en-CA','en-US'])
+    check("contactphone")
+      .isMobilePhone(['en-CA', 'en-US'])
       .withMessage("Please enter a valid phone number."),
-      check("rolesandresponsibilities")
+    check("rolesandresponsibilities")
       .notEmpty()
       .withMessage("Please enter roles and responsibilities."),
-      check("qualifications")
+    check("qualifications")
       .notEmpty()
       .withMessage("Please enter qualifications."),
-      check("hoursofwork")
+    check("hoursofwork")
       .notEmpty()
       .withMessage("Please enter hours of work."),
-      check("hourlypay")
+    check("hourlypay")
       .notEmpty()
       .withMessage("Please enter hourly pay."),
-      check("positiontype")
+    check("positiontype")
       .notEmpty()
       .withMessage("Please enter position type."),
-      check("catchment")
+    check("catchment")
       .notEmpty()
       .withMessage("Please select at least one location."),
-      check("preparedbyname")
+    check("preparedbyname")
       .notEmpty()
       .withMessage("Please enter your name."),
-      check("preparedbyemail")
+    check("preparedbyemail")
       .isEmail()
       .withMessage("Please enter a valid email address.")
       .trim()
       .normalizeEmail(),
-      check("consent")
+    check("consent")
       .notEmpty()
       .withMessage("You must agree before submitting."),
 
@@ -190,12 +238,12 @@ router.post(
       port: 25,
       secure: false,
       tls: {
-        rejectUnauthorized:false
+        rejectUnauthorized: false
       } // true for 465, false for other ports
     });
 
     // send mail with defined transport object
-    
+
     let info = transporter.sendMail({
       from: 'Employer <donotreply@gov.bc.ca>', // sender address
       to: "WorkBC Hiring <WorkBCHiring@gov.bc.ca>", // list of receivers
@@ -203,9 +251,9 @@ router.post(
       text: "Plain text", // plain text body
       html: createEmployerHtml(data) // html body
     });
-    
-    
-  
+
+
+
     console.log("Message sent: %s", info.messageId);
 
     req.flash("success", "Form has been submitted");
@@ -213,19 +261,35 @@ router.post(
   }
 );
 
-function createJobSeekerHtml(data){
+function createJobSeekerHtml(data) {
   var html = "";
   html += "<h2>A Job Seeker Form has been submitted</h2>"
+  html += "<p>Salutation: " + data.salutation + ".</p>"
   html += "<p>First Name: " + data.firstname + "</p>"
   html += "<p>Middle Name: " + Strings.orEmpty(data.middlename) + "</p>"
-  html += "<p>Last Name: "+ data.lastname + "</p>"
-  html += "<p>Phone: "+ data.phone + "</p>"
-  html += "<p>Email: "+ data.email + "</p>"
-  html += "<p>Address: "+ Strings.orEmpty(data.address) + "</p>"
-  html += "<p>Address2: "+ Strings.orEmpty(data.address2) + "</p>"
-  html += "<p>City: "+ Strings.orEmpty(data.city) + "</p>"
-  html += "<p>Postal Code: "+ data.postal + "</p>"
-  html += "<p>Region(s) available to work: "+ data.catchment + "</p>"
+  html += "<p>Last Name: " + data.lastname + "</p>"
+  html += "<p>Phone: " + data.phone + "</p>"
+  html += "<p>Email: " + data.email + "</p>"
+  html += "<p>Address: " + Strings.orEmpty(data.address) + "</p>"
+  html += "<p>Address2: " + Strings.orEmpty(data.address2) + "</p>"
+  html += "<p>City: " + Strings.orEmpty(data.city) + "</p>"
+  html += "<p>Postal Code: " + data.postal + "</p>"
+  html += "<p>Legal working age: " + data.legalworkingage +  "</p>"
+  html += "<p>Eligible to work in Canada: "+ data.eligibletowork +  "</p>"
+  html += "<p>Willing to work in neighbouring communities: "+ data.neighbouringcommunities + "</p>"
+  html += "<p>Willing to volunteer:  "+ data.volunteer +"</p>"
+  html += "<p>Skills/Certifications: "+ Strings.orEmpty(data.certificate) + "</p>"
+  html += "<p>Able to do manual labour: "+ Strings.orEmpty(data.manuallifting) +"</p>"
+  html += "<p>Have driver's license: "+ Strings.orEmpty(data.driverslicense) +"</p>"
+  html += "<p>Driver's license type: "+ Strings.orEmpty(data.driverslicensekind) + "</p>"
+  html += "<p>Own car or have access to vehicle: "+ Strings.orEmpty(data.owncar) +"</p>"
+  html += "<p>Willing to work nights: "+ Strings.orEmpty(data.worknights) +"</p>"
+  html += "<p>Start work immediatly: "+ Strings.orEmpty(data.startimmediatly) +"</p>"
+  html += "<p>Industries with experience: "+ Strings.orEmpty(data.experienceindustries) +"</p>"
+  html += "<p>Ready, willing, and able to work in industry in which you don't have experience: "+ Strings.orEmpty(data.workinunrelatedindustry) +"</p>"
+  //html += "<p>"+ data.consent +"</p>"
+
+  //html += "<p>Region(s) available to work: " + data.catchment + "</p>"
   return html;
   /*
   html += "<p>"+ "</p>"
@@ -236,28 +300,28 @@ function createJobSeekerHtml(data){
   */
 }
 
-function createEmployerHtml(data){
+function createEmployerHtml(data) {
   var html = "";
   html += "<h2>A Employer Form has been submitted</h2>"
   html += "<p>Employer Name: " + data.employer + "</p>"
   html += "<p>Location(s): " + data.catchment + "</p>"
-  html += "<p>Job Title: "+ data.jobtitle + "</p>"
-  html += "<p># of Positions: "+ data.positions + "</p>"
-  html += "<p>HR Contact Name: "+ data.hrcontactname + "</p>"
-  html += "<p>Contact Email: "+ Strings.orEmpty(data.contactemail)  + "</p>"
-  html += "<p>Contact Phone: "+ Strings.orEmpty(data.contactphone) + "</p>"
+  html += "<p>Job Title: " + data.jobtitle + "</p>"
+  html += "<p># of Positions: " + data.positions + "</p>"
+  html += "<p>HR Contact Name: " + data.hrcontactname + "</p>"
+  html += "<p>Contact Email: " + Strings.orEmpty(data.contactemail) + "</p>"
+  html += "<p>Contact Phone: " + Strings.orEmpty(data.contactphone) + "</p>"
   html += "<h3>Job Description</h3>"
   html += "<p>Role and Responsibilities: </p>"
   html += "<div>" + data.rolesandresponsibilities + "</div>"
   html += "<p>Qualifications and Education Requirements: </p>"
   html += "<div>" + data.qualifications + "</div>"
-  html += "<p>Hours of Work: "+ data.hoursofwork + "</p>"
-  html += "<p>Hourly rate of pay: "+ data.hourlypay + "</p>"
-  html += "<p>Position Type: "+ data.positiontype + "</p>"
-  html += "<p>Physical Requirement: "+ Strings.orEmpty(data.physicalrequirements)  + "</p>"
-  html += "<p>COVID-19 health and safety provisions: "+ Strings.orEmpty(data.covid19health) + "</p>"
+  html += "<p>Hours of Work: " + data.hoursofwork + "</p>"
+  html += "<p>Hourly rate of pay: " + data.hourlypay + "</p>"
+  html += "<p>Position Type: " + data.positiontype + "</p>"
+  html += "<p>Physical Requirement: " + Strings.orEmpty(data.physicalrequirements) + "</p>"
+  html += "<p>COVID-19 health and safety provisions: " + Strings.orEmpty(data.covid19health) + "</p>"
   html += "<p>Other: </p>"
-  html += "<div>"+ Strings.orEmpty(data.otherjobdetails) + "</div>"
+  html += "<div>" + Strings.orEmpty(data.otherjobdetails) + "</div>"
   /*
   html += "<h3>Template Prepared By</h3>"
   html += "<p>Name: "+ data.preparedbyname + "</p>"
