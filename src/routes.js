@@ -45,9 +45,6 @@ router.get('/about', (req, res) => {
 router.post(
   "/jobseeker", csrfProtection,
   [
-    check("salutation")
-    .isIn(["Mr","Mrs","Ms","Dr","Prof"])
-    .withMessage("Please select a salutation."),
     check("firstname")
       .notEmpty()
       .withMessage("Please enter your first name."),
@@ -73,9 +70,11 @@ router.post(
     check("eligibletowork")
       .isIn(["Yes","No"])
       .withMessage("Please answer."),
+    /*  
     check("neighbouringcommunities")
       .isIn(["Yes","No"])
       .withMessage("Please answer."),
+    */
       check("volunteer")
       .isIn(["Yes","No"])
       .withMessage("Please answer."),
@@ -264,7 +263,7 @@ router.post(
 function createJobSeekerHtml(data) {
   var html = "";
   html += "<h2>A Job Seeker Form has been submitted</h2>"
-  html += "<p>Salutation: " + data.salutation + ".</p>"
+  //html += "<p>Salutation: " + data.salutation + ".</p>"
   html += "<p>First Name: " + data.firstname + "</p>"
   html += "<p>Middle Name: " + Strings.orEmpty(data.middlename) + "</p>"
   html += "<p>Last Name: " + data.lastname + "</p>"
@@ -276,17 +275,18 @@ function createJobSeekerHtml(data) {
   html += "<p>Postal Code: " + data.postal + "</p>"
   html += "<p>Legal working age: " + data.legalworkingage +  "</p>"
   html += "<p>Eligible to work in Canada: "+ data.eligibletowork +  "</p>"
-  html += "<p>Willing to work in neighbouring communities: "+ data.neighbouringcommunities + "</p>"
+  html += "<p>Willing to work in neighbouring communities: "+ Strings.orEmpty(data.neighbouringcommunities) + "</p>"
   html += "<p>Willing to volunteer:  "+ data.volunteer +"</p>"
   html += "<p>Skills/Certifications: "+ Strings.orEmpty(data.certificate) + "</p>"
-  html += "<p>Able to do manual labour: "+ Strings.orEmpty(data.manuallifting) +"</p>"
-  html += "<p>Have driver's license: "+ Strings.orEmpty(data.driverslicense) +"</p>"
-  html += "<p>Driver's license type: "+ Strings.orEmpty(data.driverslicensekind) + "</p>"
+  html += "<p>Able to lift up to 40 pounds: "+ Strings.orEmpty(data.upto40pounds) +"</p>"
+  html += "<p>Able to lift more than 40 pounds: "+ Strings.orEmpty(data.morethan40pounds) +"</p>"
+  //html += "<p>Have driver's license: "+ Strings.orEmpty(data.driverslicense) +"</p>"
+  //html += "<p>Driver's license type: "+ Strings.orEmpty(data.driverslicensekind) + "</p>"
   html += "<p>Own car or have access to vehicle: "+ Strings.orEmpty(data.owncar) +"</p>"
   html += "<p>Willing to work nights: "+ Strings.orEmpty(data.worknights) +"</p>"
-  html += "<p>Start work immediatly: "+ Strings.orEmpty(data.startimmediatly) +"</p>"
-  html += "<p>Industries with experience: "+ Strings.orEmpty(data.experienceindustries) +"</p>"
-  html += "<p>Ready, willing, and able to work in industry in which you don't have experience: "+ Strings.orEmpty(data.workinunrelatedindustry) +"</p>"
+  //html += "<p>Start work immediatly: "+ Strings.orEmpty(data.startimmediatly) +"</p>"
+  //html += "<p>Industries with experience: "+ Strings.orEmpty(data.experienceindustries) +"</p>"
+  //html += "<p>Ready, willing, and able to work in industry in which you don't have experience: "+ Strings.orEmpty(data.workinunrelatedindustry) +"</p>"
   //html += "<p>"+ data.consent +"</p>"
 
   //html += "<p>Region(s) available to work: " + data.catchment + "</p>"
@@ -318,10 +318,10 @@ function createEmployerHtml(data) {
   html += "<p>Hours of Work: " + data.hoursofwork + "</p>"
   html += "<p>Hourly rate of pay: " + data.hourlypay + "</p>"
   html += "<p>Position Type: " + data.positiontype + "</p>"
-  html += "<p>Physical Requirement: " + Strings.orEmpty(data.physicalrequirements) + "</p>"
+  //html += "<p>Physical Requirement: " + Strings.orEmpty(data.physicalrequirements) + "</p>"
   //html += "<p>COVID-19 health and safety provisions: " + Strings.orEmpty(data.covid19health) + "</p>"
-  html += "<p>Other: </p>"
-  html += "<div>" + Strings.orEmpty(data.otherjobdetails) + "</div>"
+  //html += "<p>Other: </p>"
+  //html += "<div>" + Strings.orEmpty(data.otherjobdetails) + "</div>"
   /*
   html += "<h3>Template Prepared By</h3>"
   html += "<p>Name: "+ data.preparedbyname + "</p>"
