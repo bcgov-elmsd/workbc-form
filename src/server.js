@@ -28,8 +28,8 @@ const middlewares = [
   bodyParser.urlencoded({ extended: true }),
   cookieParser(),
   session({
-    secret: "super-secret-key",
-    key: "super-secret-cookie",
+    secret: process.env.SECRET || process.env.OPENSHIFT_NODEJS_SECRET ||"super-secret-key",
+    key: process.env.KEY || process.env.OPENSHIFT_NODEJS_KEY || "super-secret-cookie",
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 60000 }
