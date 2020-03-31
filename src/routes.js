@@ -65,18 +65,18 @@ router.post(
       .trim()
       .withMessage("Please enter a valid Postal Code."),
     check("legalworkingage")
-      .isIn(["Yes","No"])
+      .isIn(["Yes", "No"])
       .withMessage("Please answer."),
     check("eligibletowork")
-      .isIn(["Yes","No"])
+      .isIn(["Yes", "No"])
       .withMessage("Please answer."),
     /*  
     check("neighbouringcommunities")
       .isIn(["Yes","No"])
       .withMessage("Please answer."),
     */
-      check("volunteer")
-      .isIn(["Yes","No"])
+    check("volunteer")
+      .isIn(["Yes", "No"])
       .withMessage("Please answer."),
     check("phone")
       .isMobilePhone(['en-CA', 'en-US'])
@@ -197,11 +197,12 @@ router.post(
       .notEmpty()
       .withMessage("Please enter hourly pay."),
     check("positiontype")
-      .notEmpty()
-      .withMessage("Please enter position type."),
+      .isIn(["Temporary full time","Temporary part time","Permanent full time","Permanent part time"])
+      .withMessage("Please select a position type."),
     check("catchment")
       .notEmpty()
       .withMessage("Please select at least one location."),
+      /*
     check("preparedbyname")
       .notEmpty()
       .withMessage("Please enter your name."),
@@ -210,6 +211,7 @@ router.post(
       .withMessage("Please enter a valid email address.")
       .trim()
       .normalizeEmail(),
+    */
     check("consent")
       .notEmpty()
       .withMessage("You must agree before submitting."),
@@ -230,8 +232,8 @@ router.post(
 
     const data = matchedData(req);
     console.log("Sanitized: ", data);
-    console.log(data.firstname);
 
+    try {
     let transporter = nodemailer.createTransport({
       host: "apps.smtp.gov.bc.ca",
       port: 25,
@@ -242,18 +244,22 @@ router.post(
     });
 
     // send mail with defined transport object
-
-    let info = transporter.sendMail({
+    let message = {
       from: 'Employer <donotreply@gov.bc.ca>', // sender address
       to: "WorkBC Hiring <WorkBCHiring@gov.bc.ca>", // list of receivers
       subject: "Employer Form", // Subject line
       text: "Plain text", // plain text body
       html: createEmployerHtml(data) // html body
+    };
+    let info = transporter.sendMail(message, (error, info) => {
+        if (error) {
+          //console.log(error);
+        }
+        console.log("Message sent: %s", info.messageId);
     });
-
-
-
-    console.log("Message sent: %s", info.messageId);
+    } catch (error) {
+        
+    }
 
     req.flash("success", "Form has been submitted");
     res.redirect("/done");
@@ -273,17 +279,17 @@ function createJobSeekerHtml(data) {
   html += "<p>Address2: " + Strings.orEmpty(data.address2) + "</p>"
   html += "<p>City: " + Strings.orEmpty(data.city) + "</p>"
   html += "<p>Postal Code: " + data.postal + "</p>"
-  html += "<p>Legal working age: " + data.legalworkingage +  "</p>"
-  html += "<p>Eligible to work in Canada: "+ data.eligibletowork +  "</p>"
-  html += "<p>Willing to work in neighbouring communities: "+ Strings.orEmpty(data.neighbouringcommunities) + "</p>"
-  html += "<p>Willing to volunteer:  "+ data.volunteer +"</p>"
-  html += "<p>Skills/Certifications: "+ Strings.orEmpty(data.certificate) + "</p>"
-  html += "<p>Able to lift up to 40 pounds: "+ Strings.orEmpty(data.upto40pounds) +"</p>"
-  html += "<p>Able to lift more than 40 pounds: "+ Strings.orEmpty(data.morethan40pounds) +"</p>"
+  html += "<p>Legal working age: " + data.legalworkingage + "</p>"
+  html += "<p>Eligible to work in Canada: " + data.eligibletowork + "</p>"
+  html += "<p>Willing to work in neighbouring communities: " + Strings.orEmpty(data.neighbouringcommunities) + "</p>"
+  html += "<p>Willing to volunteer:  " + data.volunteer + "</p>"
+  html += "<p>Skills/Certifications: " + Strings.orEmpty(data.certificate) + "</p>"
+  html += "<p>Able to lift up to 40 pounds: " + Strings.orEmpty(data.upto40pounds) + "</p>"
+  html += "<p>Able to lift more than 40 pounds: " + Strings.orEmpty(data.morethan40pounds) + "</p>"
   //html += "<p>Have driver's license: "+ Strings.orEmpty(data.driverslicense) +"</p>"
   //html += "<p>Driver's license type: "+ Strings.orEmpty(data.driverslicensekind) + "</p>"
-  html += "<p>Own car or have access to vehicle: "+ Strings.orEmpty(data.owncar) +"</p>"
-  html += "<p>Willing to work nights: "+ Strings.orEmpty(data.worknights) +"</p>"
+  html += "<p>Own car or have access to vehicle: " + Strings.orEmpty(data.owncar) + "</p>"
+  html += "<p>Willing to work nights: " + Strings.orEmpty(data.worknights) + "</p>"
   //html += "<p>Start work immediatly: "+ Strings.orEmpty(data.startimmediatly) +"</p>"
   //html += "<p>Industries with experience: "+ Strings.orEmpty(data.experienceindustries) +"</p>"
   //html += "<p>Ready, willing, and able to work in industry in which you don't have experience: "+ Strings.orEmpty(data.workinunrelatedindustry) +"</p>"

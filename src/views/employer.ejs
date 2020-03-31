@@ -44,7 +44,7 @@
         </div>
         <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="positions"># of Positions <span style="color:red">*</span></label>
-          <input type="text" class="form-control <%= errors.positions ? 'is-invalid' : '' %>" id="positions" name="positions" placeholder="1+" maxlength="4" value="<%= data.positions %>"/>
+          <input type="text" class="form-control <%= errors.positions ? 'is-invalid' : '' %>" id="positions" name="positions" placeholder="Enter 1 or more" maxlength="4" value="<%= data.positions %>"/>
           <% if (errors.positions) { %>
           <div class="invalid-feedback"><%= errors.positions.msg %></div>
           <% } %>
@@ -92,7 +92,13 @@
         </div>
         <div class="form-group col-md-4">
           <label class="col-form-label control-label" for="positiontype">Position type <span style="color:red">*</span></label>
-          <input type="text" class="form-control <%= errors.positiontype ? 'is-invalid' : '' %>" id="positiontype" name="positiontype" value="<%= data.positiontype %>"/>
+          <select aria-describedby="positiontype" aria-required="true" class="form-control <%= errors.positiontype ? 'is-invalid' : '' %>" id="positiontype" name="positiontype">
+          <option value="0"></option>
+          <option value="Temporary full time" <%= data.positiontype=="Temporary full time" ? 'selected' : '' %>>Temporary - full time</option>
+          <option value="Temporary part time" <%= data.positiontype=="Temporary part time" ? 'selected' : '' %>>Temporary - part time</option>
+          <option value="Permanent full time" <%= data.positiontype=="Permanent full time" ? 'selected' : '' %>>Permanent - full time</option>
+          <option value="Permanent part time" <%= data.positiontype=="Permanent part time" ? 'selected' : '' %>>Permanent - part time</option>
+        </select>
           <% if (errors.positiontype) { %>
           <div class="invalid-feedback"><%= errors.positiontype.msg %></div>
           <% } %>
@@ -320,16 +326,17 @@
           <% } %>
         </div>
       </div>
+      -->  
       <div class="form-group">
         <div class="form-check">
           <input type="checkbox"  class="form-check-input <%= errors.consent ? 'is-invalid' : '' %>" id="consent" name="consent" value="consent" required/>
-          <label class="form-check-label control-label" for="consent">I acknowledge and understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that by doing so, I am providing the same consent as I would by manually signing a physical copy of this form</label>
+          <label class="form-check-label control-label" for="consent"><span style="color:red">*</span> I acknowledge and understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that by doing so, I am providing the same consent as I would by manually signing a physical copy of this form</label>
           <% if (errors.consent) { %>
             <div class="invalid-feedback"><%= errors.consent.msg %></div>
           <% } %>
         </div>
       </div>
-      -->   
+       
   </div>
   <!--
         <div class="form-field <%= errors.email ? 'form-field-invalid' : '' %>">
