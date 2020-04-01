@@ -49,9 +49,18 @@ router.post(
     check("firstname")
       .notEmpty()
       .withMessage("Please enter your first name."),
+    check("middlename")
+      .optional(),
+    check("address")
+      .optional(),
+    check("address2")
+      .optional(),
     check("lastname")
       .notEmpty()
       .withMessage("Please enter your last name."),
+      check("phone")
+      .isMobilePhone(['en-CA', 'en-US'])
+      .withMessage("Please enter a valid phone number."),
     check("email")
       .isEmail()
       .withMessage("Please enter a valid email address.")
@@ -71,15 +80,17 @@ router.post(
     check("eligibletowork")
       .isIn(["Yes", "No"])
       .withMessage("Please answer."),
-    
-    check("neighbouringcommunities")
-      .optional(),
     check("volunteer")
       .isIn(["Yes", "No"])
       .withMessage("Please answer."),
-    check("phone")
-      .isMobilePhone(['en-CA', 'en-US'])
-      .withMessage("Please enter a valid phone number."),
+    check("neighbouringcommunities")
+      .optional(),
+    check("certificates")
+      .optional(),
+    check("owncar")
+      .optional(),
+    check("worknights")
+      .optional(),
     check("consent")
       .notEmpty()
       .withMessage("You must agree before submitting."),
@@ -185,12 +196,6 @@ router.post(
     check("contactphone")
       .isMobilePhone(['en-CA', 'en-US'])
       .withMessage("Please enter a valid phone number."),
-    check("rolesandresponsibilities")
-      .notEmpty()
-      .withMessage("Please enter roles and responsibilities."),
-    check("qualifications")
-      .notEmpty()
-      .withMessage("Please enter qualifications."),
     check("workschedule")
       .notEmpty()
       .withMessage("Please enter work schedule."),
@@ -200,6 +205,14 @@ router.post(
     check("positiontype")
       .isIn(["Temporary full time", "Temporary part time", "Permanent full time", "Permanent part time"])
       .withMessage("Please select a position type."),
+      check("otherjobdetails")
+      .optional(),
+    check("rolesandresponsibilities")
+      .notEmpty()
+      .withMessage("Please enter roles and responsibilities."),
+    check("qualifications")
+      .notEmpty()
+      .withMessage("Please enter qualifications."),
     check("catchment")
       .notEmpty()
       .withMessage("Please select at least one location."),
