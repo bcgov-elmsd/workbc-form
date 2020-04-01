@@ -181,12 +181,6 @@ router.post(
     check("contactphone")
       .isMobilePhone(['en-CA', 'en-US'])
       .withMessage("Please enter a valid phone number."),
-    check("rolesandresponsibilities")
-      .notEmpty()
-      .withMessage("Please enter roles and responsibilities."),
-    check("qualifications")
-      .notEmpty()
-      .withMessage("Please enter qualifications."),
     check("workschedule")
       .notEmpty()
       .withMessage("Please enter work schedule."),
@@ -196,6 +190,14 @@ router.post(
     check("positiontype")
       .isIn(["Temporary full time", "Temporary part time", "Permanent full time", "Permanent part time"])
       .withMessage("Please select a position type."),
+      check("otherjobdetails")
+      .optional(),
+    check("rolesandresponsibilities")
+      .notEmpty()
+      .withMessage("Please enter roles and responsibilities."),
+    check("qualifications")
+      .notEmpty()
+      .withMessage("Please enter qualifications."),
     check("catchment")
       .notEmpty()
       .withMessage("Please select at least one location."),
