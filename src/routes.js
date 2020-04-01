@@ -1,8 +1,9 @@
-
 const express = require('express');
 const router = express.Router();
 const { check, validationResult, matchedData } = require('express-validator');
 const nodemailer = require("nodemailer");
+const mongoUtil = require("./db")
+const db = mongoUtil.getDB()
 const csrf = require('csurf');
 const csrfProtection = csrf({ cookie: true });
 
@@ -70,11 +71,9 @@ router.post(
     check("eligibletowork")
       .isIn(["Yes", "No"])
       .withMessage("Please answer."),
-    /*  
+    
     check("neighbouringcommunities")
-      .isIn(["Yes","No"])
-      .withMessage("Please answer."),
-    */
+      .optional(),
     check("volunteer")
       .isIn(["Yes", "No"])
       .withMessage("Please answer."),
@@ -91,7 +90,7 @@ router.post(
     */
   ],
   (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     const errors = validationResult(req);
     //console.log(errors);
     //const errors = [];
@@ -103,10 +102,22 @@ router.post(
       });
     }
 
-    const data = matchedData(req);
+    var matchedOptions = {
+      includeOptionals: true
+    }
+    console.log(req.body);
+    const data = matchedData(req,matchedOptions);
+    //console.log(db);
     console.log("Sanitized: ", data);
 
     
+    db.collection('employer').insertOne(data,function(err,res){
+      if (err) console.log(err);
+      console.log(res.insertedId);
+    });
+    
+    
+    /*
     try {
       let transporter = nodemailer.createTransport({
         host: "apps.smtp.gov.bc.ca",
@@ -132,6 +143,7 @@ router.post(
             csrfToken: req.csrfToken()
           });
         } else {
+
           console.log("Message sent: %s", info.messageId);
           req.flash("success", "Form has been submitted");
           res.redirect("/done");
@@ -140,11 +152,12 @@ router.post(
     } catch (error) {
 
     }
+    */
         
     
     //sendMail(data);
-    //req.flash("success", "Form has been submitted");
-    //res.redirect("/done");
+    req.flash("success", "Form has been submitted");
+    res.redirect("/done");
 
   }
 );

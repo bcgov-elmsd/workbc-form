@@ -6,8 +6,10 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("express-flash");
 const helmet = require('helmet');
+const mongodb = require("./db");
 
-
+mongodb.connectDB(function(err,client){
+  if (err) console.log(err);
 const routes = require("./routes");
 const app = express();
 
@@ -15,9 +17,8 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
-    mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
-    mongoURLLabel = "";
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+
 
 
 
@@ -51,4 +52,6 @@ app.use((err, req, res, next) => {
 
 app.listen(port,ip, () => {
   console.log('App running at http://' + ip + ':' + port);
+});
+
 });
