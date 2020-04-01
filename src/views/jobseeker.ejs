@@ -1,5 +1,8 @@
 <div class="row">
   <div class="col-lg-12">
+    <% if (messages.error) { %>
+      <div class="alert alert-danger"><%= messages.error %></div>
+    <% } %>
     <h1 id="forms">Job Seeker Form</h1>
     <p><span style="color:red">*</span> Denotes a required field.</p>
     <% if (Object.keys(errors).length === 0) { %>

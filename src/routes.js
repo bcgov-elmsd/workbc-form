@@ -106,26 +106,7 @@ router.post(
     const data = matchedData(req);
     console.log("Sanitized: ", data);
 
-    /*
-    let transporter = nodemailer.createTransport({
-      host: "apps.smtp.gov.bc.ca",
-      port: 25,
-      secure: false,
-      tls: {
-        rejectUnauthorized:false
-      }
-    });
     
-    let info = transporter.sendMail({
-      from: 'Job Seeker <donotreply@gov.bc.ca>', // sender address
-      to: "WorkBC Jobs <WorkBCJobs@gov.bc.ca>", // list of receivers
-      subject: "Job Seeker Form", // Subject line
-      text: "Plain text", // plain text body
-      html: createJobSeekerHtml(data) // html body
-    });
-    
-    console.log("Message sent: %s", info.messageId);
-    */
     try {
       let transporter = nodemailer.createTransport({
         host: "apps.smtp.gov.bc.ca",
@@ -144,20 +125,27 @@ router.post(
       }
       let info = transporter.sendMail(message, (error, info) => {
         if (error) {
-          //console.log(error);
+          req.flash("error", "An error occured while submitting the form, please try again. If the error persists please try again later.");
+          return res.render("jobseeker", {
+            data: req.body,
+            errors: errors.mapped(),
+            csrfToken: req.csrfToken()
+          });
+        } else {
+          console.log("Message sent: %s", info.messageId);
+          req.flash("success", "Form has been submitted");
+          res.redirect("/done");
         }
-        console.log("Message sent: %s", info.messageId);
       })
     } catch (error) {
-      return res.render("jobseeker", {
-        data: req.body,
-        errors: errors.mapped(),
-        csrfToken: req.csrfToken()
-      });
+
     }
+        
+    
     //sendMail(data);
-    req.flash("success", "Form has been submitted");
-    res.redirect("/done");
+    //req.flash("success", "Form has been submitted");
+    //res.redirect("/done");
+
   }
 );
 
@@ -197,30 +185,30 @@ router.post(
       .notEmpty()
       .withMessage("Please enter hourly pay."),
     check("positiontype")
-      .isIn(["Temporary full time","Temporary part time","Permanent full time","Permanent part time"])
+      .isIn(["Temporary full time", "Temporary part time", "Permanent full time", "Permanent part time"])
       .withMessage("Please select a position type."),
     check("catchment")
       .notEmpty()
       .withMessage("Please select at least one location."),
-      /*
-    check("preparedbyname")
-      .notEmpty()
-      .withMessage("Please enter your name."),
-    check("preparedbyemail")
-      .isEmail()
-      .withMessage("Please enter a valid email address.")
-      .trim()
-      .normalizeEmail(),
-    */
+    /*
+  check("preparedbyname")
+    .notEmpty()
+    .withMessage("Please enter your name."),
+  check("preparedbyemail")
+    .isEmail()
+    .withMessage("Please enter a valid email address.")
+    .trim()
+    .normalizeEmail(),
+  */
     check("consent")
       .notEmpty()
       .withMessage("You must agree before submitting."),
 
   ],
   (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     const errors = validationResult(req);
-    console.log(errors);
+    //console.log(errors);
     //const errors = [];
     if (!errors.isEmpty()) {
       return res.render("employer", {
@@ -234,35 +222,43 @@ router.post(
     console.log("Sanitized: ", data);
 
     try {
-    let transporter = nodemailer.createTransport({
-      host: "apps.smtp.gov.bc.ca",
-      port: 25,
-      secure: false,
-      tls: {
-        rejectUnauthorized: false
-      } // true for 465, false for other ports
-    });
+      let transporter = nodemailer.createTransport({
+        host: "apps.smtp.gov.bc.ca",
+        port: 25,
+        secure: false,
+        tls: {
+          rejectUnauthorized: false
+        } // true for 465, false for other ports
+      });
 
-    // send mail with defined transport object
-    let message = {
-      from: 'Employer <donotreply@gov.bc.ca>', // sender address
-      to: "WorkBC Hiring <WorkBCHiring@gov.bc.ca>", // list of receivers
-      subject: "Employer Form", // Subject line
-      text: "Plain text", // plain text body
-      html: createEmployerHtml(data) // html body
-    };
-    let info = transporter.sendMail(message, (error, info) => {
+      // send mail with defined transport object
+      let message = {
+        from: 'Employer <donotreply@gov.bc.ca>', // sender address
+        to: "WorkBC Hiring <WorkBCHiring@gov.bc.ca>", // list of receivers
+        subject: "Employer Form", // Subject line
+        text: "Plain text", // plain text body
+        html: createEmployerHtml(data) // html body
+      };
+      let info = transporter.sendMail(message, (error, info) => {
         if (error) {
-          //console.log(error);
+          req.flash("error", "An error occured while submitting the form, please try again. If the error persists please try again later.");
+          return res.render("employer", {
+            data: req.body,
+            errors: errors.mapped(),
+            csrfToken: req.csrfToken()
+          });
+        } else {
+          console.log("Message sent: %s", info.messageId);
+          req.flash("success", "Form has been submitted");
+          res.redirect("/done");
         }
-        console.log("Message sent: %s", info.messageId);
-    });
+      });
     } catch (error) {
-        
+
     }
 
-    req.flash("success", "Form has been submitted");
-    res.redirect("/done");
+    //req.flash("success", "Form has been submitted");
+    //res.redirect("/done");
   }
 );
 
