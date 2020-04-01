@@ -80,10 +80,10 @@
       <h2>Job Details</h2>
       <div class="form-row">
         <div class="form-group col-md-4">
-          <label class="col-form-label control-label" for="hoursofwork">Hours of Work <span style="color:red">*</span></label>
-          <input type="text" class="form-control <%= errors.hoursofwork ? 'is-invalid' : '' %>" id="hoursofwork" name="hoursofwork" value="<%= data.hoursofwork %>"/>
-          <% if (errors.hoursofwork) { %>
-          <div class="invalid-feedback"><%= errors.hoursofwork.msg %></div>
+          <label class="col-form-label control-label" for="workschedule">Work Schedule<span style="color:red">*</span></label>
+          <input type="text" class="form-control <%= errors.workschedule ? 'is-invalid' : '' %>" id="workschedule" name="workschedule" value="<%= data.workschedule %>"/>
+          <% if (errors.workschedule) { %>
+          <div class="invalid-feedback"><%= errors.workschedule.msg %></div>
           <% } %>
         </div>
         <div class="form-group col-md-4">

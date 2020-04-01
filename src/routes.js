@@ -178,9 +178,9 @@ router.post(
     check("qualifications")
       .notEmpty()
       .withMessage("Please enter qualifications."),
-    check("hoursofwork")
+    check("workschedule")
       .notEmpty()
-      .withMessage("Please enter hours of work."),
+      .withMessage("Please enter work schedule."),
     check("hourlypay")
       .notEmpty()
       .withMessage("Please enter hourly pay."),
@@ -317,7 +317,7 @@ function createEmployerHtml(data) {
   html += "<div>" + data.rolesandresponsibilities + "</div>"
   html += "<p>Qualifications and Education Requirements: </p>"
   html += "<div>" + data.qualifications + "</div>"
-  html += "<p>Hours of Work: " + data.hoursofwork + "</p>"
+  html += "<p>Work Schedule: " + data.workschedule + "</p>"
   html += "<p>Hourly rate of pay: " + data.hourlypay + "</p>"
   html += "<p>Position Type: " + data.positiontype + "</p>"
   //html += "<p>Physical Requirement: " + Strings.orEmpty(data.physicalrequirements) + "</p>"
