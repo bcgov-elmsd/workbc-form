@@ -188,7 +188,7 @@
 
       </div>
       <div class="form-group">
-        <label class="col-form-label control-label" for="certificates">Skills / Certifications</label>
+        <label class="col-form-label control-label" for="certificates">Skills/ Abilities/ Certifications</label>
         <small class="text-muted">Please hold CTRL when selecting multiple options.</small>
         <select multiple aria-describedby="certificates" aria-required="true"
           class="form-control <%= errors.certificates ? 'is-invalid' : '' %>" id="certificates" name="certificates">
@@ -216,9 +216,16 @@
           <option value="Transportation of Dangerous Goods"
             <%= checkCertificates('Transportation of Dangerous Goods') ? 'selected' : '' %>>Transportation of Dangerous
             Goods</option>
-          <option value="Licensed to drive a truck or other large vehicles"
-            <%= checkCertificates('Licensed to drive a truck or other large vehicles') ? 'selected' : '' %>>Licensed to
-            drive a truck or other large vehicle</option>
+          <option value="Personal Protective Equipement Safety Training"
+            <%= checkCertificates('Personal Protective Equipement Safety Training') ? 'selected' : '' %>>Personal Protective Equipement Safety Training</option>
+          <option value="Food Safe Level 1 Certification"
+            <%= checkCertificates('Food Safe Level 1 Certification') ? 'selected' : '' %>>Food Safe Level 1 Certification</option>
+          <option value="Comfort using computers"
+            <%= checkCertificates('Comfort using computers') ? 'selected' : '' %>>Comfort using computers</option>
+          <option value="Drivers License passenger vehicle"
+            <%= checkCertificates('Drivers License passenger vehicle') ? 'selected' : '' %>>Drivers License - passenger vehicle</option>
+          <option value="Licensed to drive a truck or other large vehicle"
+            <%= checkCertificates('Licensed to drive a truck or other large vehicle') ? 'selected' : '' %>>Licensed to drive a truck or other large vehicle</option>
         </select>
         <% if (errors.certificates) { %>
         <div class="invalid-feedback">Please select at least one certificate.</div>
@@ -297,7 +304,7 @@
           <div class="invalid-feedback">Please answer.</div>
         <% } %>
       </div>
-      -->
+      
       <div class="form-group">
         <label class="col-form-label control-label" for="upto40pounds">Are you able to lift up to 40 pounds?</label>
         <select aria-describedby="upto40pounds" aria-required="true"
@@ -322,6 +329,7 @@
         <div class="invalid-feedback">Please answer.</div>
         <% } %>
       </div>
+      -->
       <!--
       <div class="form-row">
         <div class="form-group col-md-6">
