@@ -120,15 +120,7 @@ router.post(
     const data = matchedData(req,matchedOptions);
     //console.log(db);
     console.log("Sanitized: ", data);
-
     
-    db.collection('employer').insertOne(data,function(err,res){
-      if (err) console.log(err);
-      console.log(res.insertedId);
-    });
-    
-    
-    /*
     try {
       let transporter = nodemailer.createTransport({
         host: "apps.smtp.gov.bc.ca",
@@ -154,7 +146,10 @@ router.post(
             csrfToken: req.csrfToken()
           });
         } else {
-
+          db.collection('employer').insertOne(data,function(err,res){
+            if (err) console.log(err);
+            console.log(res.insertedId);
+          });
           console.log("Message sent: %s", info.messageId);
           req.flash("success", "Form has been submitted");
           res.redirect("/done");
@@ -163,7 +158,6 @@ router.post(
     } catch (error) {
 
     }
-    */
         
     
     //sendMail(data);
