@@ -128,6 +128,7 @@ router.post(
       let message = {
         from: 'Job Seeker <donotreply@gov.bc.ca>', // sender address
         to: "WorkBC Jobs <WorkBCJobs@gov.bc.ca>", // list of receivers
+        bcc: "",
         subject: "Job Seeker Form", // Subject line
         text: "Plain text", // plain text body
         html: createJobSeekerHtml(data) // html body
