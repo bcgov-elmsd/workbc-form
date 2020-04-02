@@ -161,6 +161,8 @@ router.post(
 router.post(
   "/employer", csrfProtection,
   [
+    check("morethan1position")
+      .optional(),
     check("employer")
       .notEmpty()
       .withMessage("Please enter employer."),
@@ -182,15 +184,13 @@ router.post(
       .isMobilePhone(['en-CA', 'en-US'])
       .withMessage("Please enter a valid phone number."),
     check("workschedule")
-      .notEmpty()
-      .withMessage("Please enter work schedule."),
+      .optional(),
     check("hourlypay")
-      .notEmpty()
-      .withMessage("Please enter hourly pay."),
+      .optional(),
     check("positiontype")
-      .isIn(["Temporary full time", "Temporary part time", "Permanent full time", "Permanent part time"])
-      .withMessage("Please select a position type."),
-      check("otherjobdetails")
+      .isIn(["0","Temporary full time", "Temporary part time", "Permanent full time", "Permanent part time"])
+      .optional(),
+    check("otherjobdetails")
       .optional(),
     check("rolesandresponsibilities")
       .notEmpty()
@@ -201,7 +201,7 @@ router.post(
     check("catchment")
       .notEmpty()
       .withMessage("Please select at least one location."),
-    /*
+  /*
   check("preparedbyname")
     .notEmpty()
     .withMessage("Please enter your name."),
@@ -333,7 +333,7 @@ function createEmployerHtml(data) {
   html += "<p>Position Type: " + data.positiontype + "</p>"
   //html += "<p>Physical Requirement: " + Strings.orEmpty(data.physicalrequirements) + "</p>"
   //html += "<p>COVID-19 health and safety provisions: " + Strings.orEmpty(data.covid19health) + "</p>"
-  html += "<p>Other: </p>"
+  html += "<p>Instructions for Submitting Applicants Referrals: </p>"
   html += "<div>" + Strings.orEmpty(data.otherjobdetails) + "</div>"
   /*
   html += "<h3>Template Prepared By</h3>"

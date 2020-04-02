@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
     <% if (messages.error) { %>
-      <div class="alert alert-danger"><%= messages.error %></div>
+    <div class="alert alert-danger"><%= messages.error %></div>
     <% } %>
     <h1 id="forms">Employer Form</h1>
     <p><span style="color:red">*</span> Denotes a required field.</p>
@@ -31,8 +31,22 @@
       -->
       <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <div class="form-group">
-        <label class="col-form-label control-label" for="employer">Employer Name <span style="color:red">*</span></label>
-        <input type="text" class="form-control <%= errors.employer ? 'is-invalid' : '' %>" id="employer" name="employer" value="<%= data.employer %>"/>
+        <label class="col-form-label control-label" for="morethan1position">Do you have more than 1 category of positions to fill?</label>
+        <select aria-describedby="morethan1position" aria-required="true"
+          class="form-control <%= errors.morethan1position ? 'is-invalid' : '' %>" id="morethan1position" name="morethan1position">
+          <option value="0"></option>
+          <option value="Yes" <%= data.morethan1position=="Yes" ? 'selected' : '' %>>Yes</option>
+          <option value="No" <%= data.morethan1position=="No" ? 'selected' : '' %>>No</option>
+        </select>
+        <% if (errors.morethan1position) { %>
+          <div class="invalid-feedback">Please answer.</div>
+        <% } %>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label control-label" for="employer">Employer Name <span
+            style="color:red">*</span></label>
+        <input type="text" class="form-control <%= errors.employer ? 'is-invalid' : '' %>" id="employer" name="employer"
+          value="<%= data.employer %>" />
         <% if (errors.employer) { %>
         <div class="invalid-feedback"><%= errors.employer.msg %></div>
         <% } %>
@@ -40,38 +54,46 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="jobtitle">Job Title <span style="color:red">*</span></label>
-          <input type="text" class="form-control <%= errors.jobtitle ? 'is-invalid' : '' %>" id="jobtitle" name="jobtitle" value="<%= data.jobtitle %>"/>
+          <input type="text" class="form-control <%= errors.jobtitle ? 'is-invalid' : '' %>" id="jobtitle"
+            name="jobtitle" value="<%= data.jobtitle %>" />
           <% if (errors.jobtitle) { %>
           <div class="invalid-feedback"><%= errors.jobtitle.msg %></div>
           <% } %>
         </div>
         <div class="form-group col-md-6">
-          <label class="col-form-label control-label" for="positions"># of Positions <span style="color:red">*</span></label>
-          <input type="text" class="form-control <%= errors.positions ? 'is-invalid' : '' %>" id="positions" name="positions" placeholder="Enter 1 or more" maxlength="4" value="<%= data.positions %>"/>
+          <label class="col-form-label control-label" for="positions"># of Positions <span
+              style="color:red">*</span></label>
+          <input type="text" class="form-control <%= errors.positions ? 'is-invalid' : '' %>" id="positions"
+            name="positions" placeholder="Enter 1 or more" maxlength="4" value="<%= data.positions %>" />
           <% if (errors.positions) { %>
           <div class="invalid-feedback"><%= errors.positions.msg %></div>
           <% } %>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-form-label control-label" for="hrcontactname">HR Contact Name(s) <span style="color:red">*</span></label>
+        <label class="col-form-label control-label" for="hrcontactname">HR Contact Name(s) <span
+            style="color:red">*</span></label>
         <input type="text" class="form-control <%= errors.hrcontactname ? 'is-invalid' : '' %>" id="hrcontactname"
-          name="hrcontactname" value="<%= data.hrcontactname %>"/>
+          name="hrcontactname" value="<%= data.hrcontactname %>" />
         <% if (errors.hrcontactname) { %>
         <div class="invalid-feedback"><%= errors.hrcontactname.msg %></div>
         <% } %>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label class="col-form-label control-label" for="contactemail">Contact Email <span style="color:red">*</span></label>
-          <input type="text" class="form-control <%= errors.contactemail ? 'is-invalid' : '' %>" id="contactemail" name="contactemail" value="<%= data.contactemail %>"/>
+          <label class="col-form-label control-label" for="contactemail">Contact Email <span
+              style="color:red">*</span></label>
+          <input type="text" class="form-control <%= errors.contactemail ? 'is-invalid' : '' %>" id="contactemail"
+            name="contactemail" value="<%= data.contactemail %>" />
           <% if (errors.contactemail) { %>
           <div class="invalid-feedback"><%= errors.contactemail.msg %></div>
           <% } %>
         </div>
         <div class="form-group col-md-6">
-          <label class="col-form-label control-label" for="contactphone">Contact Phone <span style="color:red">*</span></label>
-          <input type="text" class="form-control <%= errors.contactphone ? 'is-invalid' : '' %>" id="contactphone" name="contactphone" placeholder="555-555-555 or 5551235555" value="<%= data.contactphone %>"/>
+          <label class="col-form-label control-label" for="contactphone">Contact Phone <span
+              style="color:red">*</span></label>
+          <input type="text" class="form-control <%= errors.contactphone ? 'is-invalid' : '' %>" id="contactphone"
+            name="contactphone" placeholder="555-555-555 or 5551235555" value="<%= data.contactphone %>" />
           <% if (errors.contactphone) { %>
           <div class="invalid-feedback"><%= errors.contactphone.msg %></div>
           <% } %>
@@ -79,29 +101,46 @@
       </div>
       <h2>Job Details</h2>
       <div class="form-row">
-        <div class="form-group col-md-4">
-          <label class="col-form-label control-label" for="workschedule">Work Schedule<span style="color:red">*</span></label>
-          <input type="text" class="form-control <%= errors.workschedule ? 'is-invalid' : '' %>" id="workschedule" name="workschedule" value="<%= data.workschedule %>"/>
+        <div class="form-group col-md-6">
+          <label class="col-form-label control-label" for="workschedule">Work schedule</label>
+          <input type="text" class="form-control <%= errors.workschedule ? 'is-invalid' : '' %>" id="workschedule"
+            name="workschedule" value="<%= data.workschedule %>" />
           <% if (errors.workschedule) { %>
           <div class="invalid-feedback"><%= errors.workschedule.msg %></div>
           <% } %>
         </div>
-        <div class="form-group col-md-4">
-          <label class="col-form-label control-label" for="hourlypay">Hourly rate of pay <span style="color:red">*</span></label>
-          <input type="text" class="form-control <%= errors.hourlypay ? 'is-invalid' : '' %>" id="hourlypay" name="hourlypay" value="<%= data.hourlypay %>"/>
+        <div class="form-group col-md-6">
+          <label class="col-form-label control-label" for="hoursperweek">Hours per week</label>
+          <input type="text" class="form-control <%= errors.hoursperweek ? 'is-invalid' : '' %>" id="hoursperweek"
+            name="hoursperweek" value="<%= data.hoursperweek %>" />
+          <% if (errors.hoursperweek) { %>
+          <div class="invalid-feedback"><%= errors.hoursperweek.msg %></div>
+          <% } %>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="col-form-label control-label" for="hourlypay">Hourly rate of pay</label>
+          <input type="text" class="form-control <%= errors.hourlypay ? 'is-invalid' : '' %>" id="hourlypay"
+            name="hourlypay" value="<%= data.hourlypay %>" />
           <% if (errors.hourlypay) { %>
           <div class="invalid-feedback"><%= errors.hourlypay.msg %></div>
           <% } %>
         </div>
-        <div class="form-group col-md-4">
-          <label class="col-form-label control-label" for="positiontype">Position type <span style="color:red">*</span></label>
-          <select aria-describedby="positiontype" aria-required="true" class="form-control <%= errors.positiontype ? 'is-invalid' : '' %>" id="positiontype" name="positiontype">
-          <option value="0"></option>
-          <option value="Temporary full time" <%= data.positiontype=="Temporary full time" ? 'selected' : '' %>>Temporary - full time</option>
-          <option value="Temporary part time" <%= data.positiontype=="Temporary part time" ? 'selected' : '' %>>Temporary - part time</option>
-          <option value="Permanent full time" <%= data.positiontype=="Permanent full time" ? 'selected' : '' %>>Permanent - full time</option>
-          <option value="Permanent part time" <%= data.positiontype=="Permanent part time" ? 'selected' : '' %>>Permanent - part time</option>
-        </select>
+        <div class="form-group col-md-6">
+          <label class="col-form-label control-label" for="positiontype">Position type</label>
+          <select aria-describedby="positiontype" aria-required="true"
+            class="form-control <%= errors.positiontype ? 'is-invalid' : '' %>" id="positiontype" name="positiontype">
+            <option value="0"></option>
+            <option value="Temporary full time" <%= data.positiontype=="Temporary full time" ? 'selected' : '' %>>
+              Temporary - full time</option>
+            <option value="Temporary part time" <%= data.positiontype=="Temporary part time" ? 'selected' : '' %>>
+              Temporary - part time</option>
+            <option value="Permanent full time" <%= data.positiontype=="Permanent full time" ? 'selected' : '' %>>
+              Permanent - full time</option>
+            <option value="Permanent part time" <%= data.positiontype=="Permanent part time" ? 'selected' : '' %>>
+              Permanent - part time</option>
+          </select>
           <% if (errors.positiontype) { %>
           <div class="invalid-feedback"><%= errors.positiontype.msg %></div>
           <% } %>
@@ -125,68 +164,77 @@
         <% } %>
       </div>
       -->
-      
-      <div class="form-group">
-        <label class="col-form-label control-label" for="otherjobdetails">Other</label>
-        <textarea class="form-control <%= errors.otherjobdetails ? 'is-invalid' : '' %>" id="otherjobdetails" name="otherjobdetails"
-          rows="3"><%= data.otherjobdetails %></textarea>
-        <% if (errors.otherjobdetails) { %>
-        <div class="invalid-feedback"><%= errors.otherjobdetails.msg %></div>
-        <% } %>
-      </div>
       <h2>Job Description</h2>
       <div class="form-group">
-        <label class="col-form-label control-label" for="rolesandresponsibilities">Role and Responsibilities <span style="color:red">*</span></label>
-        <textarea class="form-control <%= errors.rolesandresponsibilities ? 'is-invalid' : '' %>" id="rolesandresponsibilities" name="rolesandresponsibilities"
+        <label class="col-form-label control-label" for="rolesandresponsibilities">Role and Responsibilities <span
+            style="color:red">*</span></label>
+        <textarea class="form-control <%= errors.rolesandresponsibilities ? 'is-invalid' : '' %>"
+          id="rolesandresponsibilities" name="rolesandresponsibilities"
           rows="6"><%= data.rolesandresponsibilities %></textarea>
         <% if (errors.rolesandresponsibilities) { %>
         <div class="invalid-feedback"><%= errors.rolesandresponsibilities.msg %></div>
         <% } %>
       </div>
       <div class="form-group">
-        <label class="col-form-label control-label" for="qualifications">Qualifications and Education Requirements <span style="color:red">*</span></label>
-        <textarea class="form-control <%= errors.qualifications ? 'is-invalid' : '' %>" id="qualifications" name="qualifications"
-          rows="6"><%= data.qualifications %></textarea>
+        <label class="col-form-label control-label" for="qualifications">Qualifications and Education Requirements <span
+            style="color:red">*</span></label>
+        <textarea class="form-control <%= errors.qualifications ? 'is-invalid' : '' %>" id="qualifications"
+          name="qualifications" rows="6"><%= data.qualifications %></textarea>
         <% if (errors.qualifications) { %>
         <div class="invalid-feedback"><%= errors.qualifications.msg %></div>
         <% } %>
       </div>
       <div class="form-group">
-        <label class="col-form-label control-label" for="catchment">Location(s) (select all that apply) <span style="color:red">*</span></label>
+        <label class="col-form-label control-label" for="catchment">Location(s) (select all that apply) <span
+            style="color:red">*</span></label>
         <small class="text-muted">Please hold CTRL when selecting multiple options.</small>
-        <select multiple aria-describedby="catchment" aria-required="true" class="form-control <%= errors.catchment ? 'is-invalid' : '' %>" id="catchment" name="catchment" size="6">
+        <select multiple aria-describedby="catchment" aria-required="true"
+          class="form-control <%= errors.catchment ? 'is-invalid' : '' %>" id="catchment" name="catchment" size="6">
           <!-- do either in or select in function -->
-          <option value="100MILEHOUSE" id="100MILEHOUSE" <%= checkRegion('100MILEHOUSE') ? 'selected' : '' %>>100 MILE HOUSE</option>
-          <option value="ABBOTSFORD" id="ABBOTSFORD" <%= checkRegion('ABBOTSFORD') ? 'selected' : '' %>>ABBOTSFORD</option>
+          <option value="100MILEHOUSE" id="100MILEHOUSE" <%= checkRegion('100MILEHOUSE') ? 'selected' : '' %>>100 MILE
+            HOUSE</option>
+          <option value="ABBOTSFORD" id="ABBOTSFORD" <%= checkRegion('ABBOTSFORD') ? 'selected' : '' %>>ABBOTSFORD
+          </option>
           <option value="AGASSIZ" id="AGASSIZ" <%= checkRegion('AGASSIZ') ? 'selected' : '' %>>AGASSIZ</option>
-          <option value="ALDERGROVE" id="ALDERGROVE" <%= checkRegion('ALDERGROVE') ? 'selected' : '' %>>ALDERGROVE</option>
+          <option value="ALDERGROVE" id="ALDERGROVE" <%= checkRegion('ALDERGROVE') ? 'selected' : '' %>>ALDERGROVE
+          </option>
           <option value="ASHCROFT" id="ASHCROFT" <%= checkRegion('ASHCROFT') ? 'selected' : '' %>>ASHCROFT</option>
           <option value="BARRIERE" id="BARRIERE" <%= checkRegion('BARRIERE') ? 'selected' : '' %>>BARRIERE</option>
-          <option value="BELLACOOLA" id="BELLACOOLA" <%= checkRegion('BELLACOOLA') ? 'selected' : '' %>>BELLA COOLA</option>
+          <option value="BELLACOOLA" id="BELLACOOLA" <%= checkRegion('BELLACOOLA') ? 'selected' : '' %>>BELLA COOLA
+          </option>
           <option value="BURNABY" id="BURNABY" <%= checkRegion('BURNABY') ? 'selected' : '' %>>BURNABY</option>
           <option value="BURNSLAKE" id="BURNSLAKE" <%= checkRegion('BURNSLAKE') ? 'selected' : '' %>>BURNS LAKE</option>
-          <option value="CAMPBELLRIVER" id="CAMPBELLRIVER" <%= checkRegion('CAMPBELLRIVER') ? 'selected' : '' %>>CAMPBELL RIVER</option>
+          <option value="CAMPBELLRIVER" id="CAMPBELLRIVER" <%= checkRegion('CAMPBELLRIVER') ? 'selected' : '' %>>
+            CAMPBELL RIVER</option>
           <option value="CASTLEGAR" id="CASTLEGAR" <%= checkRegion('CASTLEGAR') ? 'selected' : '' %>>CASTLEGAR</option>
           <option value="CHASE" id="CHASE" <%= checkRegion('CHASE') ? 'selected' : '' %>>CHASE</option>
           <option value="CHETWYND" id="CHETWYND" <%= checkRegion('CHETWYND') ? 'selected' : '' %>>CHETWYND</option>
-          <option value="CHILLIWACK" id="CHILLIWACK" <%= checkRegion('CHILLIWACK') ? 'selected' : '' %>>CHILLIWACK</option>
-          <option value="CLEARWATER" id="CLEARWATER" <%= checkRegion('CLEARWATER') ? 'selected' : '' %>>CLEARWATER</option>
+          <option value="CHILLIWACK" id="CHILLIWACK" <%= checkRegion('CHILLIWACK') ? 'selected' : '' %>>CHILLIWACK
+          </option>
+          <option value="CLEARWATER" id="CLEARWATER" <%= checkRegion('CLEARWATER') ? 'selected' : '' %>>CLEARWATER
+          </option>
           <option value="COQUITLAM" id="COQUITLAM" <%= checkRegion('COQUITLAM') ? 'selected' : '' %>>COQUITLAM</option>
           <option value="COURTENAY" id="COURTENAY" <%= checkRegion('COURTENAY') ? 'selected' : '' %>>COURTENAY</option>
           <option value="CRANBROOK" id="CRANBROOK" <%= checkRegion('CRANBROOK') ? 'selected' : '' %>>CRANBROOK</option>
           <option value="CRESTON" id="CRESTON" <%= checkRegion('CRESTON') ? 'selected' : '' %>>CRESTON</option>
-          <option value="DAWSONCREEK" id="DAWSONCREEK" <%= checkRegion('DAWSONCREEK') ? 'selected' : '' %>>DAWSON CREEK</option>
+          <option value="DAWSONCREEK" id="DAWSONCREEK" <%= checkRegion('DAWSONCREEK') ? 'selected' : '' %>>DAWSON CREEK
+          </option>
           <option value="DELTA" id="DELTA" <%= checkRegion('DELTA') ? 'selected' : '' %>>DELTA</option>
           <option value="DUNCAN" id="DUNCAN" <%= checkRegion('DUNCAN') ? 'selected' : '' %>>DUNCAN</option>
           <option value="ENDERBY" id="ENDERBY" <%= checkRegion('ENDERBY') ? 'selected' : '' %>>ENDERBY</option>
           <option value="FERNIE" id="FERNIE" <%= checkRegion('FERNIE') ? 'selected' : '' %>>FERNIE</option>
-          <option value="FORTNELSON" id="FORTNELSON" <%= checkRegion('FORTNELSON') ? 'selected' : '' %>>FORT NELSON</option>
-          <option value="FORTSTJAMES" id="FORTSTJAMES" <%= checkRegion('FORTSTJAMES') ? 'selected' : '' %>>FORT ST. JAMES</option>
-          <option value="FORTSTJOHN" id="FORTSTJOHN" <%= checkRegion('FORTSTJOHN') ? 'selected' : '' %>>FORT ST. JOHN</option>
+          <option value="FORTNELSON" id="FORTNELSON" <%= checkRegion('FORTNELSON') ? 'selected' : '' %>>FORT NELSON
+          </option>
+          <option value="FORTSTJAMES" id="FORTSTJAMES" <%= checkRegion('FORTSTJAMES') ? 'selected' : '' %>>FORT ST.
+            JAMES</option>
+          <option value="FORTSTJOHN" id="FORTSTJOHN" <%= checkRegion('FORTSTJOHN') ? 'selected' : '' %>>FORT ST. JOHN
+          </option>
           <option value="GANGES" id="GANGES" <%= checkRegion('GANGES') ? 'selected' : '' %>>GANGES</option>
           <option value="GOLDEN" id="GOLDEN" <%= checkRegion('GOLDEN') ? 'selected' : '' %>>GOLDEN</option>
-          <option value="GRANDFORKS" id="GRANDFORKS" <%= checkRegion('GRANDFORKS') ? 'selected' : '' %>>GRAND FORKS</option>
-          <option value="HAIDAGWAII" id="HAIDAGWAII" <%= checkRegion('HAIDAGWAII') ? 'selected' : '' %>>HAIDA GWAII</option>
+          <option value="GRANDFORKS" id="GRANDFORKS" <%= checkRegion('GRANDFORKS') ? 'selected' : '' %>>GRAND FORKS
+          </option>
+          <option value="HAIDAGWAII" id="HAIDAGWAII" <%= checkRegion('HAIDAGWAII') ? 'selected' : '' %>>HAIDA GWAII
+          </option>
           <option value="HAZELTON" id="HAZELTON" <%= checkRegion('HAZELTON') ? 'selected' : '' %>>HAZELTON</option>
           <option value="HOPE" id="HOPE" <%= checkRegion('HOPE') ? 'selected' : '' %>>HOPE</option>
           <option value="INVERMERE" id="INVERMERE" <%= checkRegion('INVERMERE') ? 'selected' : '' %>>INVERMERE</option>
@@ -198,67 +246,101 @@
           <option value="LANGLEY" id="LANGLEY" <%= checkRegion('LANGLEY') ? 'selected' : '' %>>LANGLEY</option>
           <option value="LILLOOET" id="LILLOOET" <%= checkRegion('LILLOOET') ? 'selected' : '' %>>LILLOOET</option>
           <option value="MACKENZIE" id="MACKENZIE" <%= checkRegion('MACKENZIE') ? 'selected' : '' %>>MACKENZIE</option>
-          <option value="MAPLERIDGE" id="MAPLERIDGE" <%= checkRegion('MAPLERIDGE') ? 'selected' : '' %>>MAPLE RIDGE</option>
+          <option value="MAPLERIDGE" id="MAPLERIDGE" <%= checkRegion('MAPLERIDGE') ? 'selected' : '' %>>MAPLE RIDGE
+          </option>
           <option value="MASSET" id="MASSET" <%= checkRegion('MASSET') ? 'selected' : '' %>>MASSET</option>
           <option value="MERRITT" id="MERRITT" <%= checkRegion('MERRITT') ? 'selected' : '' %>>MERRITT</option>
           <option value="MISSION" id="MISSION" <%= checkRegion('MISSION') ? 'selected' : '' %>>MISSION</option>
           <option value="NAKUSP" id="NAKUSP" <%= checkRegion('NAKUSP') ? 'selected' : '' %>>NAKUSP</option>
           <option value="NANAIMO" id="NANAIMO" <%= checkRegion('NANAIMO') ? 'selected' : '' %>>NANAIMO</option>
           <option value="NELSON" id="NELSON" <%= checkRegion('NELSON') ? 'selected' : '' %>>NELSON</option>
-          <option value="NEWWESTMINSTER" id="NEWWESTMINSTER" <%= checkRegion('NEWWESTMINSTER') ? 'selected' : '' %>>NEW WESTMINSTER</option>
-          <option value="NORTHVANCOUVER" id="NORTHVANCOUVER" <%= checkRegion('NORTHVANCOUVER') ? 'selected' : '' %>>NORTH VANCOUVER</option>
+          <option value="NEWWESTMINSTER" id="NEWWESTMINSTER" <%= checkRegion('NEWWESTMINSTER') ? 'selected' : '' %>>NEW
+            WESTMINSTER</option>
+          <option value="NORTHVANCOUVER" id="NORTHVANCOUVER" <%= checkRegion('NORTHVANCOUVER') ? 'selected' : '' %>>
+            NORTH VANCOUVER</option>
           <option value="OLIVER" id="OLIVER" <%= checkRegion('OLIVER') ? 'selected' : '' %>>OLIVER</option>
-          <option value="PARKSVILLE" id="PARKSVILLE" <%= checkRegion('PARKSVILLE') ? 'selected' : '' %>>PARKSVILLE</option>
+          <option value="PARKSVILLE" id="PARKSVILLE" <%= checkRegion('PARKSVILLE') ? 'selected' : '' %>>PARKSVILLE
+          </option>
           <option value="PENTICTON" id="PENTICTON" <%= checkRegion('PENTICTON') ? 'selected' : '' %>>PENTICTON</option>
-          <option value="PORTALBERNI" id="PORTALBERNI" <%= checkRegion('PORTALBERNI') ? 'selected' : '' %>>PORT ALBERNI</option>
-          <option value="PORTCOQUITLAM" id="PORTCOQUITLAM" <%= checkRegion('PORTCOQUITLAM') ? 'selected' : '' %>>PORT COQUITLAM</option>
+          <option value="PORTALBERNI" id="PORTALBERNI" <%= checkRegion('PORTALBERNI') ? 'selected' : '' %>>PORT ALBERNI
+          </option>
+          <option value="PORTCOQUITLAM" id="PORTCOQUITLAM" <%= checkRegion('PORTCOQUITLAM') ? 'selected' : '' %>>PORT
+            COQUITLAM</option>
           <option value="PORTHARDY" id="PORTHARDY" <%= checkRegion('PORTHARDY') ? 'selected' : '' %>>PORT HARDY</option>
           <option value="PORTMOODY" id="PORTMOODY" <%= checkRegion('PORTMOODY') ? 'selected' : '' %>>PORT MOODY</option>
-          <option value="POWELLRIVER" id="POWELLRIVER" <%= checkRegion('POWELLRIVER') ? 'selected' : '' %>>POWELL RIVER</option>
-          <option value="PRINCEGEORGE" id="PRINCEGEORGE" <%= checkRegion('PRINCEGEORGE') ? 'selected' : '' %>>PRINCE GEORGE</option>
-          <option value="PRINCERUPERT" id="PRINCERUPERT" <%= checkRegion('PRINCERUPERT') ? 'selected' : '' %>>PRINCE RUPERT</option>
+          <option value="POWELLRIVER" id="POWELLRIVER" <%= checkRegion('POWELLRIVER') ? 'selected' : '' %>>POWELL RIVER
+          </option>
+          <option value="PRINCEGEORGE" id="PRINCEGEORGE" <%= checkRegion('PRINCEGEORGE') ? 'selected' : '' %>>PRINCE
+            GEORGE</option>
+          <option value="PRINCERUPERT" id="PRINCERUPERT" <%= checkRegion('PRINCERUPERT') ? 'selected' : '' %>>PRINCE
+            RUPERT</option>
           <option value="PRINCETON" id="PRINCETON" <%= checkRegion('PRINCETON') ? 'selected' : '' %>>PRINCETON</option>
-          <option value="QUEENCHARLOTTE" id="QUEENCHARLOTTE" <%= checkRegion('QUEENCHARLOTTE') ? 'selected' : '' %>>QUEEN CHARLOTTE</option>
+          <option value="QUEENCHARLOTTE" id="QUEENCHARLOTTE" <%= checkRegion('QUEENCHARLOTTE') ? 'selected' : '' %>>
+            QUEEN CHARLOTTE</option>
           <option value="QUESNEL" id="QUESNEL" <%= checkRegion('QUESNEL') ? 'selected' : '' %>>QUESNEL</option>
-          <option value="REVELSTOKE" id="REVELSTOKE" <%= checkRegion('REVELSTOKE') ? 'selected' : '' %>>REVELSTOKE</option>
+          <option value="REVELSTOKE" id="REVELSTOKE" <%= checkRegion('REVELSTOKE') ? 'selected' : '' %>>REVELSTOKE
+          </option>
           <option value="RICHMOND" id="RICHMOND" <%= checkRegion('RICHMOND') ? 'selected' : '' %>>RICHMOND</option>
           <option value="RUTLAND" id="RUTLAND" <%= checkRegion('RUTLAND') ? 'selected' : '' %>>RUTLAND</option>
           <option value="SAANICH" id="SAANICH" <%= checkRegion('SAANICH') ? 'selected' : '' %>>SAANICH</option>
           <option value="SALMONARM" id="SALMONARM" <%= checkRegion('SALMONARM') ? 'selected' : '' %>>SALMON ARM</option>
-          <option value="SALTSPRINGISLAND" id="SALTSPRINGISLAND" <%= checkRegion('SALTSPRINGISLAND') ? 'selected' : '' %>>SALT SPRING ISLAND</option>
+          <option value="SALTSPRINGISLAND" id="SALTSPRINGISLAND"
+            <%= checkRegion('SALTSPRINGISLAND') ? 'selected' : '' %>>SALT SPRING ISLAND</option>
           <option value="SECHELT" id="SECHELT" <%= checkRegion('SECHELT') ? 'selected' : '' %>>SECHELT</option>
           <option value="SICAMOUS" id="SICAMOUS" <%= checkRegion('SICAMOUS') ? 'selected' : '' %>>SICAMOUS</option>
           <option value="SIDNEY" id="SIDNEY" <%= checkRegion('SIDNEY') ? 'selected' : '' %>>SIDNEY</option>
           <option value="SMITHERS" id="SMITHERS" <%= checkRegion('SMITHERS') ? 'selected' : '' %>>SMITHERS</option>
           <option value="SOOKE" id="SOOKE" <%= checkRegion('SOOKE') ? 'selected' : '' %>>SOOKE</option>
-          <option value="SOUTHSURREY" id="SOUTHSURREY" <%= checkRegion('SOUTHSURREY') ? 'selected' : '' %>>SOUTH SURREY</option>
+          <option value="SOUTHSURREY" id="SOUTHSURREY" <%= checkRegion('SOUTHSURREY') ? 'selected' : '' %>>SOUTH SURREY
+          </option>
           <option value="SQUAMISH" id="SQUAMISH" <%= checkRegion('SQUAMISH') ? 'selected' : '' %>>SQUAMISH</option>
-          <option value="SUMMERLAND" id="SUMMERLAND" <%= checkRegion('SUMMERLAND') ? 'selected' : '' %>>SUMMERLAND</option>
-          <option value="SURREYCLOVERDALE" id="SURREYCLOVERDALE" <%= checkRegion('SURREYCLOVERDALE') ? 'selected' : '' %>>SURREY CLOVERDALE</option>
-          <option value="SURREYFLEETWOODGUILDFORD" id="SURREYFLEETWOODGUILDFORD" <%= checkRegion('SURREYFLEETWOODGUILDFORD') ? 'selected' : '' %>>SURREY FLEETWOOD/GUILDFORD</option>
-          <option value="SURREYNEWTON" id="SURREYNEWTON" <%= checkRegion('SURREYNEWTON') ? 'selected' : '' %>>SURREY NEWTON</option>
-          <option value="SURREYWHALLEY" id="SURREYWHALLEY" <%= checkRegion('SURREYWHALLEY') ? 'selected' : '' %>>SURREY WHALLEY</option>
+          <option value="SUMMERLAND" id="SUMMERLAND" <%= checkRegion('SUMMERLAND') ? 'selected' : '' %>>SUMMERLAND
+          </option>
+          <option value="SURREYCLOVERDALE" id="SURREYCLOVERDALE"
+            <%= checkRegion('SURREYCLOVERDALE') ? 'selected' : '' %>>SURREY CLOVERDALE</option>
+          <option value="SURREYFLEETWOODGUILDFORD" id="SURREYFLEETWOODGUILDFORD"
+            <%= checkRegion('SURREYFLEETWOODGUILDFORD') ? 'selected' : '' %>>SURREY FLEETWOOD/GUILDFORD</option>
+          <option value="SURREYNEWTON" id="SURREYNEWTON" <%= checkRegion('SURREYNEWTON') ? 'selected' : '' %>>SURREY
+            NEWTON</option>
+          <option value="SURREYWHALLEY" id="SURREYWHALLEY" <%= checkRegion('SURREYWHALLEY') ? 'selected' : '' %>>SURREY
+            WHALLEY</option>
           <option value="TERRACE" id="TERRACE" <%= checkRegion('TERRACE') ? 'selected' : '' %>>TERRACE</option>
           <option value="TOFINO" id="TOFINO" <%= checkRegion('TOFINO') ? 'selected' : '' %>>TOFINO</option>
           <option value="TRAIL" id="TRAIL" <%= checkRegion('TRAIL') ? 'selected' : '' %>>TRAIL</option>
           <option value="UCLUELET" id="UCLUELET" <%= checkRegion('UCLUELET') ? 'selected' : '' %>>UCLUELET</option>
           <option value="VALEMOUNT" id="VALEMOUNT" <%= checkRegion('VALEMOUNT') ? 'selected' : '' %>>VALEMOUNT</option>
-          <option value="VANCOUVERCITYCENTRE" id="VANCOUVERCITYCENTRE" <%= checkRegion('VANCOUVERCITYCENTRE') ? 'selected' : '' %>>VANCOUVER CITY CENTRE</option>
-          <option value="VANCOUVERDOWNTOWNEASTSIDE" id="VANCOUVERDOWNTOWNEASTSIDE" <%= checkRegion('VANCOUVERDOWNTOWNEASTSIDE') ? 'selected' : '' %>>VANCOUVER DOWNTOWN EASTSIDE</option>
-          <option value="VANCOUVERMIDTOWN" id="VANCOUVERMIDTOWN" <%= checkRegion('VANCOUVERMIDTOWN') ? 'selected' : '' %>>VANCOUVER MIDTOWN</option>
-          <option value="VANCOUVERNORTHEAST" id="VANCOUVERNORTHEAST" <%= checkRegion('VANCOUVERNORTHEAST') ? 'selected' : '' %>>VANCOUVER NORTHEAST</option>
-          <option value="VANCOUVERSOUTH" id="VANCOUVERSOUTH" <%= checkRegion('VANCOUVERSOUTH') ? 'selected' : '' %>>VANCOUVER SOUTH</option>
-          <option value="VANCOUVERWESTSIDE" id="VANCOUVERWESTSIDE" <%= checkRegion('VANCOUVERWESTSIDE') ? 'selected' : '' %>>VANCOUVER WESTSIDE</option>
-          <option value="VANDERHOOF" id="VANDERHOOF" <%= checkRegion('VANDERHOOF') ? 'selected' : '' %>>VANDERHOOF</option>
+          <option value="VANCOUVERCITYCENTRE" id="VANCOUVERCITYCENTRE"
+            <%= checkRegion('VANCOUVERCITYCENTRE') ? 'selected' : '' %>>VANCOUVER CITY CENTRE</option>
+          <option value="VANCOUVERDOWNTOWNEASTSIDE" id="VANCOUVERDOWNTOWNEASTSIDE"
+            <%= checkRegion('VANCOUVERDOWNTOWNEASTSIDE') ? 'selected' : '' %>>VANCOUVER DOWNTOWN EASTSIDE</option>
+          <option value="VANCOUVERMIDTOWN" id="VANCOUVERMIDTOWN"
+            <%= checkRegion('VANCOUVERMIDTOWN') ? 'selected' : '' %>>VANCOUVER MIDTOWN</option>
+          <option value="VANCOUVERNORTHEAST" id="VANCOUVERNORTHEAST"
+            <%= checkRegion('VANCOUVERNORTHEAST') ? 'selected' : '' %>>VANCOUVER NORTHEAST</option>
+          <option value="VANCOUVERSOUTH" id="VANCOUVERSOUTH" <%= checkRegion('VANCOUVERSOUTH') ? 'selected' : '' %>>
+            VANCOUVER SOUTH</option>
+          <option value="VANCOUVERWESTSIDE" id="VANCOUVERWESTSIDE"
+            <%= checkRegion('VANCOUVERWESTSIDE') ? 'selected' : '' %>>VANCOUVER WESTSIDE</option>
+          <option value="VANDERHOOF" id="VANDERHOOF" <%= checkRegion('VANDERHOOF') ? 'selected' : '' %>>VANDERHOOF
+          </option>
           <option value="VERNON" id="VERNON" <%= checkRegion('VERNON') ? 'selected' : '' %>>VERNON</option>
           <option value="VICTORIA" id="VICTORIA" <%= checkRegion('VICTORIA') ? 'selected' : '' %>>VICTORIA</option>
           <option value="WESTBANK" id="WESTBANK" <%= checkRegion('WESTBANK') ? 'selected' : '' %>>WESTBANK</option>
           <option value="WHISTLER" id="WHISTLER" <%= checkRegion('WHISTLER') ? 'selected' : '' %>>WHISTLER</option>
           <option value="WHITEROCK" id="WHITEROCK" <%= checkRegion('WHITEROCK') ? 'selected' : '' %>>WHITE ROCK</option>
-          <option value="WILLIAMSLAKE" id="WILLIAMSLAKE" <%= checkRegion('WILLIAMSLAKE') ? 'selected' : '' %>>WILLIAMS LAKE</option>
+          <option value="WILLIAMSLAKE" id="WILLIAMSLAKE" <%= checkRegion('WILLIAMSLAKE') ? 'selected' : '' %>>WILLIAMS
+            LAKE</option>
         </select>
         <% if (errors.catchment) { %>
-          <div class="invalid-feedback"><%= errors.catchment.msg %></div>
+        <div class="invalid-feedback"><%= errors.catchment.msg %></div>
+        <% } %>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label control-label" for="otherjobdetails">Instructions for Submitting Applicants Referrals</label>
+        <textarea class="form-control <%= errors.otherjobdetails ? 'is-invalid' : '' %>" id="otherjobdetails"
+          name="otherjobdetails" rows="3"><%= data.otherjobdetails %></textarea>
+        <% if (errors.otherjobdetails) { %>
+        <div class="invalid-feedback"><%= errors.otherjobdetails.msg %></div>
         <% } %>
       </div>
       <!-- 
@@ -328,17 +410,21 @@
           <% } %>
         </div>
       </div>
-      -->  
+      -->
       <div class="form-group">
         <div class="form-check">
-          <input type="checkbox"  class="form-check-input <%= errors.consent ? 'is-invalid' : '' %>" id="consent" name="consent" value="consent" required/>
-          <label class="form-check-label control-label" for="consent"><span style="color:red">*</span> I acknowledge and understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that by doing so, I am providing the same consent as I would by manually signing a physical copy of this form</label>
+          <input type="checkbox" class="form-check-input <%= errors.consent ? 'is-invalid' : '' %>" id="consent"
+            name="consent" value="consent" required />
+          <label class="form-check-label control-label" for="consent"><span style="color:red">*</span> I acknowledge and
+            understand that by clicking the "submit" icon, I am attaching my electronic signature to this form, and that
+            by doing so, I am providing the same consent as I would by manually signing a physical copy of this
+            form</label>
           <% if (errors.consent) { %>
-            <div class="invalid-feedback"><%= errors.consent.msg %></div>
+          <div class="invalid-feedback"><%= errors.consent.msg %></div>
           <% } %>
         </div>
       </div>
-       
+
   </div>
   <!--
         <div class="form-field <%= errors.email ? 'form-field-invalid' : '' %>">
