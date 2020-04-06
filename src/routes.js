@@ -80,8 +80,7 @@ router.post(
       .isIn(["Yes", "No"])
       .withMessage("Please answer."),
     check("volunteer")
-      .isIn(["Yes", "No"])
-      .withMessage("Please answer."),
+      .optional(),
     check("neighbouringcommunities")
       .optional(),
     check("certificates")
@@ -191,7 +190,8 @@ router.post(
       .isIn(["0","Temporary full time", "Temporary part time", "Permanent full time", "Permanent part time"])
       .optional(),
     check("otherjobdetails")
-      .optional(),
+      .notEmpty()
+      .withMessage("Please enter instructions."),
     check("rolesandresponsibilities")
       .notEmpty()
       .withMessage("Please enter roles and responsibilities."),
@@ -289,7 +289,7 @@ function createJobSeekerHtml(data) {
   html += "<p>Legal working age: " + data.legalworkingage + "</p>"
   html += "<p>Eligible to work in Canada: " + data.eligibletowork + "</p>"
   html += "<p>Willing to work in neighbouring communities: " + Strings.orEmpty(data.neighbouringcommunities) + "</p>"
-  html += "<p>Willing to volunteer:  " + data.volunteer + "</p>"
+  html += "<p>Willing to volunteer:  " + Strings.orEmpty(data.volunteer) + "</p>"
   html += "<p>Skills/Abilities/Certifications: " + Strings.orEmpty(data.certificate) + "</p>"
   //html += "<p>Able to lift up to 40 pounds: " + Strings.orEmpty(data.upto40pounds) + "</p>"
   //html += "<p>Able to lift more than 40 pounds: " + Strings.orEmpty(data.morethan40pounds) + "</p>"

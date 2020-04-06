@@ -336,7 +336,8 @@
         <% } %>
       </div>
       <div class="form-group">
-        <label class="col-form-label control-label" for="otherjobdetails">Instructions for Submitting Applicants Referrals</label>
+        <label class="col-form-label control-label" for="otherjobdetails">Instructions for Submitting Applicant Referrals<span
+          style="color:red">*</span></label>
         <textarea class="form-control <%= errors.otherjobdetails ? 'is-invalid' : '' %>" id="otherjobdetails"
           name="otherjobdetails" rows="3"><%= data.otherjobdetails %></textarea>
         <% if (errors.otherjobdetails) { %>

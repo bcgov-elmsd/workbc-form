@@ -158,8 +158,7 @@
       </div>
       <div class="form-row align-items-end">
         <div class="form-group col-md-6">
-          <label class="col-form-label control-label" for="volunteer">Are you willing to volunteer?<span
-              style="color:red">*</span></label>
+          <label class="col-form-label control-label" for="volunteer">Are you willing to volunteer?</label>
           <select aria-describedby="volunteer" aria-required="true"
             class="form-control <%= errors.volunteer ? 'is-invalid' : '' %>" id="volunteer" name="volunteer">
             <option value="0"></option>
@@ -189,7 +188,7 @@
       </div>
       <div class="form-group">
         <label class="col-form-label control-label" for="certificates">Skills/ Abilities/ Certifications</label>
-        <small class="text-muted">Please hold CTRL when selecting multiple options.</small>
+        <small class="text-muted">Please hold CTRL or command when selecting multiple options.</small>
         <select multiple aria-describedby="certificates" aria-required="true"
           class="form-control <%= errors.certificates ? 'is-invalid' : '' %>" id="certificates" name="certificates">
           <option value="WHMIS" <%= checkCertificates('WHMIS') ? 'selected' : '' %>>Workplace Hazardous Materials
@@ -197,7 +196,6 @@
           <option value="Emergency First Aid" <%= checkCertificates('Emergency First Aid') ? 'selected' : '' %>>
             Emergency First Aid</option>
           <option value="First Aid" <%= checkCertificates('First Aid') ? 'selected' : '' %>>First Aid</option>
-          <option value="Super Host" <%= checkCertificates('Super Host') ? 'selected' : '' %>>Super Host</option>
           <option value="Serving It Right" <%= checkCertificates('Serving It Right') ? 'selected' : '' %>>Serving It
             Right</option>
           <option value="Food Safe" <%= checkCertificates('Food Safe') ? 'selected' : '' %>>Food Safe</option>
@@ -210,13 +208,11 @@
           <option value="Infections Control and Prevention"
             <%= checkCertificates('Infections Control and Prevention') ? 'selected' : '' %>>Infections Control and
             Prevention</option>
-          <option value="Mental Health First Aid" <%= checkCertificates('Mental Health First Aid') ? 'selected' : '' %>>
-            Mental Health First Aid</option>
           <option value="Transportation of Dangerous Goods"
             <%= checkCertificates('Transportation of Dangerous Goods') ? 'selected' : '' %>>Transportation of Dangerous
             Goods</option>
-          <option value="Personal Protective Equipement Safety Training"
-            <%= checkCertificates('Personal Protective Equipement Safety Training') ? 'selected' : '' %>>Personal Protective Equipement Safety Training</option>
+          <option value="Personal Protective Equipment Safety Training"
+            <%= checkCertificates('Personal Protective Equipment Safety Training') ? 'selected' : '' %>>Personal Protective Equipment Safety Training</option>
           <option value="Drivers License passenger vehicle"
             <%= checkCertificates('Drivers License passenger vehicle') ? 'selected' : '' %>>Drivers License - passenger vehicle</option>
           <option value="Licensed to drive a truck or other large vehicle"
