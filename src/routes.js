@@ -32,8 +32,12 @@ router.get('/employer', csrfProtection, (req, res) => {
 })
 
 
-router.get('/done', (req, res) => {
-  res.render('confirmation')
+router.get('/jobseekerdone', (req, res) => {
+  res.render('jobseekerconfirmation')
+});
+
+router.get('/employerdone', (req, res) => {
+  res.render('employerconfirmation')
 });
 
 router.get('/about', (req, res) => {
@@ -142,7 +146,7 @@ router.post(
         } else {
           console.log("Message sent: %s", info.messageId);
           req.flash("success", "Form has been submitted");
-          res.redirect("/done");
+          res.redirect("/jobseekerdone");
         }
       })
     } catch (error) {
@@ -261,7 +265,7 @@ router.post(
         } else {
           console.log("Message sent: %s", info.messageId);
           req.flash("success", "Form has been submitted");
-          res.redirect("/done");
+          res.redirect("/employerdone");
         }
       });
     } catch (error) {
