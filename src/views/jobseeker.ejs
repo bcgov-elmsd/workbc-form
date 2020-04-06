@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
     <% if (messages.error) { %>
-      <div class="alert alert-danger"><%= messages.error %></div>
+    <div class="alert alert-danger"><%= messages.error %></div>
     <% } %>
     <h1 id="forms">Job Seeker Form</h1>
     <p><span style="color:red">*</span> Denotes a required field.</p>
@@ -89,7 +89,7 @@
         <label class="col-form-label control-label" for="email">Email <span style="color:red">*</span></label>
         <small class="text-muted">someone@example.com</small>
         <input type="text" class="form-control <%= errors.email ? 'is-invalid' : '' %>" id="email" name="email"
-           value="<%= data.email %>" />
+          value="<%= data.email %>" />
         <% if (errors.email) { %>
         <div class="invalid-feedback"><%= errors.email.msg %></div>
         <% } %>
@@ -98,7 +98,7 @@
         <label class="col-form-label control-label" for="address">Address</label>
         <small class="text-muted">555 Main St</small>
         <input type="text" class="form-control <%= errors.address ? 'is-invalid' : '' %>" id="address" name="address"
-           value="<%= data.address %>" />
+          value="<%= data.address %>" />
         <% if (errors.address) { %>
         <div class="invalid-feedback"><%= errors.address.msg %></div>
         <% } %>
@@ -107,7 +107,7 @@
         <label class="col-form-label control-label" for="address2">Address 2</label>
         <small class="text-muted">Apartment, studio, or floor</small>
         <input type="text" class="form-control <%= errors.address2 ? 'is-invalid' : '' %>" id="address2" name="address2"
-           value="<%= data.address2 %>" />
+          value="<%= data.address2 %>" />
         <% if (errors.address2) { %>
         <div class="invalid-feedback"><%= errors.address2.msg %></div>
         <% } %>
@@ -134,6 +134,21 @@
         <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="legalworkingage">Are you of legal working age? <span
               style="color:red">*</span></label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="legalworkingage" id="legalworkingageyes" value="Yes"
+              <%= data.legalworkingage=="Yes" ? 'checked' : '' %>>
+            <label class="form-check-label" for="legalworkingageyes">
+              Yes
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="legalworkingage" id="legalworkingageno" value="No"
+              <%= data.legalworkingage=="No" ? 'checked' : '' %>>
+            <label class="form-check-label" for="legalworkingageno">
+              No
+            </label>
+          </div>
+          <!--
           <select aria-describedby="legalworkingage" aria-required="true"
             class="form-control <%= errors.legalworkingage ? 'is-invalid' : '' %>" id="legalworkingage"
             name="legalworkingage">
@@ -141,6 +156,7 @@
             <option value="Yes" <%= data.legalworkingage=="Yes" ? 'selected' : '' %>>Yes</option>
             <option value="No" <%= data.legalworkingage=="No" ? 'selected' : '' %>>No</option>
           </select>
+          -->
           <% if (errors.legalworkingage) { %>
           <div class="invalid-feedback">Please answer.</div>
           <% } %>
@@ -148,6 +164,21 @@
         <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="eligibletowork">Are you eligible to work in Canada? <span
               style="color:red">*</span></label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="eligibletowork" id="eligibletoworkyes" value="Yes"
+              <%= data.eligibletowork=="Yes" ? 'checked' : '' %>>
+            <label class="form-check-label" for="eligibletoworkyes">
+              Yes
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="eligibletowork" id="eligibletoworkno" value="No"
+              <%= data.eligibletowork=="No" ? 'checked' : '' %>>
+            <label class="form-check-label" for="eligibletoworkno">
+              No
+            </label>
+          </div>
+          <!--
           <select aria-describedby="eligibletowork" aria-required="true"
             class="form-control <%= errors.eligibletowork ? 'is-invalid' : '' %>" id="eligibletowork"
             name="eligibletowork">
@@ -155,6 +186,7 @@
             <option value="Yes" <%= data.eligibletowork=="Yes" ? 'selected' : '' %>>Yes</option>
             <option value="No" <%= data.eligibletowork=="No" ? 'selected' : '' %>>No</option>
           </select>
+          -->
           <% if (errors.eligibletowork) { %>
           <div class="invalid-feedback">Please answer.</div>
           <% } %>
@@ -163,12 +195,28 @@
       <div class="form-row align-items-end">
         <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="volunteer">Are you willing to volunteer?</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="volunteer" id="volunteeryes" value="Yes"
+              <%= data.volunteer=="Yes" ? 'checked' : '' %>>
+            <label class="form-check-label" for="volunteeryes">
+              Yes
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="volunteer" id="volunteerno" value="No"
+              <%= data.volunteer=="No" ? 'checked' : '' %>>
+            <label class="form-check-label" for="volunteerno">
+              No
+            </label>
+          </div>
+          <!--
           <select aria-describedby="volunteer" aria-required="true"
             class="form-control <%= errors.volunteer ? 'is-invalid' : '' %>" id="volunteer" name="volunteer">
             <option value="0"></option>
             <option value="Yes" <%= data.volunteer=="Yes" ? 'selected' : '' %>>Yes</option>
             <option value="No" <%= data.volunteer=="No" ? 'selected' : '' %>>No</option>
           </select>
+          -->
           <% if (errors.volunteer) { %>
           <div class="invalid-feedback">Please answer.</div>
           <% } %>
@@ -176,6 +224,21 @@
         <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="neighbouringcommunities">Are you willing to work in
             neighbouring communities?</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="neighbouringcommunities" id="neighbouringcommunitiesyes" value="Yes"
+                <%= data.neighbouringcommunities=="Yes" ? 'checked' : '' %>>
+              <label class="form-check-label" for="neighbouringcommunitiesyes">
+                Yes
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="neighbouringcommunities" id="neighbouringcommunitiesno" value="No"
+                <%= data.neighbouringcommunities=="No" ? 'checked' : '' %>>
+              <label class="form-check-label" for="neighbouringcommunitiesno">
+                No
+              </label>
+            </div>
+          <!--
           <select aria-describedby="neighbouringcommunities" aria-required="true"
             class="form-control <%= errors.neighbouringcommunities ? 'is-invalid' : '' %>" id="neighbouringcommunities"
             name="neighbouringcommunities">
@@ -183,6 +246,7 @@
             <option value="Yes" <%= data.neighbouringcommunities=="Yes" ? 'selected' : '' %>>Yes</option>
             <option value="No" <%= data.neighbouringcommunities=="No" ? 'selected' : '' %>>No</option>
           </select>
+          -->
           <% if (errors.neighbouringcommunities) { %>
           <div class="invalid-feedback">Please answer.</div>
           <% } %>
@@ -192,7 +256,7 @@
       </div>
       <div class="form-group">
         <label class="col-form-label control-label" for="certificates">Skills/ Abilities/ Certifications</label>
-        <small class="text-muted">Please hold CTRL or command when selecting multiple options.</small>
+        <small class="text-muted">Please hold CTRL (Windows) or command (MAC) when selecting multiple options.</small>
         <select multiple aria-describedby="certificates" aria-required="true"
           class="form-control <%= errors.certificates ? 'is-invalid' : '' %>" id="certificates" name="certificates">
           <option value="WHMIS" <%= checkCertificates('WHMIS') ? 'selected' : '' %>>Workplace Hazardous Materials
@@ -203,8 +267,8 @@
           <option value="Serving It Right" <%= checkCertificates('Serving It Right') ? 'selected' : '' %>>Serving It
             Right</option>
           <option value="Food Safe" <%= checkCertificates('Food Safe') ? 'selected' : '' %>>Food Safe</option>
-          <option value="Basic Computer Skills"
-            <%= checkCertificates('Basic Computer Skills') ? 'selected' : '' %>>Basic Computer Skills
+          <option value="Basic Computer Skills" <%= checkCertificates('Basic Computer Skills') ? 'selected' : '' %>>
+            Basic Computer Skills
           </option>
           <option value="Forklift Lift Truck Operator"
             <%= checkCertificates('Forklift Lift Truck Operator') ? 'selected' : '' %>>Forklift/Lift Truck Operator
@@ -216,11 +280,14 @@
             <%= checkCertificates('Transportation of Dangerous Goods') ? 'selected' : '' %>>Transportation of Dangerous
             Goods</option>
           <option value="Personal Protective Equipment Safety Training"
-            <%= checkCertificates('Personal Protective Equipment Safety Training') ? 'selected' : '' %>>Personal Protective Equipment Safety Training</option>
+            <%= checkCertificates('Personal Protective Equipment Safety Training') ? 'selected' : '' %>>Personal
+            Protective Equipment Safety Training</option>
           <option value="Drivers License passenger vehicle"
-            <%= checkCertificates('Drivers License passenger vehicle') ? 'selected' : '' %>>Drivers License - passenger vehicle</option>
+            <%= checkCertificates('Drivers License passenger vehicle') ? 'selected' : '' %>>Drivers License - passenger
+            vehicle</option>
           <option value="Licensed to drive a truck or other large vehicle"
-            <%= checkCertificates('Licensed to drive a truck or other large vehicle') ? 'selected' : '' %>>Licensed to drive a truck or other large vehicle</option>
+            <%= checkCertificates('Licensed to drive a truck or other large vehicle') ? 'selected' : '' %>>Licensed to
+            drive a truck or other large vehicle</option>
         </select>
         <% if (errors.certificates) { %>
         <div class="invalid-feedback">Please select at least one certificate.</div>
@@ -363,12 +430,28 @@
       <div class="form-group">
         <label class="col-form-label control-label" for="owncar">Do you have your own car or have to access to a vehicle
           that could be used for performing job duties?</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="owncar" id="owncaryes" value="Yes"
+            <%= data.owncar=="Yes" ? 'checked' : '' %>>
+          <label class="form-check-label" for="owncaryes">
+            Yes
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="owncar" id="owncarno" value="No"
+            <%= data.owncar=="No" ? 'checked' : '' %>>
+          <label class="form-check-label" for="owncarno">
+            No
+          </label>
+        </div>
+        <!--
         <select aria-describedby="owncar" aria-required="true"
           class="form-control <%= errors.owncar ? 'is-invalid' : '' %>" id="owncar" name="owncar">
           <option value="0"></option>
           <option value="Yes" <%= data.owncar=="Yes" ? 'selected' : '' %>>Yes</option>
           <option value="No" <%= data.owncar=="No" ? 'selected' : '' %>>No</option>
         </select>
+        -->
         <% if (errors.owncar) { %>
         <div class="invalid-feedback">Please answer.</div>
         <% } %>
@@ -399,12 +482,28 @@
       -->
       <div class="form-group">
         <label class="col-form-label control-label" for="worknights">Are you willing to work nights?</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="worknights" id="worknightsyes" value="Yes"
+            <%= data.worknights=="Yes" ? 'checked' : '' %>>
+          <label class="form-check-label" for="worknightsyes">
+            Yes
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="worknights" id="worknightsno" value="No"
+            <%= data.worknights=="No" ? 'checked' : '' %>>
+          <label class="form-check-label" for="worknightsno">
+            No
+          </label>
+        </div>
+        <!--
         <select aria-describedby="worknights" aria-required="true"
           class="form-control <%= errors.worknights ? 'is-invalid' : '' %>" id="worknights" name="worknights">
           <option value="0"></option>
           <option value="Yes" <%= data.worknights=="Yes" ? 'selected' : '' %>>Yes</option>
           <option value="No" <%= data.worknights=="No" ? 'selected' : '' %>>No</option>
         </select>
+        -->
         <% if (errors.worknights) { %>
         <div class="invalid-feedback">Please answer.</div>
         <% } %>

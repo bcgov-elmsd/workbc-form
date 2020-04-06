@@ -32,12 +32,28 @@
       <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <div class="form-group">
         <label class="col-form-label control-label" for="morethan1position">Do you have more than 1 category of positions to fill?</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="morethan1position" id="morethan1positionyes" value="Yes"
+            <%= data.morethan1position=="Yes" ? 'checked' : '' %>>
+          <label class="form-check-label" for="morethan1positionyes">
+            Yes
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="morethan1position" id="morethan1positionno" value="No"
+            <%= data.morethan1position=="No" ? 'checked' : '' %>>
+          <label class="form-check-label" for="morethan1positionno">
+            No
+          </label>
+        </div>
+        <!--        
         <select aria-describedby="morethan1position" aria-required="true"
           class="form-control <%= errors.morethan1position ? 'is-invalid' : '' %>" id="morethan1position" name="morethan1position">
           <option value="0"></option>
           <option value="Yes" <%= data.morethan1position=="Yes" ? 'selected' : '' %>>Yes</option>
           <option value="No" <%= data.morethan1position=="No" ? 'selected' : '' %>>No</option>
         </select>
+        -->
         <% if (errors.morethan1position) { %>
           <div class="invalid-feedback">Please answer.</div>
         <% } %>
