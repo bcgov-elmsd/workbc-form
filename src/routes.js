@@ -117,7 +117,6 @@ router.post(
 
     const data = matchedData(req);
     console.log("Sanitized: ", data);
-
     
     try {
       let transporter = nodemailer.createTransport({

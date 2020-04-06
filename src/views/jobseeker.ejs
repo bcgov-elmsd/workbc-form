@@ -20,7 +20,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form method="post" action="/jobseeker">
+    <form method="post" action="/jobseeker" onsubmit="submitJobSeeker.disabled = true; return true;">
 
       <!--
       <div class="form-group <%= errors.message ? 'form-field-invalid' : '' %>">
@@ -699,7 +699,7 @@
         <% } %>
       </div>-->
       <div class="form-actions">
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary" id="submitJobSeeker" type="submit">Submit</button>
       </div>
   </div>
   </form>

@@ -19,7 +19,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form method="post" action="/employer" novalidate>
+    <form method="post" action="/employer" onsubmit="submitEmployer.disabled = true; return true;">
       <!--
       <div class="form-group <%= errors.message ? 'form-field-invalid' : '' %>">
         <label for="message">Message</label>
@@ -438,7 +438,7 @@
         <% } %>
       </div>-->
   <div class="form-actions">
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-primary" id="submitEmployer" type="submit">Submit</button>
   </div>
   </form>
 </div>
