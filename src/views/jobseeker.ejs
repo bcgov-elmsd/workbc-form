@@ -77,8 +77,9 @@
       </div>
       <div class="form-group">
         <label class="col-form-label control-label" for="phone">Phone <span style="color:red">*</span></label>
+        <small class="text-muted">555-555-555 or 5551235555</small>
         <input type="text" class="form-control <%= errors.phone ? 'is-invalid' : '' %>" id="phone" name="phone"
-          maxlength="12" placeholder="555-555-555 or 5551235555" value="<%= data.phone _%>" />
+          maxlength="12" value="<%= data.phone _%>" />
         </input>
         <% if (errors.phone) { %>
         <div class="invalid-feedback"><%= errors.phone.msg %></div>
@@ -86,24 +87,27 @@
       </div>
       <div class="form-group">
         <label class="col-form-label control-label" for="email">Email <span style="color:red">*</span></label>
+        <small class="text-muted">someone@example.com</small>
         <input type="text" class="form-control <%= errors.email ? 'is-invalid' : '' %>" id="email" name="email"
-          placeholder="someone@example.com" value="<%= data.email %>" />
+           value="<%= data.email %>" />
         <% if (errors.email) { %>
         <div class="invalid-feedback"><%= errors.email.msg %></div>
         <% } %>
       </div>
       <div class="form-group">
         <label class="col-form-label control-label" for="address">Address</label>
+        <small class="text-muted">555 Main St</small>
         <input type="text" class="form-control <%= errors.address ? 'is-invalid' : '' %>" id="address" name="address"
-          placeholder="555 Main St" value="<%= data.address %>" />
+           value="<%= data.address %>" />
         <% if (errors.address) { %>
         <div class="invalid-feedback"><%= errors.address.msg %></div>
         <% } %>
       </div>
       <div class="form-group">
         <label class="col-form-label control-label" for="address2">Address 2</label>
+        <small class="text-muted">Apartment, studio, or floor</small>
         <input type="text" class="form-control <%= errors.address2 ? 'is-invalid' : '' %>" id="address2" name="address2"
-          placeholder="Apartment, studio, or floor" value="<%= data.address2 %>" />
+           value="<%= data.address2 %>" />
         <% if (errors.address2) { %>
         <div class="invalid-feedback"><%= errors.address2.msg %></div>
         <% } %>
