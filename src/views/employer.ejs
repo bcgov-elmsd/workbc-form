@@ -63,8 +63,9 @@
         <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="positions"># of Positions <span
               style="color:red">*</span></label>
+          <small class="text-muted">Enter 1 or more</small>
           <input type="text" class="form-control <%= errors.positions ? 'is-invalid' : '' %>" id="positions"
-            name="positions" placeholder="Enter 1 or more" maxlength="4" value="<%= data.positions %>" />
+            name="positions" maxlength="4" value="<%= data.positions %>" />
           <% if (errors.positions) { %>
           <div class="invalid-feedback"><%= errors.positions.msg %></div>
           <% } %>
@@ -92,8 +93,9 @@
         <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="contactphone">Contact Phone <span
               style="color:red">*</span></label>
+          <small class="text-muted">555-555-555 or 5551235555</small>
           <input type="text" class="form-control <%= errors.contactphone ? 'is-invalid' : '' %>" id="contactphone"
-            name="contactphone" placeholder="555-555-555 or 5551235555" value="<%= data.contactphone %>" />
+            name="contactphone" value="<%= data.contactphone %>" />
           <% if (errors.contactphone) { %>
           <div class="invalid-feedback"><%= errors.contactphone.msg %></div>
           <% } %>
@@ -336,7 +338,8 @@
         <% } %>
       </div>
       <div class="form-group">
-        <label class="col-form-label control-label" for="otherjobdetails">Instructions for Submitting Applicants Referrals</label>
+        <label class="col-form-label control-label" for="otherjobdetails">Instructions for Submitting Applicant Referrals<span
+          style="color:red">*</span></label>
         <textarea class="form-control <%= errors.otherjobdetails ? 'is-invalid' : '' %>" id="otherjobdetails"
           name="otherjobdetails" rows="3"><%= data.otherjobdetails %></textarea>
         <% if (errors.otherjobdetails) { %>

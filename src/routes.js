@@ -32,8 +32,12 @@ router.get('/employer', csrfProtection, (req, res) => {
 })
 
 
-router.get('/done', (req, res) => {
-  res.render('confirmation')
+router.get('/jobseekerdone', (req, res) => {
+  res.render('jobseekerconfirmation')
+});
+
+router.get('/employerdone', (req, res) => {
+  res.render('employerconfirmation')
 });
 
 router.get('/about', (req, res) => {
@@ -80,8 +84,7 @@ router.post(
       .isIn(["Yes", "No"])
       .withMessage("Please answer."),
     check("volunteer")
-      .isIn(["Yes", "No"])
-      .withMessage("Please answer."),
+      .optional(),
     check("neighbouringcommunities")
       .optional(),
     check("certificates")
@@ -130,7 +133,7 @@ router.post(
         to: "WorkBC Jobs <WorkBCJobs@gov.bc.ca>", // list of receivers
         bcc: "",
         subject: "Job Seeker Form", // Subject line
-        text: "Plain text", // plain text body
+        text: createJobSeekerPlainText(data), // plain text body
         html: createJobSeekerHtml(data) // html body
       }
       let info = transporter.sendMail(message, (error, info) => {
@@ -144,7 +147,7 @@ router.post(
         } else {
           console.log("Message sent: %s", info.messageId);
           req.flash("success", "Form has been submitted");
-          res.redirect("/done");
+          res.redirect("/jobseekerdone");
         }
       })
     } catch (error) {
@@ -192,7 +195,8 @@ router.post(
       .isIn(["0","Temporary full time", "Temporary part time", "Permanent full time", "Permanent part time"])
       .optional(),
     check("otherjobdetails")
-      .optional(),
+      .notEmpty()
+      .withMessage("Please enter instructions."),
     check("rolesandresponsibilities")
       .notEmpty()
       .withMessage("Please enter roles and responsibilities."),
@@ -248,7 +252,7 @@ router.post(
         from: 'Employer <donotreply@gov.bc.ca>', // sender address
         to: "WorkBC Hiring <WorkBCHiring@gov.bc.ca>", // list of receivers
         subject: "Employer Form", // Subject line
-        text: "Plain text", // plain text body
+        text: createEmployerPlainText(data), // plain text body
         html: createEmployerHtml(data) // html body
       };
       let info = transporter.sendMail(message, (error, info) => {
@@ -262,7 +266,7 @@ router.post(
         } else {
           console.log("Message sent: %s", info.messageId);
           req.flash("success", "Form has been submitted");
-          res.redirect("/done");
+          res.redirect("/employerdone");
         }
       });
     } catch (error) {
@@ -290,7 +294,7 @@ function createJobSeekerHtml(data) {
   html += "<p>Legal working age: " + data.legalworkingage + "</p>"
   html += "<p>Eligible to work in Canada: " + data.eligibletowork + "</p>"
   html += "<p>Willing to work in neighbouring communities: " + Strings.orEmpty(data.neighbouringcommunities) + "</p>"
-  html += "<p>Willing to volunteer:  " + data.volunteer + "</p>"
+  html += "<p>Willing to volunteer:  " + Strings.orEmpty(data.volunteer) + "</p>"
   html += "<p>Skills/Abilities/Certifications: " + Strings.orEmpty(data.certificate) + "</p>"
   //html += "<p>Able to lift up to 40 pounds: " + Strings.orEmpty(data.upto40pounds) + "</p>"
   //html += "<p>Able to lift more than 40 pounds: " + Strings.orEmpty(data.morethan40pounds) + "</p>"
@@ -305,6 +309,46 @@ function createJobSeekerHtml(data) {
 
   //html += "<p>Region(s) available to work: " + data.catchment + "</p>"
   return html;
+  /*
+  html += "<p>"+ "</p>"
+  html += "<p>"+ "</p>"
+  html += "<p>"+ "</p>"
+  html += "<p>"+ "</p>"
+  html += "<p>"+ "</p>"
+  */
+}
+
+function createJobSeekerPlainText(data) {
+  var plain = "";
+  plain += "A Job Seeker Form has been submitted"
+  //plain += "<p>Salutation: " + data.salutation + ".</p>"
+  plain += "First Name: " + data.firstname + "\n"
+  plain += "Middle Name: " + Strings.orEmpty(data.middlename) + "\n"
+  plain += "Last Name: " + data.lastname + "\n"
+  plain += "Phone: " + data.phone + "\n"
+  plain += "Email: " + data.email + "\n"
+  plain += "Address: " + Strings.orEmpty(data.address) + "\n"
+  plain += "Address2: " + Strings.orEmpty(data.address2) + "\n"
+  plain += "City: " + Strings.orEmpty(data.city) + "\n"
+  plain += "Postal Code: " + data.postal + "\n"
+  plain += "Legal working age: " + data.legalworkingage + "\n"
+  plain += "Eligible to work in Canada: " + data.eligibletowork + "\n"
+  plain += "Willing to work in neighbouring communities: " + Strings.orEmpty(data.neighbouringcommunities) + "\n"
+  plain += "Willing to volunteer:  " + Strings.orEmpty(data.volunteer) + "\n"
+  plain += "Skills/Abilities/Certifications: " + Strings.orEmpty(data.certificate) + "\n"
+  //plain += "Able to lift up to 40 pounds: " + Strings.orEmpty(data.upto40pounds) + "\n"
+  //plain += "Able to lift more than 40 pounds: " + Strings.orEmpty(data.morethan40pounds) + "\n"
+  //plain += "Have driver's license: "+ Strings.orEmpty(data.driverslicense) +"\n"
+  //plain += "Driver's license type: "+ Strings.orEmpty(data.driverslicensekind) + "\n"
+  plain += "Own car or have access to vehicle: " + Strings.orEmpty(data.owncar) + "\n"
+  plain += "Willing to work nights: " + Strings.orEmpty(data.worknights) + "\n"
+  //plain += "Start work immediatly: "+ Strings.orEmpty(data.startimmediatly) +"\n"
+  //plain += "Industries with experience: "+ Strings.orEmpty(data.experienceindustries) +"\n"
+  //plain += "Ready, willing, and able to work in industry in which you don't have experience: "+ Strings.orEmpty(data.workinunrelatedindustry) +"\n"
+  //plain += ""+ data.consent +"\n"
+
+  //plain += "Region(s) available to work: " + data.catchment + "\n"
+  return plain;
   /*
   html += "<p>"+ "</p>"
   html += "<p>"+ "</p>"
@@ -352,6 +396,54 @@ function createEmployerHtml(data) {
 
 
   return html;
+  /*
+  html += "<p>"+ data. + "</p>"
+  html += "<p>"+ data. ? data. : ""+ "</p>"
+  html += "<p>"+ "</p>"
+  html += "<p>"+ "</p>"
+  html += "<p>"+ "</p>"
+  html += "<p>"+ "</p>"
+  */
+}
+
+function createEmployerPlainText(data) {
+  var plain = "";
+  plain += "A Employer Form has been submitted"
+  plain += "Employer Name: " + data.employer + "\n"
+  plain += "Location(s): " + data.catchment + "\n"
+  plain += "Job Title: " + data.jobtitle + "\n"
+  plain += "# of Positions: " + data.positions + "\n"
+  plain += "HR Contact Name: " + data.hrcontactname + "\n"
+  plain += "Contact Email: " + Strings.orEmpty(data.contactemail) + "\n"
+  plain += "Contact Phone: " + Strings.orEmpty(data.contactphone) + "\n"
+  plain += "<h3>Job Description</h3>"
+  plain += "Role and Responsibilities: \n"
+  plain += "" + data.rolesandresponsibilities + "\n"
+  plain += "Qualifications and Education Requirements: \n"
+  plain += "" + data.qualifications + "\n"
+  plain += "Work Schedule: " + data.workschedule + "\n"
+  plain += "Hourly rate of pay: " + data.hourlypay + "\n"
+  plain += "Position Type: " + data.positiontype + "\n"
+  //plain += "Physical Requirement: " + Strings.orEmpty(data.physicalrequirements) + "\n"
+  //plain += "COVID-19 health and safety provisions: " + Strings.orEmpty(data.covid19health) + "\n"
+  plain += "Instructions for Submitting Applicants Referrals: \n"
+  plain += "<div>" + Strings.orEmpty(data.otherjobdetails) + "\n"
+  /*
+  plain += "<h3>Template Prepared By</h3>"
+  plain += "Name: "+ data.preparedbyname + "\n"
+  plain += "Email: "+ data.preparedbyemail + "\n"
+  
+  plain += "<h3>WorkBC Referrals</h3>"
+  plain += "Name: "+ Strings.orEmpty(data.referral1name) + "\n"
+  plain += "Email: "+ Strings.orEmpty(data.referral1email) + "\n"
+  plain += "Name: "+ Strings.orEmpty(data.referral2name) + "\n"
+  plain += "Email: "+ Strings.orEmpty(data.referral2email) + "\n"
+  plain += "Name: "+ Strings.orEmpty(data.referral3name) + "\n"
+  plain += "Email: "+ Strings.orEmpty(data.referral3email) + "\n"
+  */
+
+
+  return plain;
   /*
   html += "<p>"+ data. + "</p>"
   html += "<p>"+ data. ? data. : ""+ "</p>"
