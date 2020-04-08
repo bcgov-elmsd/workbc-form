@@ -40,7 +40,6 @@ const middlewares = [
     store: new RedisStore({client: redisClient}),
     secret: process.env.SECRET || process.env.OPENSHIFT_NODEJS_SECRET ||"super-secret-key",
     key: process.env.KEY || process.env.OPENSHIFT_NODEJS_KEY || "super-secret-cookie",
-    name: process.env.SESS_NAME || process.env.OPENSHIFT_SESS_NAME || "redis",
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 60000 }
