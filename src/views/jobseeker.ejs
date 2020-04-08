@@ -67,9 +67,9 @@
       </div>
       <div class="form-group">
         <label class="col-form-label control-label" for="phone">Phone <span style="color:red">*</span></label>
-        <small class="text-muted">555-555-555 or 5551235555</small>
+        <small class="text-muted" id="phone">555-555-5555 or 5551235555</small>
         <input type="text" class="form-control <%= errors.phone ? 'is-invalid' : '' %>" id="phone" name="phone"
-          maxlength="12" value="<%= data.phone _%>" />
+          maxlength="12" aria-describedby="phone" value="<%= data.phone _%>" />
         </input>
         <% if (errors.phone) { %>
         <div class="invalid-feedback"><%= errors.phone.msg %></div>
@@ -77,8 +77,8 @@
       </div>
       <div class="form-group">
         <label class="col-form-label control-label" for="email">Email <span style="color:red">*</span></label>
-        <small class="text-muted">someone@example.com</small>
-        <input type="text" class="form-control <%= errors.email ? 'is-invalid' : '' %>" id="email" name="email"
+        <small class="text-muted" id="email">someone@example.com</small>
+        <input type="text" class="form-control <%= errors.email ? 'is-invalid' : '' %>" id="email" aria-describedby="email" name="email"
           value="<%= data.email %>" />
         <% if (errors.email) { %>
         <div class="invalid-feedback"><%= errors.email.msg %></div>
@@ -86,8 +86,8 @@
       </div>
       <div class="form-group">
         <label class="col-form-label control-label" for="address">Address</label>
-        <small class="text-muted">555 Main St</small>
-        <input type="text" class="form-control <%= errors.address ? 'is-invalid' : '' %>" id="address" name="address"
+        <small class="text-muted" id="address">555 Main St</small>
+        <input type="text" class="form-control <%= errors.address ? 'is-invalid' : '' %>" id="address" aria-describedby="address" name="address"
           value="<%= data.address %>" />
         <% if (errors.address) { %>
         <div class="invalid-feedback"><%= errors.address.msg %></div>
@@ -95,8 +95,8 @@
       </div>
       <div class="form-group">
         <label class="col-form-label control-label" for="address2">Address 2</label>
-        <small class="text-muted">Apartment, studio, or floor</small>
-        <input type="text" class="form-control <%= errors.address2 ? 'is-invalid' : '' %>" id="address2" name="address2"
+        <small id="address2" class="text-muted">Apartment, studio, or floor</small>
+        <input type="text" class="form-control <%= errors.address2 ? 'is-invalid' : '' %>" id="address2" aria-describedby="address2" name="address2"
           value="<%= data.address2 %>" />
         <% if (errors.address2) { %>
         <div class="invalid-feedback"><%= errors.address2.msg %></div>
@@ -246,7 +246,7 @@
       </div>
       <div class="form-group">
         <label class="col-form-label control-label" for="certificates">Skills/ Abilities/ Certifications</label>
-        <small class="text-muted">Please hold CTRL (Windows) or command (MAC) when selecting multiple options.</small>
+        <small id="certificates" class="text-muted">Please hold CTRL (Windows) or command (MAC) when selecting multiple options.</small>
         <select multiple aria-describedby="certificates" aria-required="true"
           class="form-control <%= errors.certificates ? 'is-invalid' : '' %>" id="certificates" name="certificates">
           <option value="WHMIS" <%= checkCertificates('WHMIS') ? 'selected' : '' %>>Workplace Hazardous Materials

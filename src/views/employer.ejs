@@ -70,9 +70,9 @@
         <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="positions"># of Positions <span
               style="color:red">*</span></label>
-          <small class="text-muted">Enter 1 or more</small>
+          <small id="positions" class="text-muted">Enter 1 or more</small>
           <input type="text" class="form-control <%= errors.positions ? 'is-invalid' : '' %>" id="positions"
-            name="positions" maxlength="4" value="<%= data.positions %>" />
+            name="positions" maxlength="4" value="<%= data.positions %>" aria-describedby="positions" />
           <% if (errors.positions) { %>
           <div class="invalid-feedback"><%= errors.positions.msg %></div>
           <% } %>
@@ -100,9 +100,9 @@
         <div class="form-group col-md-6">
           <label class="col-form-label control-label" for="contactphone">Contact Phone <span
               style="color:red">*</span></label>
-          <small class="text-muted">555-555-555 or 5551235555</small>
+          <small id="contactphone" class="text-muted">555-555-5555 or 5551235555</small>
           <input type="text" class="form-control <%= errors.contactphone ? 'is-invalid' : '' %>" id="contactphone"
-            name="contactphone" value="<%= data.contactphone %>" />
+            name="contactphone" value="<%= data.contactphone %>" aria-describedby="contactphone" />
           <% if (errors.contactphone) { %>
           <div class="invalid-feedback"><%= errors.contactphone.msg %></div>
           <% } %>
@@ -196,8 +196,8 @@
       <div class="form-group">
         <label class="col-form-label control-label" for="catchment">Location(s) (select all that apply) <span
             style="color:red">*</span></label>
-        <small class="text-muted">Please hold CTRL (Windows) or command (MAC) when selecting multiple options.</small>
-        <select multiple aria-describedby="catchment" aria-required="true"
+        <small class="text-muted" id="locations">Please hold CTRL (Windows) or command (MAC) when selecting multiple options.</small>
+        <select multiple aria-describedby="catchment" aria-describedby="locations" aria-required="true"
           class="form-control <%= errors.catchment ? 'is-invalid' : '' %>" id="catchment" name="catchment" size="6">
           <!-- do either in or select in function -->
           <option value="100MILEHOUSE" id="100MILEHOUSE" <%= checkRegion('100MILEHOUSE') ? 'selected' : '' %>>100 MILE
