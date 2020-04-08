@@ -19,7 +19,7 @@ app.set('view engine', 'ejs')
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',  
     redisport = process.env.REDIS_PORT || process.env.OPENSHIFT_REDIS_PORT || "6379",
-    redishost = process.env.REDIS_HOST || process.env.OPENSHIFT_REDIS_HOST || "127.0.0.1",
+    redishost = process.env.REDIS_HOST || process.env.OPENSHIFT_REDIS_HOST || "127.0.0.1";
 
 const client = redis.createClient(redisport,redishost);
 
