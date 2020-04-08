@@ -21,7 +21,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     redisport = process.env.REDIS_PORT || process.env.OPENSHIFT_REDIS_PORT || "6379",
     redishost = process.env.REDIS_HOST || process.env.OPENSHIFT_REDIS_HOST || "127.0.0.1";
 
-const client = redis.createClient(redisport,redishost);
+const client = redis.createClient({host: redishost, port: redisport});
 
 client.on("error", function(error) {
   console.error(error);
