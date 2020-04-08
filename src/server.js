@@ -22,9 +22,6 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     redishost = process.env.REDIS_HOST || process.env.OPENSHIFT_REDIS_HOST || "127.0.0.1",
 
 
-
-const client = redis.createClient();
-
 const middlewares = [
   helmet(),
   layout(),
