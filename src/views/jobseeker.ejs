@@ -20,17 +20,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form method="post" action="/jobseeker">
-
-      <!--
-      <div class="form-group <%= errors.message ? 'form-field-invalid' : '' %>">
-        <label for="message">Message</label>
-        <textarea class="form-control" id="message" name="message" rows="4"><%= data.message %></textarea>
-        <% if (errors.message) { %>
-          <div class="error"><%= errors.message.msg %></div>
-        <% } %>
-      </div>
-      -->
+    <form method="post" action="/jobseeker" onsubmit="submitJobSeeker.disabled = true; return true;">
       <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <div class="form-row">
         <!--
@@ -798,7 +788,7 @@
         <% } %>
       </div>-->
       <div class="form-actions">
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary" id="submitJobSeeker" type="submit">Submit</button>
       </div>
   </div>
   </form>

@@ -19,16 +19,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form method="post" action="/employer" novalidate>
-      <!--
-      <div class="form-group <%= errors.message ? 'form-field-invalid' : '' %>">
-        <label for="message">Message</label>
-        <textarea class="form-control" id="message" name="message" rows="4"><%= data.message %></textarea>
-        <% if (errors.message) { %>
-          <div class="invalid-feedback"><%= errors.message.msg %></div>
-        <% } %>
-      </div>
-      -->
+    <form method="post" action="/employer" onsubmit="submitEmployer.disabled = true; return true;">
       <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <div class="form-group">
         <label class="col-form-label control-label" for="morethan1position">Do you have more than 1 category of positions to fill?</label>
@@ -454,7 +445,7 @@
         <% } %>
       </div>-->
   <div class="form-actions">
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-primary" id="submitEmployer" type="submit">Submit</button>
   </div>
   </form>
 </div>

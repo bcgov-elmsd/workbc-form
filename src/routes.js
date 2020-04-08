@@ -117,7 +117,6 @@ router.post(
 
     const data = matchedData(req);
     console.log("Sanitized: ", data);
-
     
     try {
       let transporter = nodemailer.createTransport({
@@ -223,8 +222,6 @@ router.post(
   (req, res) => {
     //console.log(req.body);
     const errors = validationResult(req);
-    //console.log(errors);
-    //const errors = [];
     if (!errors.isEmpty()) {
       return res.render("employer", {
         data: req.body,
@@ -310,10 +307,6 @@ function createJobSeekerHtml(data) {
   return html;
   /*
   html += "<p>"+ "</p>"
-  html += "<p>"+ "</p>"
-  html += "<p>"+ "</p>"
-  html += "<p>"+ "</p>"
-  html += "<p>"+ "</p>"
   */
 }
 
@@ -350,10 +343,6 @@ function createJobSeekerPlainText(data) {
   return plain;
   /*
   html += "<p>"+ "</p>"
-  html += "<p>"+ "</p>"
-  html += "<p>"+ "</p>"
-  html += "<p>"+ "</p>"
-  html += "<p>"+ "</p>"
   */
 }
 
@@ -383,25 +372,12 @@ function createEmployerHtml(data) {
   html += "<h3>Template Prepared By</h3>"
   html += "<p>Name: "+ data.preparedbyname + "</p>"
   html += "<p>Email: "+ data.preparedbyemail + "</p>"
-  
-  html += "<h3>WorkBC Referrals</h3>"
-  html += "<p>Name: "+ Strings.orEmpty(data.referral1name) + "</p>"
-  html += "<p>Email: "+ Strings.orEmpty(data.referral1email) + "</p>"
-  html += "<p>Name: "+ Strings.orEmpty(data.referral2name) + "</p>"
-  html += "<p>Email: "+ Strings.orEmpty(data.referral2email) + "</p>"
-  html += "<p>Name: "+ Strings.orEmpty(data.referral3name) + "</p>"
-  html += "<p>Email: "+ Strings.orEmpty(data.referral3email) + "</p>"
-  */
 
 
   return html;
   /*
   html += "<p>"+ data. + "</p>"
   html += "<p>"+ data. ? data. : ""+ "</p>"
-  html += "<p>"+ "</p>"
-  html += "<p>"+ "</p>"
-  html += "<p>"+ "</p>"
-  html += "<p>"+ "</p>"
   */
 }
 
@@ -432,13 +408,6 @@ function createEmployerPlainText(data) {
   plain += "Name: "+ data.preparedbyname + "\n"
   plain += "Email: "+ data.preparedbyemail + "\n"
   
-  plain += "<h3>WorkBC Referrals</h3>"
-  plain += "Name: "+ Strings.orEmpty(data.referral1name) + "\n"
-  plain += "Email: "+ Strings.orEmpty(data.referral1email) + "\n"
-  plain += "Name: "+ Strings.orEmpty(data.referral2name) + "\n"
-  plain += "Email: "+ Strings.orEmpty(data.referral2email) + "\n"
-  plain += "Name: "+ Strings.orEmpty(data.referral3name) + "\n"
-  plain += "Email: "+ Strings.orEmpty(data.referral3email) + "\n"
   */
 
 
@@ -446,10 +415,6 @@ function createEmployerPlainText(data) {
   /*
   html += "<p>"+ data. + "</p>"
   html += "<p>"+ data. ? data. : ""+ "</p>"
-  html += "<p>"+ "</p>"
-  html += "<p>"+ "</p>"
-  html += "<p>"+ "</p>"
-  html += "<p>"+ "</p>"
   */
 }
 
