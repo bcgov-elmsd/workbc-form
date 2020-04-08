@@ -391,7 +391,7 @@ function createEmployerPlainText(data) {
   plain += "HR Contact Name: " + data.hrcontactname + "\n"
   plain += "Contact Email: " + Strings.orEmpty(data.contactemail) + "\n"
   plain += "Contact Phone: " + Strings.orEmpty(data.contactphone) + "\n"
-  plain += "<h3>Job Description</h3>"
+  plain += "Job Description"
   plain += "Role and Responsibilities: \n"
   plain += "" + data.rolesandresponsibilities + "\n"
   plain += "Qualifications and Education Requirements: \n"
