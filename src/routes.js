@@ -368,13 +368,15 @@ function createEmployerHtml(data) {
   //html += "<p>COVID-19 health and safety provisions: " + Strings.orEmpty(data.covid19health) + "</p>"
   html += "<p>Instructions for Submitting Applicants Referrals: </p>"
   html += "<div>" + Strings.orEmpty(data.otherjobdetails) + "</div>"
+
+  return html;
   /*
   html += "<h3>Template Prepared By</h3>"
   html += "<p>Name: "+ data.preparedbyname + "</p>"
   html += "<p>Email: "+ data.preparedbyemail + "</p>"
 
 
-  return html;
+  
   /*
   html += "<p>"+ data. + "</p>"
   html += "<p>"+ data. ? data. : ""+ "</p>"
