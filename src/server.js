@@ -51,12 +51,12 @@ app.use(middlewares);
 app.use("/", routes);
 
 app.use((req, res, next) => {
-  res.status(404).send("Sorry can't find that!");
+  res.status(404).render('404');
 });
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send("Something broke!");
+  res.status(500).render('servererror')
 });
 
 app.listen(port,ip, () => {
