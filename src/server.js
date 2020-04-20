@@ -28,7 +28,10 @@ redisClient.on("error", function(error) {
   console.error(error);
 });
 
-
+app.use(function(req, res, next) {
+  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  next();
+});
 
 const middlewares = [
   helmet(),
@@ -48,10 +51,6 @@ const middlewares = [
 ];
 app.use(middlewares);
 
-app.use(function(req, res, next) {
-  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-  next();
-});
 
 app.use("/", routes);
 
