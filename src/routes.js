@@ -6,6 +6,9 @@ const nodemailer = require("nodemailer");
 const csrf = require('csurf');
 const csrfProtection = csrf({ cookie: true });
 
+var jobseekerbcc = process.env.JOBSEEKERBCC || process.env.OPENSHIFT_NODEJS_JOBSEEKERBCC || "",
+    employerbcc = process.env.EMPLOYERBCC || process.env.OPENSHIFT_NODEJS_EMPLOYERBCC || "";
+
 const Strings = {};
 Strings.orEmpty = function (entity) {
   return entity || "";
@@ -130,6 +133,7 @@ router.post(
       let message = {
         from: 'Job Seeker <donotreply@gov.bc.ca>', // sender address
         to: "WorkBC Jobs <WorkBCJobs@gov.bc.ca>", // list of receivers
+        bcc: jobseekerbcc,
         subject: "Job Seeker Form", // Subject line
         text: createJobSeekerPlainText(data), // plain text body
         html: createJobSeekerHtml(data) // html body
@@ -247,6 +251,7 @@ router.post(
       let message = {
         from: 'Employer <donotreply@gov.bc.ca>', // sender address
         to: "WorkBC Hiring <WorkBCHiring@gov.bc.ca>", // list of receivers
+        bcc: employerbcc,
         subject: "Employer Form", // Subject line
         text: createEmployerPlainText(data), // plain text body
         html: createEmployerHtml(data) // html body
