@@ -278,7 +278,6 @@ function createJobSeekerHtml(data) {
   var html = "";
   html += "<h2>A Job Seeker Form has been submitted</h2>"
   //html += "<p>Salutation: " + data.salutation + ".</p>"
-  html += "<p>More than 1 category of position to fill: " + Strings.orEmpty(data.morethan1position) + "</p>"
   html += "<p>First Name: " + data.firstname + "</p>"
   html += "<p>Middle Name: " + Strings.orEmpty(data.middlename) + "</p>"
   html += "<p>Last Name: " + data.lastname + "</p>"
@@ -315,7 +314,6 @@ function createJobSeekerPlainText(data) {
   var plain = "";
   plain += "A Job Seeker Form has been submitted"
   //plain += "<p>Salutation: " + data.salutation + ".</p>"
-  plain += "More than 1 category of position to fill: " + Strings.orEmpty(data.morethan1position) + "\n"
   plain += "First Name: " + data.firstname + "\n"
   plain += "Middle Name: " + Strings.orEmpty(data.middlename) + "\n"
   plain += "Last Name: " + data.lastname + "\n"
@@ -351,6 +349,7 @@ function createJobSeekerPlainText(data) {
 function createEmployerHtml(data) {
   var html = "";
   html += "<h2>A Employer Form has been submitted</h2>"
+  html += "<p>More than 1 category of position to fill: " + Strings.orEmpty(data.morethan1position) + "</p>"
   html += "<p>Employer Name: " + data.employer + "</p>"
   html += "<p>Location(s): " + data.catchment + "</p>"
   html += "<p>Job Title: " + data.jobtitle + "</p>"
@@ -388,6 +387,7 @@ function createEmployerHtml(data) {
 function createEmployerPlainText(data) {
   var plain = "";
   plain += "A Employer Form has been submitted"
+  plain += "More than 1 category of position to fill: " + Strings.orEmpty(data.morethan1position) + "\n"
   plain += "Employer Name: " + data.employer + "\n"
   plain += "Location(s): " + data.catchment + "\n"
   plain += "Job Title: " + data.jobtitle + "\n"
