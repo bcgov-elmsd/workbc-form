@@ -21,7 +21,7 @@ jobs:
         uses: redhat-developer/openshift-actions@v2.1.0
         with:
           # Choose the oc version you want to use to execute the command. It can be a version or an url where to download oc cli desired. If left blank latest oc cli will be used.
-          version: 3.11.0
+          version: latest
           # The URL of the Openshift cluster
           openshift_server_url: ${{secrets.OPENSHIFT_SERVER_URL}}
           # JSON with values to connect to the Openshift cluster
