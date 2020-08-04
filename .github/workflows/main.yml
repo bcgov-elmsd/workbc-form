@@ -30,4 +30,4 @@ jobs:
           cmd: |
             'version'
             'start-build workbc-form -n ${{secrets.PROJECT_TOOLS}} --follow'
-            'status'
+            'status -n ${{secrets.PROJECT_TOOLS}}'
