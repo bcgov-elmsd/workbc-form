@@ -29,5 +29,5 @@ jobs:
           # Oc command to be executed
           cmd: |
             'version'
-            'start-build workbc-form -n ${{PROJECT_TOOLS}} --follow'
+            'start-build workbc-form -n ${{secret.PROJECT_TOOLS}} --follow'
             'status'
