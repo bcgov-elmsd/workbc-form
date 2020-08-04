@@ -28,5 +28,6 @@ jobs:
           parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
           # Oc command to be executed
           cmd: |
-            'projects'
             'version'
+            'start-build workbc-form -n {{PROJECT_TOOLS}} --follow'
+            'status'
