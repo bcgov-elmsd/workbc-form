@@ -120,7 +120,7 @@ router.post(
 
     const data = matchedData(req);
     console.log("Sanitized: ", data);
-    
+    /*
     try {
       let transporter = nodemailer.createTransport({
         host: "apps.smtp.gov.bc.ca",
@@ -155,11 +155,12 @@ router.post(
     } catch (error) {
 
     }
+    */
         
     
     //sendMail(data);
-    //req.flash("success", "Form has been submitted");
-    //res.redirect("/done");
+    req.flash("success", "Form has been submitted");
+    res.redirect("/done");
 
   }
 );
@@ -236,7 +237,7 @@ router.post(
 
     const data = matchedData(req);
     console.log("Sanitized: ", data);
-
+    /*
     try {
       let transporter = nodemailer.createTransport({
         host: "apps.smtp.gov.bc.ca",
@@ -273,9 +274,10 @@ router.post(
     } catch (error) {
 
     }
+    */
 
-    //req.flash("success", "Form has been submitted");
-    //res.redirect("/done");
+    req.flash("success", "Form has been submitted");
+    res.redirect("/done");
   }
 );
 
